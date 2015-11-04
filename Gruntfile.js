@@ -89,6 +89,12 @@ module.exports = function(grunt) {
 				files: 'po/**/*',
 				tasks: ['browserify']
 			}
+		},
+		'gh-pages': {
+			options: {
+				base: 'public'
+			},
+			src: ['**']
 		}
 	});
 
@@ -98,6 +104,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-browserify');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-gh-pages');
 
 	grunt.registerTask(
 		'javascript',
@@ -108,20 +115,20 @@ module.exports = function(grunt) {
 	grunt.registerTask(
 		'views',
 		'Compile views.',
-		['jade', 'less', 'copy']
-	);
-
-	grunt.registerTask(
-		'files',
-		'Copy files.',
-		['copy']
+		['jade', 'less']
 	);
 
 	grunt.registerTask(
 		'build',
 		'Compiles everything.',
-		['javascript', 'views']
+		['copy', 'javascript', 'views']
 	);
+
+	grunt.registerTask(
+		'deploy',
+		'Deploy to GitHub Pages',
+		['build', 'gh-pages']
+	)
 
 	grunt.registerTask(
 		'default',
