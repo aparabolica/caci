@@ -1,0 +1,21 @@
+{
+  "name": "violencia-indigena",
+  "version": "0.0.0",
+  "authors": [
+    "Miguel Peixe <miguel@cardume.art.br>"
+  ],
+  "description": "Cartografia da Violência Indígena",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "leaflet": "~0.7.7",
+    "ui-router": "~0.2.15"
+  }
+}
