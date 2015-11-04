@@ -1,7 +1,7 @@
 {
   "name": "violencia-indigena",
   "version": "0.0.1",
-  "description": "Cartografia da Violência Indígena",
+  "description": "Cartografia da violência contra os povos indígenas",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
