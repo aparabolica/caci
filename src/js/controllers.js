@@ -11,6 +11,15 @@
       }
     ]);
 
+    app.controller('HomeCtrl', [
+      '$scope',
+      'Casos',
+      function($scope, Casos) {
+        $scope.casos = Casos.data;
+        console.log($scope.casos);
+      }
+    ])
+
   };
 
 })();

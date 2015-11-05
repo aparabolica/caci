@@ -29,7 +29,7 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url(/img/halftone_light.png);
+  background: url(../img/halftone_light.png);
   padding: 18% 5% 40px;
   transition: all .2s linear;
   .header-main {
@@ -69,6 +69,7 @@ p {
     position: fixed;
     padding: 10px;
     bottom: auto;
+    background: url(../img/halftone_clear.png);
     h1 {
       margin: 0;
       font-size: 1em;
@@ -166,16 +167,49 @@ p {
   width: 40%;
   top: 0;
   bottom: 0;
-  background: url(/img/halftone_clear.png);
+  background: url(../img/halftone_clear.png);
   z-index: 9999;
+  padding-top: 38px;
+  overflow: auto;
+  .caso-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    > li {
+      margin: 0;
+      padding: 0;
+      article {
+        // margin: 10px;
+        padding: 20px;
+        border-bottom: 1px dotted rgba(0,0,0,0.2);
+        // background: #fff;
+        h3 {
+          font-size: 24px;
+          margin: 0;
+        }
+        p {
+          margin: 0;
+        }
+      }
+    }
+  }
 }
 
-#map {
+.map-container {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   bottom: 0;
+  width: 60%;
+  transition: all 2s linear;
+  &.collapsed {
+    // width: 60%;
+  }
+}
+
+#map {
+  width: 100%;
+  height: 100%;
   .leaflet-top {
     top: 40px;
   }

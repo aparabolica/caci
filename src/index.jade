@@ -6,10 +6,10 @@ html
     meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
     meta(name="viewport" content="width=device-width,initial-scale=1")
     meta(name="fragment" content="!")
-    link(rel="stylesheet" href="/static/normalize.css/normalize.css")
-    link(rel="stylesheet" href="/static/leaflet/dist/leaflet.css")
-    link(rel="stylesheet" href="/static/mapbox.js/mapbox.standalone.css")
-    link(rel="stylesheet" href="/css/app.css")
+    link(rel="stylesheet" href="static/normalize.css/normalize.css")
+    link(rel="stylesheet" href="static/leaflet/dist/leaflet.css")
+    link(rel="stylesheet" href="static/mapbox.js/mapbox.standalone.css")
+    link(rel="stylesheet" href="css/app.css")
   body(ng-controller="MainCtrl")
     header#masthead(ng-class="{collapsed: initialized}")
       .header-main
@@ -44,12 +44,19 @@ html
           article
             h3
               a Presídio Krenak ­Fluxo de prisões.
-    section#casos(ng-class="{active: intialized}")
-      
-    map#map
+
     section#content(ui-view autoscroll="false")
-    script(type="text/javascript" src="/static/angular/angular.min.js")
-    script(type="text/javascript" src="/static/ui-router/release/angular-ui-router.min.js")
-    script(type="text/javascript" src="/static/leaflet/dist/leaflet.js")
-    script(type="text/javascript" src="/static/mapbox.js/mapbox.standalone.js")
-    script(type="text/javascript" src="/app.js")
+      section#casos
+        ul.caso-list(ng-show="casos.length && initialized")
+          li(ng-repeat="caso in casos")
+            article
+              h3 {{caso | casoName}}
+              p {{caso['DESCRIÇÃO']}}
+    
+    .map-container
+      map#map
+    script(type="text/javascript" src="static/angular/angular.min.js")
+    script(type="text/javascript" src="static/ui-router/release/angular-ui-router.min.js")
+    script(type="text/javascript" src="static/leaflet/dist/leaflet.js")
+    script(type="text/javascript" src="static/mapbox.js/mapbox.standalone.js")
+    script(type="text/javascript" src="app.js")

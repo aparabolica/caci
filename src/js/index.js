@@ -19,13 +19,53 @@
 
       $stateProvider
       .state('home', {
-        url: '/'
+        url: '/',
+        controller: 'HomeCtrl',
+        resolve: {
+          Casos: [
+            'VIndigena',
+            function(VIndigena) {
+              return VIndigena.getCasos();
+            }
+          ]
+        }
       });
+
+
+      /*
+      * Trailing slash rule
+      */
+      $urlRouterProvider.rule(function($injector, $location) {
+      	var path = $location.path(),
+      	search = $location.search(),
+      	params;
+
+      	// check to see if the path already ends in '/'
+      	if (path[path.length - 1] === '/') {
+      		return;
+      	}
+
+      	// If there was no search string / query params, return with a `/`
+      	if (Object.keys(search).length === 0) {
+      		return path + '/';
+      	}
+
+      	// Otherwise build the search string and return a `/?` prefix
+      	params = [];
+      	angular.forEach(search, function(v, k){
+      		params.push(k + '=' + v);
+      	});
+
+      	return path + '/?' + params.join('&');
+      });
+
     }
   ]);
 
-  require('./controllers')(app);
+  require('./services')(app);
+  require('./filters')(app);
   require('./directives')(app);
+  require('./controllers')(app);
 
   angular.element(document).ready(function() {
     angular.bootstrap(document, ['vindigena']);
