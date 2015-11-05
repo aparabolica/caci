@@ -11,10 +11,43 @@ html
     link(rel="stylesheet" href="/static/mapbox.js/mapbox.standalone.css")
     link(rel="stylesheet" href="/css/app.css")
   body(ng-controller="MainCtrl")
-    header#masthead
-      h1 Cartografia da violência contra os povos indígenas
+    header#masthead(ng-class="{collapsed: initialized}")
+      .header-main
+        h1
+          a(ui-sref="home") Cartografia da violência contra os povos indígenas
+        nav#mastnav
+          a.button(href="#" ng-click="init();" ng-hide="initialized") Navegar pelos casos
+      aside#casos-intro(ng-hide="initialized")
+        p De 1984 até hoje foram registrados 
+          span.number-1 1234 
+          | casos de homícidio praticados contra a população indígena no Brasil
+    section#dossies(ng-class="{collapsed: initialized}")
+      h2 Dossiês
+      ul.dossie-list
+        li
+          .image(style="background-image:url(http://lorempixum.com/500/500/?1)")
+          article
+            h3
+              a Assassinatos em Antonio João - MS
+        li
+          .image(style="background-image:url(http://lorempixum.com/500/500/?2)")
+          article
+            h3
+              a Assassinatos nas regiões dos processos do STF (MS)
+        li
+          .image(style="background-image:url(http://lorempixum.com/500/500/?3)")
+          article
+            h3
+              a Extermínio para tomada de terra por mineradora no Pará
+        li
+          .image(style="background-image:url(http://lorempixum.com/500/500/?4)")
+          article
+            h3
+              a Presídio Krenak ­Fluxo de prisões.
+    section#casos(ng-class="{active: intialized}")
+      
     map#map
-    section#content(ui-view autoscroll="false") {{hello}}
+    section#content(ui-view autoscroll="false")
     script(type="text/javascript" src="/static/angular/angular.min.js")
     script(type="text/javascript" src="/static/ui-router/release/angular-ui-router.min.js")
     script(type="text/javascript" src="/static/leaflet/dist/leaflet.js")

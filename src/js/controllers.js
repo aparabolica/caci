@@ -5,7 +5,9 @@
     app.controller('MainCtrl', [
       '$scope',
       function($scope) {
-        $scope.hello = 'World';
+        $scope.init = function() {
+          $scope.initialized = true;
+        }
       }
     ]);
 
