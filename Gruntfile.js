@@ -74,7 +74,7 @@ module.exports = function(grunt) {
         tasks: ['less']
       },
       jade: {
-        files: 'src/views/**/*.jade',
+        files: 'src/**/*.jade',
         tasks: ['jade']
       },
       scripts: {
