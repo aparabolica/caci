@@ -20,7 +20,8 @@
             });
 
             var baseLayers = {
-              baseLayer: L.mapbox.tileLayer('infoamazonia.omcrw6ox'),
+              baseLayer: L.mapbox.tileLayer('infoamazonia.8d20fc32'),
+              baltimetria: L.mapbox.tileLayer('infoamazonia.naturalEarth_baltimetria'),
               rivers: L.mapbox.tileLayer('infoamazonia.rivers'),
               treecover: L.mapbox.tileLayer('infoamazonia.4rbe1sxe'),
               streets: L.mapbox.tileLayer('infoamazonia.osm-brasil')
