@@ -30,16 +30,29 @@ p {
   right: 0;
   bottom: 0;
   background: url(../img/halftone_light.png);
-  padding: 18% 5% 40px;
-  transition: all .2s linear;
+  padding: 10% 5% 40px;
+  transition: all .4s ease-in-out;
   .header-main {
     float: left;
     width: 50%;
+    padding-top: 10%;
+    transition: all .4s ease-in-out;
   }
-  #casos-intro {
+  #intro {
     float: right;
-    width: 30%;
-    padding-top: 10.311%;
+    width: 20%;
+    .by {
+      margin: 0 0 20%;
+      p {
+        font-size: 18px;
+        color: #999;
+      }
+      text-transform: uppercase;
+      img {
+        display: block;
+        margin: 10px 0 0;
+      }
+    }
     p {
       font-size: 1.8vw;
       .number-1 {
@@ -54,7 +67,7 @@ p {
     text-transform: uppercase;
     font-size: 4vw;
     line-height: 1;
-    transition: all .2s linear;
+    transition: all .4s ease-in-out;
     text-shadow: 2px 2px 0px rgba(255, 15, 0, 0.6);
     letter-spacing: -.2vw;
     a {
@@ -70,9 +83,13 @@ p {
     padding: 10px;
     bottom: auto;
     background: url(../img/halftone_clear.png);
+    .header-main {
+      padding-top: 0;
+      width: 100%;
+    }
     h1 {
       margin: 0;
-      font-size: 1em;
+      font-size: 1.8em;
       text-shadow: 0 0 0;
       letter-spacing: -1px;
     }
@@ -98,12 +115,11 @@ p {
   bottom: 0;
   left: 0;
   z-index: 99999;
-  background: rgba(255,255,255,0.3);
   padding-top: 10px;
   width: 100%;
-  transition: all .2s linear;
+  transition: all .4s ease-in-out;
   &.collapsed {
-    width: 60%;
+    width: 70%;
     bottom: -10%;
     &:hover {
       bottom: 0;
@@ -164,7 +180,7 @@ p {
 #casos {
   position: absolute;
   right: 0;
-  width: 40%;
+  width: 30%;
   top: 0;
   bottom: 0;
   background: url(../img/halftone_clear.png);
@@ -200,7 +216,7 @@ p {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 60%;
+  width: 70%;
   transition: all 2s linear;
   &.collapsed {
     // width: 60%;
@@ -211,6 +227,6 @@ p {
   width: 100%;
   height: 100%;
   .leaflet-top {
-    top: 40px;
+    top: 50px;
   }
 }
