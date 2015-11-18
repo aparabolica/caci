@@ -1,4 +1,4 @@
-(function() {
+(function(vindig) {
 
   module.exports = function(app) {
 
@@ -7,7 +7,7 @@
       function($http) {
         return {
           getCasos: function() {
-            return $http.get('data/1993-96.json');
+            return $http.get(vindig.base + '/data/1993-96.json');
           }
         }
       }
@@ -15,4 +15,4 @@
 
   }
 
-})();
+})(vindig);

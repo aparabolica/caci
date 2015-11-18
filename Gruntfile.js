@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     browserify: {
       all: {
         files: {
-          'public/app.js': 'src/js/index.js'
+          'js/app.js': 'src/js/index.js'
         }
       }
     },
@@ -12,33 +12,36 @@ module.exports = function(grunt) {
       all: {
         options: {
           mangle: true,
-          compress: true
+          compress: true,
+          sourceMap: true
         },
         files: {
-          'public/app.js': 'public/app.js',
+          'js/app.js': 'js/app.js',
         }
       }
     },
     less: {
       all: {
         options: {
-          compress: true
+          compress: true,
+          sourceMap: true
         },
         files: {
-          'public/css/app.css': 'src/css/main.less'
+          'css/app.css': 'src/css/main.less'
         }
       }
     },
     jade: {
       all: {
         options: {
+          pretty: true,
           doctype: 'html'
         },
         files: [{
           expand: true,
           cwd: 'src',
           src: ['**/*.jade', '!views/includes/**/*'],
-          dest: 'public',
+          dest: '.',
           ext: '.html'
         }]
       }
@@ -49,7 +52,7 @@ module.exports = function(grunt) {
           {
             cwd: 'src',
             src: ['**', '!js/**', '!**/*.less', '!**/*.jade', '!**/*.js'],
-            dest: 'public',
+            dest: '.',
             expand: true
           }
         ]
@@ -59,7 +62,7 @@ module.exports = function(grunt) {
           {
             cwd: 'bower_components',
             src: ['**/*'],
-            dest: 'public/static',
+            dest: 'static',
             expand: true
           }
         ]
@@ -89,12 +92,6 @@ module.exports = function(grunt) {
         files: 'po/**/*',
         tasks: ['browserify']
       }
-    },
-    'gh-pages': {
-      options: {
-        base: 'public'
-      },
-      src: ['**']
     }
   });
 

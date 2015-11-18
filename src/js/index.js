@@ -31,7 +31,6 @@
         }
       });
 
-
       /*
       * Trailing slash rule
       */
