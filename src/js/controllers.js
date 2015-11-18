@@ -11,6 +11,12 @@
         }
         Vindig.cases().then(function(data) {
           $scope.casos = data.data;
+          var totalPages = data.headers('X-WP-TotalPages');
+          for(var i = 2; i <= totalPages; i++) {
+            Vindig.cases({page: i}).then(function(data) {
+              $scope.casos = $scope.casos.concat(data.data);
+            });
+          }
         });
       }
     ]);
