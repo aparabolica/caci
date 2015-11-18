@@ -7,18 +7,18 @@
         return function(input) {
           var name = '';
           if(input) {
-            if(input.NOME) {
-              name += input.NOME;
-              if(input.APELIDO) {
-                name += ' (' + input.APELIDO + ')';
+            if(input.nome) {
+              name += input.nome;
+              if(input.apelido) {
+                name += ' (' + input.apelido + ')';
               }
-            } else if(input.APELIDO) {
-              name += input.APELIDO;
+            } else if(input.apelido) {
+              name += input.apelido;
             } else {
               name += 'Não identificado';
             }
-            if(input.IDADE) {
-              name += ', ' + input.IDADE + ' anos';
+            if(input.idade) {
+              name += ', ' + input.idade + ' anos';
             }
           }
           return name;

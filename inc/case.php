@@ -32,7 +32,7 @@ class Vindig_Case {
       'labels' => $labels,
       'hierarchical' => false,
       'description' => __('Casos', 'vindig'),
-      'supports' => array('title', 'editor', 'excerpt', 'author', 'revisions', 'thumbnail', 'custom-fields'),
+      'supports' => array('title', 'revisions', 'custom-fields'),
       'public' => true,
       'show_ui' => true,
       'show_in_menu' => true,
@@ -47,6 +47,23 @@ class Vindig_Case {
 
   function json_prepare_post($_post, $post, $context) {
     if($post['post_type'] == 'case') {
+
+      $_post['nome'] = get_post_meta($post['ID'], 'nome', true);
+      $_post['apelido'] = get_post_meta($post['ID'], 'apelido', true);
+      $_post['idade'] = get_post_meta($post['ID'], 'idade', true);
+      $_post['descricao'] = get_post_meta($post['ID'], 'descricao', true);
+      $_post['povo'] = get_post_meta($post['ID'], 'povo', true);
+      $_post['aldeia'] = get_post_meta($post['ID'], 'aldeia', true);
+      $_post['dia'] = get_post_meta($post['ID'], 'dia', true);
+      $_post['mes'] = get_post_meta($post['ID'], 'mes', true);
+      $_post['ano'] = get_post_meta($post['ID'], 'ano', true);
+      $_post['cod_ibge'] = get_post_meta($post['ID'], 'cod_ibge', true);
+      $_post['municipio'] = get_post_meta($post['ID'], 'municipio', true);
+      $_post['uf'] = get_post_meta($post['ID'], 'uf', true);
+      $_post['relatorio'] = get_post_meta($post['ID'], 'relatorio', true);
+      $_post['cod_funai'] = get_post_meta($post['ID'], 'cod_funai', true);
+      $_post['terra_indigena'] = get_post_meta($post['ID'], 'terra_indigena', true);
+      $_post['fonte_cimi'] = get_post_meta($post['ID'], 'fonte_cimi', true);
 
     }
     return $_post;

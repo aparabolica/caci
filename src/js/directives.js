@@ -17,6 +17,8 @@
             Vindig.maps().then(function(data) {
               var mapData = data.data[0];
 
+              console.log(mapData);
+
               angular.element(element)
                 .append('<div id="' + attrs.id + '"></div>')
                 .attr('id', '');
@@ -28,32 +30,50 @@
                 maxZoom: parseInt(mapData.max_zoom)
               });
 
-              var baseLayers = {
-                baseLayer: L.mapbox.tileLayer('infoamazonia.8d20fc32'),
-                baltimetria:  L.mapbox.tileLayer('infoamazonia.naturalEarth_baltimetria'),
-                rivers: L.mapbox.tileLayer('infoamazonia.rivers'),
-                treecover: L.mapbox.tileLayer('infoamazonia.4rbe1sxe'),
-                streets: L.mapbox.tileLayer('infoamazonia.osm-brasil')
-              };
+              var fixed = [];
+              var swapable = [];
+              var switchable = [];
 
-              for(var key in baseLayers) {
-                map.addLayer(baseLayers[key]);
+              if(mapData.base_layer.url) {
+                fixed.push(mapData.base_layer);
               }
 
-              var overlayLayers = {
-                'Unidades de Conservação': L.mapbox.tileLayer('infoamazonia.ojdsix43'),
-                'Terras indígenas': L.mapbox.tileLayer('infoamazonia.qwbaban8'),
-                'Desmatamento': L.mapbox.tileLayer('infoamazonia.9by7k878')
-              };
+              _.each(mapData.layers, function(layer) {
+                if(layer.filtering == 'fixed') {
+                  fixed.push(Vindig.getLayer(layer));
+                } else if(layer.filtering == 'swap') {
+                  swapable.push(Vindig.getLayer(layer));
+                } else if(layer.filtering == 'switch') {
+                  switchable.push(Vindig.getLayer(layer));
+                }
+              });
 
-              L.control.layers({}, overlayLayers).addTo(map);
+              _.each(fixed, function(layer) {
+                map.addLayer(layer.layer);
+              });
 
-              var markerLayer = L.markerClusterGroup();
+              var swapLayers = {};
+
+              _.each(swapable, function(layer) {
+                swapLayers[layer.name] = layer.layer;
+              });
+
+              var overlayLayers = {};
+
+              _.each(switchable, function(layer) {
+                overlayLayers[layer.name] = layer.layer;
+              });
+              
+              L.control.layers(swapLayers, overlayLayers).addTo(map);
+
+              var markerLayer = L.markerClusterGroup({
+                maxClusterRadius: 40
+              });
 
               markerLayer.addTo(map);
 
               var markers = [];
-              scope.$watch('markers', function(posts) {
+              scope.$watch('markers', _.debounce(function(posts) {
                 for(var key in markers) {
                   markerLayer.removeLayer(markers[key]);
                 }
@@ -65,7 +85,7 @@
                 for(var key in markers) {
                   markers[key].addTo(markerLayer);
                 }
-              }, true);
+              }, 300), true);
 
             });
 

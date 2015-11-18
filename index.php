@@ -50,10 +50,10 @@
     <section id="content" ui-view autoscroll="false">
       <section id="casos">
         <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-          <li ng-repeat="caso in casos | limitTo:20">
+          <li ng-repeat="caso in casos | limitTo:100">
             <article>
               <h3>{{caso | casoName}}</h3>
-              <p>{{caso['DESCRIÇÃO']}}</p>
+              <p>{{caso.descricao}}</p>
             </article>
           </li>
         </ul>

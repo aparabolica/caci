@@ -1,4 +1,4 @@
-(function(vindig, undefined) {
+(function(vindig, L, undefined) {
 
   module.exports = function(app) {
 
@@ -40,7 +40,7 @@
 
             filter = filter || {};
             filter = _.extend({
-              posts_per_page: 50
+              posts_per_page: 80
             }, filter);
 
             params.filter = filter;
@@ -69,6 +69,17 @@
               url: vindig.api + 'posts',
               params: params
             });
+          },
+          getLayer: function(layerObj) {
+            var layer = {
+              name: layerObj.title
+            };
+            if(layerObj.type == 'mapbox') {
+              layer.layer = L.mapbox.tileLayer(layerObj.mapbox_id);
+            } else if(layerObj.type == 'tilelayer') {
+              layer.layer = L.tileLayer(layerObj.url);
+            }
+            return layer;
           }
         }
       }
@@ -76,4 +87,4 @@
 
   }
 
-})(window.vindig);
+})(window.vindig, window.L);
