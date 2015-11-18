@@ -30,7 +30,7 @@ class Vindig_Case {
       'labels' => $labels,
       'hierarchical' => false,
       'description' => __('Casos', 'vindig'),
-      'supports' => array('title', 'editor', 'excerpt', 'author', 'revisions', 'thumbnail'),
+      'supports' => array('title', 'editor', 'excerpt', 'author', 'revisions', 'thumbnail', 'custom-fields'),
       'public' => true,
       'show_ui' => true,
       'show_in_menu' => true,
