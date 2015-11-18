@@ -18,6 +18,7 @@
     "leaflet": "~0.7.7",
     "ui-router": "~0.2.15",
     "normalize.css": "~3.0.3",
-    "mapbox.js": "~2.2.3"
+    "mapbox.js": "~2.2.3",
+    "leaflet.markerclusterer": "~0.4.0"
   }
 }

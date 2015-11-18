@@ -50,7 +50,7 @@
     <section id="content" ui-view autoscroll="false">
       <section id="casos">
         <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-          <li ng-repeat="caso in casos">
+          <li ng-repeat="caso in casos | limitTo:20">
             <article>
               <h3>{{caso | casoName}}</h3>
               <p>{{caso['DESCRIÇÃO']}}</p>
@@ -59,7 +59,7 @@
         </ul>
       </section>
     </section>
-    <div class="map-container"><map id="map"></map></div>
+    <div class="map-container"><map id="map" markers="casos | postToMarker"></map></div>
     <?php wp_footer(); ?>
   </body>
 </html>

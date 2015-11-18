@@ -4,19 +4,20 @@
 
     app.controller('MainCtrl', [
       '$scope',
-      function($scope) {
+      'Vindig',
+      function($scope, Vindig) {
         $scope.init = function() {
           $scope.initialized = true;
         }
+        Vindig.cases().then(function(data) {
+          $scope.casos = data.data;
+        });
       }
     ]);
 
     app.controller('HomeCtrl', [
       '$scope',
-      'Casos',
-      function($scope, Casos) {
-        $scope.casos = Casos.data;
-        console.log($scope.casos);
+      function($scope) {
       }
     ])
 

@@ -20,15 +20,7 @@
       $stateProvider
       .state('home', {
         url: '/',
-        controller: 'HomeCtrl',
-        resolve: {
-          Casos: [
-            'Vindig',
-            function(Vindig) {
-              return Vindig.cases();
-            }
-          ]
-        }
+        controller: 'HomeCtrl'
       });
 
       /*
