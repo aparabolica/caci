@@ -2,12 +2,16 @@
 
   module.exports = function(app) {
 
-    app.factory('VIndigena', [
+    app.factory('Vindig', [
       '$http',
       function($http) {
         return {
-          getCasos: function() {
-            return $http.get(vindig.base + '/data/1993-96.json');
+          cases: function() {
+            // return $http.get(vindig.base + '/data/1993-96.json');
+            return $http.get(vindig.api + 'posts?type=case');
+          },
+          dossiers: function() {
+            return $http.get(vindig.api + 'posts?type=dossier');
           }
         }
       }

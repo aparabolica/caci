@@ -23,9 +23,9 @@
         controller: 'HomeCtrl',
         resolve: {
           Casos: [
-            'VIndigena',
-            function(VIndigena) {
-              return VIndigena.getCasos();
+            'Vindig',
+            function(Vindig) {
+              return Vindig.cases();
             }
           ]
         }

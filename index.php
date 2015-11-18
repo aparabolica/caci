@@ -11,7 +11,7 @@
   <body ng-controller="MainCtrl">
     <header id="masthead" ng-class="{collapsed: initialized}">
       <div class="header-main">
-        <h1><a ui-sref="home">Cartografia da violência contra os povos indígenas</a></h1>
+        <h1><a ui-sref="home"><?php bloginfo('name'); ?></a></h1>
         <nav id="mastnav"><a href="#" ng-click="init();" ng-hide="initialized" class="button">Navegar pelos casos</a></nav>
       </div>
       <aside id="intro" ng-hide="initialized">

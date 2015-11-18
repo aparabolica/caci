@@ -1,6 +1,11 @@
 <?php
 
 /*
+ * Theme WP features
+ */
+add_theme_support('post-thumbnails');
+
+/*
  * Scripts and styles
  */
 
@@ -32,7 +37,8 @@ function vindig_scripts() {
   wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'leaflet', 'mapbox.standalone'));
 
   wp_localize_script('app', 'vindig', array(
-    'base' => str_replace(site_url(), '', get_stylesheet_directory_uri())
+    'base' => str_replace(site_url(), '', get_stylesheet_directory_uri()),
+    'api' => get_option('permalink_structure') ? esc_url(get_json_url()) . '/' : esc_url(get_json_url())
   ));
 
 }
@@ -77,3 +83,6 @@ function vindig_json_url_prefix() {
 add_filter('json_url_prefix', 'vindig_json_url_prefix');
 
 add_filter('show_admin_bar', '__return_false');
+
+require_once(STYLESHEETPATH . '/inc/dossier.php');
+require_once(STYLESHEETPATH . '/inc/case.php');
