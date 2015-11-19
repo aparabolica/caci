@@ -17,8 +17,6 @@
             Vindig.maps().then(function(data) {
               var mapData = data.data[0];
 
-              console.log(mapData);
-
               angular.element(element)
                 .append('<div id="' + attrs.id + '"></div>')
                 .attr('id', '');
