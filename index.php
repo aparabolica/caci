@@ -53,9 +53,13 @@
           <li ng-repeat="caso in casos | limitTo:100" class="clearfix">
             <article>
               <div class="location">
+                <span class="icon icon-pin"></span>
                 <p class="location-info" ng-bind-html="caso | caseLocation">
               </div>
-              <p class="date" ng-bind-html="caso | casoDate"></p>
+              <div class="date">
+                <span class="icon icon-calendar"></span>
+                <p class="date-info" ng-bind-html="caso | casoDate"></p>
+              </div>
               <h3>{{caso | casoName}}</h3>
               <p>{{caso.descricao}}</p>
             </article>

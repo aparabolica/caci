@@ -63,8 +63,18 @@
               _.each(switchable, function(layer) {
                 overlayLayers[layer.name] = layer.layer;
               });
-              
+
               L.control.layers(swapLayers, overlayLayers).addTo(map);
+
+              /*
+               * markers
+               */
+
+              var icon = L.divIcon({
+                className: 'pin',
+                iconSize: [18,18],
+                iconAnchor: [9, 18]
+              });
 
               var markerLayer = L.markerClusterGroup({
                 maxClusterRadius: 40
@@ -80,7 +90,9 @@
                 markers = [];
                 for(var key in posts) {
                   var post = posts[key];
-                  markers[key] = L.marker([post.lat,post.lng]);
+                  markers[key] = L.marker([post.lat,post.lng], {
+                    icon: icon
+                  });
                 }
                 for(var key in markers) {
                   markers[key].addTo(markerLayer);

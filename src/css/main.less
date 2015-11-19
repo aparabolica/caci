@@ -82,6 +82,7 @@ p {
   &.collapsed {
     position: fixed;
     padding: 10px;
+    height: 30px;
     bottom: auto;
     background: url(../img/halftone_clear.png);
     .header-main {
@@ -90,7 +91,8 @@ p {
     }
     h1 {
       margin: 0;
-      font-size: 1.8em;
+      font-size: 1.2em;
+      line-height: 30px;
       text-shadow: 0 0 0;
       letter-spacing: -1px;
     }
@@ -186,7 +188,7 @@ p {
   bottom: 0;
   background: url(../img/halftone_clear.png);
   z-index: 9999;
-  padding-top: 38px;
+  margin-top: 50px;
   overflow: auto;
   .caso-list {
     list-style: none;
@@ -210,33 +212,48 @@ p {
         }
         .location {
           float: right;
-          width: 25%;
+          width: 30%;
           margin: 0 0 20px 20px;
           padding: 10px;
           border: 1px solid #ddd;
           border-radius: 3px;
-          .location-info {
+          position: relative;
+          background: #fff;
+          .icon {
+            font-size: 22px;
+            text-shadow: 2px 1px 0 rgba(255, 15, 0, .6);
+            position: absolute;
+            top: -12px;
+            right: -5px;
+          }
+          p.location-info {
+            text-align: center;
             span {
               display: block;
             }
             .ti {
-              font-size: 22px;
-            }
-            .mun {
               font-size: 18px;
             }
+            .mun {
+              font-size: 14px;
+              opacity: .7;
+            }
             .uf {
-              font-size: 16px;
+              font-size: 12px;
+              opacity: .7;
             }
           }
         }
-        p.date {
-          font-size: 20px;
-          font-weight: 600;
-          font-family: "Hind Siliguri";
-          .mes,
-          .dia {
-            font-size: 16px;
+        .date {
+          p.date-info {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 600;
+            font-family: "Hind Siliguri";
+            .mes,
+            .dia {
+              font-size: 16px;
+            }
           }
         }
       }
@@ -253,6 +270,65 @@ p {
   transition: all 2s linear;
   &.collapsed {
     // width: 60%;
+  }
+  .leaflet-marker-icon.pin {
+    &:before {
+      content: "\e6f6";
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 16px;
+      display: block;
+      line-height: 1;
+      color: #000;
+      text-shadow: 1px 1px 0 rgba(255, 15, 0, .6);
+    }
+  }
+  .leaflet-marker-icon.marker-cluster {
+    background: transparent;
+    background-image: url(../img/halftone_light.png);
+    border-radius: 4px;
+    width: 30px !important;
+    height: 30px !important;
+    margin-top: -15px !important;
+    margin-left: -15px !important;
+    &:before {
+      content: "\e6f6";
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: absolute;
+      font-size: 14px;
+      top: -7px;
+      left: 40%;
+      color: #000;
+      text-shadow: 1px 1px 0 rgba(255, 15, 0, .6);
+    }
+    div {
+      border-radius: 0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      border: 1px solid rgba(0,0,0,0.3);
+      border-radius: 4px;
+      margin: 0;
+      span {
+        font-weight: 600;
+        font-family: "Hind Siliguri";
+      }
+    }
   }
 }
 
