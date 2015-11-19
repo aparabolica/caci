@@ -26,6 +26,44 @@
       }
     ]);
 
+    app.filter('casoDate', [
+      '$sce',
+      function($sce) {
+        return function(input) {
+          var date = '';
+          if(input.ano) {
+            date = '<span class="ano">' + input.ano + '</span>';
+          }
+          if(input.mes) {
+            date += '<span class="mes">/' + input.mes + '</span>';
+          }
+          if(input.dia) {
+            date += '<span class="dia">/' + input.dia + '</span>';
+          }
+          return $sce.trustAsHtml(date);
+        }
+      }
+    ]);
+
+    app.filter('caseLocation', [
+      '$sce',
+      function($sce) {
+        return function(input) {
+          var location = '';
+          if(input.terra_indigena) {
+            location = '<span class="ti">' + input.terra_indigena + '</span>';
+          }
+          if(input.municipio) {
+            location += '<span class="mun">' + input.municipio + '</span>';
+          }
+          if(input.uf) {
+            location += '<span class="uf">' + input.uf + '</span>';
+          }
+          return $sce.trustAsHtml(location);
+        }
+      }
+    ])
+
     app.filter('postToMarker', [
       function() {
         return _.memoize(function(input) {

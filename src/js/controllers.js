@@ -12,6 +12,7 @@
         Vindig.cases().then(function(data) {
           $scope.casos = data.data;
           var totalPages = data.headers('X-WP-TotalPages');
+          console.log($scope.casos[0]);
           for(var i = 2; i <= totalPages; i++) {
             Vindig.cases({page: i}).then(function(data) {
               $scope.casos = $scope.casos.concat(data.data);
