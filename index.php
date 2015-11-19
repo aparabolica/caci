@@ -62,6 +62,7 @@
               </div>
               <h3>{{caso | casoName}}</h3>
               <p>{{caso.descricao}}</p>
+              <p class="source" ng-show="caso.fonte_cimi">Fonte: {{caso.fonte_cimi}}</p>
             </article>
           </li>
         </ul>

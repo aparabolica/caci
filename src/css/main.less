@@ -123,7 +123,7 @@ p {
   transition: all .4s ease-in-out;
   &.collapsed {
     width: 70%;
-    bottom: -10%;
+    bottom: -100px;
     &:hover {
       bottom: 0;
     }
@@ -132,9 +132,9 @@ p {
     }
   }
   h2 {
-    font-size: 2vw;
+    font-size: 26px;
     text-transform: uppercase;
-    margin: -25px 5% 5px;
+    margin: -25px 20px 5px;
     line-height: 1;
   }
   .dossie-list {
@@ -172,7 +172,7 @@ p {
         position: relative;
         z-index: 2;
         h3 {
-          font-size: 1.5vw;
+          font-size: 22px;
           line-height: 1;
         }
       }
@@ -208,6 +208,10 @@ p {
           margin: 0 0 10px;
         }
         p {
+          margin: 0 0 20px;
+        }
+        .source {
+          color: #999;
           margin: 0;
         }
         .location {
@@ -228,6 +232,7 @@ p {
           }
           p.location-info {
             text-align: center;
+            margin: 0;
             span {
               display: block;
             }
@@ -246,6 +251,7 @@ p {
         }
         .date {
           p.date-info {
+            margin: 0;
             display: inline-block;
             font-size: 20px;
             font-weight: 600;
@@ -270,6 +276,9 @@ p {
   transition: all 2s linear;
   &.collapsed {
     // width: 60%;
+  }
+  .leaflet-bottom {
+    bottom: 40px;
   }
   .leaflet-marker-icon.pin {
     &:before {

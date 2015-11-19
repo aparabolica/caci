@@ -70,12 +70,15 @@
               params: params
             });
           },
-          getLayer: function(layerObj) {
+          getLayer: function(layerObj, map) {
             var layer = {
               name: layerObj.title
             };
             if(layerObj.type == 'mapbox') {
-              layer.layer = L.mapbox.tileLayer(layerObj.mapbox_id);
+              var tileLayer = L.mapbox.tileLayer(layerObj.mapbox_id);
+              var gridLayer = L.mapbox.gridLayer(layerObj.mapbox_id);
+              layer.layer = L.layerGroup([tileLayer,gridLayer]);
+              map.addControl(L.mapbox.gridControl(gridLayer));
             } else if(layerObj.type == 'tilelayer') {
               layer.layer = L.tileLayer(layerObj.url);
             }
