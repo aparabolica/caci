@@ -69,42 +69,6 @@
                 position: 'bottomright'
               }).addTo(map);
 
-              var gridMap = {};
-
-              map.on('layeradd', function(ev) {
-                var l = ev.layer;
-                // if(l._tilejson) {
-                //
-                //   var id = l._leaflet_id;
-                //
-                //   if(!gridMap[id])
-                //     gridMap[id] = {};
-                //
-                //   if(!gridMap[id].layer)
-                //     gridMap[id] = L.mapbox.gridLayer(l._tilejson.id);
-                //
-                //   if(!gridMap[id].control)
-                //     gridMap[id].control = L.mapbox.gridControl(l.gridLayer);
-                //
-                //   map.addLayer(gridMap[id].layer);
-                //   map.addControl(gridMap[id].control);
-                //
-                // }
-              });
-              //
-              // map.on('layerremove', function(ev) {
-              //   var id = ev.layer._leaflet_id;
-              //   if(gridMap[id]) {
-              //
-              //     if(gridMap[id].layer)
-              //       map.removeLayer(gridMap[id].layer);
-              //
-              //     if(gridMap[id].control)
-              //       map.removeControl(gridMap[id].control);
-              //
-              //   }
-              // });
-
               /*
                * markers
                */

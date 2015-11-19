@@ -6,6 +6,7 @@
       '$scope',
       'Vindig',
       function($scope, Vindig) {
+        $scope.initialized = true;
         $scope.init = function() {
           $scope.initialized = true;
         }

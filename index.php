@@ -56,11 +56,18 @@
                 <span class="icon icon-pin"></span>
                 <p class="location-info" ng-bind-html="caso | caseLocation">
               </div>
-              <div class="date">
-                <span class="icon icon-calendar"></span>
-                <p class="date-info" ng-bind-html="caso | casoDate"></p>
-              </div>
-              <h3>{{caso | casoName}}</h3>
+              <header class="caso-header">
+                <h3>{{caso | casoName}}</h3>
+                <div class="header-meta">
+                  <div class="age meta" ng-show="caso.idade">
+                    <p>{{caso.idade}} anos</p>
+                  </div>
+                  <div class="date meta">
+                    <span class="icon icon-calendar"></span>
+                    <p class="date-info" ng-bind-html="caso | casoDate"></p>
+                  </div>
+                </div>
+              </header>
               <p>{{caso.descricao}}</p>
               <p class="source" ng-show="caso.fonte_cimi">Fonte: {{caso.fonte_cimi}}</p>
             </article>

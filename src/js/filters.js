@@ -17,9 +17,9 @@
             } else {
               name += 'Não identificado';
             }
-            if(input.idade) {
-              name += ', ' + input.idade + ' anos';
-            }
+            // if(input.idade) {
+            //   name += ', ' + input.idade + ' anos';
+            // }
           }
           return name;
         }
