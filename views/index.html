@@ -12,8 +12,12 @@
 </section>
 <section id="content" autoscroll="false">
   <section id="casos" ng-class="{collapsed: isDossier}">
+    <form id="casos-filters">
+      <input type="text" ng-model="filter.text" placeholder="Digite sua busca">
+      <div range-slider min="1986" max="2015" model-max="filter.date.max" model-min="filter.date.min" show-values="true"></div>
+    </form>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-      <li ng-repeat="caso in casos | limitTo:100" class="clearfix">
+      <li ng-repeat="caso in filtered = (casos | filter:filter.text | dateFilter:filter.date) | limitTo:100" class="clearfix">
         <article>
           <div class="location"><span class="icon icon-pin"></span>
             <p ng-bind-html="caso | caseLocation" class="location-info"></p>
@@ -21,8 +25,11 @@
           <header class="caso-header">
             <h3>{{caso | casoName}}</h3>
             <div class="header-meta">
-              <div ng-show="caso.idade" class="age meta">
+              <div ng-show="caso.idade" class="age meta"><span class="icon icon-chevron-small-right"></span>
                 <p>{{caso.idade}} anos</p>
+              </div>
+              <div ng-show="caso.aldeia" class="village meta"><span class="icon icon-home"></span>
+                <p>{{caso.aldeia}}</p>
               </div>
               <div class="date meta"><span class="icon icon-calendar"></span>
                 <p ng-bind-html="caso | casoDate" class="date-info"></p>
@@ -36,5 +43,5 @@
     </ul>
   </section>
 </section>
-<div ng-class="{full: isDossier}" class="map-container"><map id="map" map-data="mapData" markers="casos | postToMarker"></map></div>
+<div ng-class="{full: isDossier}" class="map-container"><map id="map" map-data="mapData" markers="filtered | postToMarker"></map></div>
 <div ui-view></div>

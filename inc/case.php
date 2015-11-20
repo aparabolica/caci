@@ -38,7 +38,7 @@ class Vindig_Case {
       'show_in_menu' => true,
       'has_archive' => true,
       'menu_position' => 4,
-      'rewrite' => false,
+      'rewrite' => false
     );
 
     register_post_type('case', $args);

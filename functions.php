@@ -24,6 +24,9 @@ function vindig_scripts() {
   wp_register_script('angular', get_stylesheet_directory_uri() . '/static/angular/angular.min.js');
   wp_register_script('angular-ui-router', get_stylesheet_directory_uri() . '/static/ui-router/release/angular-ui-router.js', array('angular'));
 
+  wp_register_script('angular-rangeslider', get_stylesheet_directory_uri() . '/static/angular-rangeslider/angular.rangeSlider.js', array('angular'));
+  wp_register_style('angular-rangeslider', get_stylesheet_directory_uri() . '/static/angular-rangeslider/angular.rangeSlider.css');
+
   wp_register_script('leaflet', get_stylesheet_directory_uri() . '/static/leaflet/dist/leaflet.js');
   wp_register_style('leaflet', get_stylesheet_directory_uri() . '/static/leaflet/dist/leaflet.css');
 
@@ -37,9 +40,9 @@ function vindig_scripts() {
 
   wp_register_style('icons', get_stylesheet_directory_uri() . '/css/icons.css');
 
-  wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer'));
+  wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'angular-rangeslider', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer'));
 
-  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
+  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-rangeslider', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
 
   $jeo_options = jeo_get_options();
   $front_page_map = 0;

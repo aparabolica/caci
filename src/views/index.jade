@@ -9,8 +9,11 @@ section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized}')
 
 section#content(autoscroll='false')
   section#casos(ng-class='{collapsed: isDossier}')
+    form#casos-filters
+      input(type='text' ng-model='filter.text' placeholder='Digite sua busca')
+      div(range-slider min='1986' max='2015' model-max='filter.date.max' model-min='filter.date.min' show-values="true")
     ul.caso-list(ng-show='casos.length && initialized')
-      li.clearfix(ng-repeat='caso in casos | limitTo:100')
+      li.clearfix(ng-repeat='caso in filtered = (casos | filter:filter.text | dateFilter:filter.date) | limitTo:100')
         article
           .location
             span.icon.icon-pin
@@ -19,7 +22,11 @@ section#content(autoscroll='false')
             h3 {{caso | casoName}}
             .header-meta
               .age.meta(ng-show='caso.idade')
+                span.icon.icon-chevron-small-right
                 p {{caso.idade}} anos
+              .village.meta(ng-show='caso.aldeia')
+                span.icon.icon-home
+                p {{caso.aldeia}}
               .date.meta
                 span.icon.icon-calendar
                 p.date-info(ng-bind-html='caso | casoDate')
@@ -27,6 +34,6 @@ section#content(autoscroll='false')
           p.source(ng-show='caso.fonte_cimi') Fonte: {{caso.fonte_cimi}}
 
 .map-container(ng-class='{full: isDossier}')
-  map#map(map-data='mapData' markers='casos | postToMarker')
+  map#map(map-data='mapData' markers='filtered | postToMarker')
   
 div(ui-view)

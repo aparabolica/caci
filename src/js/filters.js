@@ -1,4 +1,4 @@
-(function(undefined) {
+(function(_, undefined) {
 
   module.exports = function(app) {
 
@@ -62,7 +62,21 @@
           return $sce.trustAsHtml(location);
         }
       }
-    ])
+    ]);
+
+    app.filter('dateFilter', [
+      function() {
+        return function(input, range) {
+          if(input && input.length) {
+            input = _.filter(input, function(item) {
+              var ano = parseInt(item.ano);
+              return ano >= range.min && ano <= range.max;
+            });
+          }
+          return input;
+        }
+      }
+    ]);
 
     app.filter('postToMarker', [
       function() {
@@ -98,4 +112,4 @@
 
   }
 
-})();
+})(window._);

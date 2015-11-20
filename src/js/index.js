@@ -1,7 +1,8 @@
 (function(angular, vindig, undefined) {
 
   var app = angular.module('vindigena', [
-    'ui.router'
+    'ui.router',
+    'ui-rangeSlider'
   ]);
 
   app.config([

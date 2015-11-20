@@ -30,10 +30,7 @@
             $rootScope.$on('invalidateMap', function() {
               setTimeout(function() {
                 map.invalidateSize(true);
-                setTimeout(function() {
-                  jQuery('#map').click();
-                }, 1000);
-              }, 5);
+              }, 15);
             });
 
             /*

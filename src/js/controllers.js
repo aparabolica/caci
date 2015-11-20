@@ -18,8 +18,6 @@
           $scope.initialized = true;
         };
 
-        // $scope.isDossier = false;
-
         if($state.current.name == 'home.dossier')
           $scope.isDossier = true;
         else
@@ -29,11 +27,6 @@
 
           if(toState.name !== 'home')
             $scope.initialized = true;
-
-          if(toState.name == 'home.dossier')
-            $scope.isDossier = true;
-          else
-            $scope.isDossier = false;
 
         });
 
@@ -47,9 +40,6 @@
         $scope.$watch('isDossier', function(isDossier, prev) {
           if(isDossier !== prev) {
             $rootScope.$broadcast('invalidateMap');
-            $timeout(function() {
-              // $rootScope.$broadcast('invalidateMap');
-            }, 1000);
           }
         });
 
@@ -63,6 +53,14 @@
             });
           }
         });
+
+        $scope.filter = {
+          text: '',
+          date: {
+            max: 2015,
+            min: 1986
+          }
+        };
       }
     ]);
 
