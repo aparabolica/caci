@@ -45,10 +45,10 @@
         });
 
         $scope.$watch('isDossier', function(isDossier, prev) {
-          $rootScope.$broadcast('invalidateMap');
-          if(!prev) {
+          if(isDossier !== prev) {
+            $rootScope.$broadcast('invalidateMap');
             $timeout(function() {
-              $rootScope.$broadcast('invalidateMap');
+              // $rootScope.$broadcast('invalidateMap');
             }, 1000);
           }
         });
@@ -87,14 +87,19 @@
     ]);
 
     app.controller('DossierCtrl', [
+      '$rootScope',
+      '$timeout',
       '$scope',
       '$sce',
       'Dossier',
       'DossierMap',
-      function($scope, $sce, Dossier, Map) {
+      function($rootScope, $timeout, $scope, $sce, Dossier, Map) {
         $scope.dossier = Dossier.data;
         $scope.dossier.content = $sce.trustAsHtml($scope.dossier.content);
         $scope.$emit('dossierMap', Map);
+        $timeout(function() {
+          $rootScope.$broadcast('invalidateMap');
+        }, 300);
       }
     ])
 
