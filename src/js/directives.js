@@ -29,19 +29,32 @@
             // watch map invalidation
             $rootScope.$on('invalidateMap', function(ev, boundsOptions) {
               map.invalidateSize(true);
-              map.fitBounds(map.getBounds(), boundsOptions || {});
+              // map.fitBounds(map.getBounds(), boundsOptions || {});
             });
 
             /*
              * Map data
              */
             scope.$watch('mapData', function(mapData) {
+              console.log(mapData);
               if(mapData) {
                 map.setView(mapData.center, mapData.zoom);
                 if(mapData.min_zoom)
                   map.options.minZoom = parseInt(mapData.min_zoom);
                 if(mapData.max_zoom)
                   map.options.maxZoom = parseInt(mapData.max_zoom);
+                if(mapData.pan_limits) {
+                  map.setMaxBounds(L.latLngBounds(
+                    [
+                      mapData.pan_limits.south,
+                      mapData.pan_limits.west
+                    ],
+                    [
+                      mapData.pan_limits.north,
+                      mapData.pan_limits.east
+                    ]
+                  ));
+                }
                 scope.layers = mapData.layers;
               }
             }, true);

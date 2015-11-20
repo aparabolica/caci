@@ -300,9 +300,21 @@ p {
   left: 0;
   bottom: 0;
   width: 70%;
-  transition: all .4s linear;
+  // transition: all .25s linear;
+  #map {
+    // transition: all .25s linear;
+  }
   &.full {
-    width: 100%;
+    width: 66.6666%;
+    left: auto;
+    right: 0;
+    #map {
+      position: absolute !important;
+      top: 0;
+      bottom: 0;
+      width: 200%;
+      left: -50%;
+    }
   }
   &.collapsed {
     // currently the same as regular
