@@ -44,11 +44,13 @@
             $scope.isDossier = false;
         });
 
-        $scope.$watch('isDossier', function(isDossier) {
+        $scope.$watch('isDossier', function(isDossier, prev) {
           $rootScope.$broadcast('invalidateMap');
-          $timeout(function() {
-            $rootScope.$broadcast('invalidateMap');
-          }, 1000);
+          if(!prev) {
+            $timeout(function() {
+              $rootScope.$broadcast('invalidateMap');
+            }, 1000);
+          }
         });
 
         // Async get cases
