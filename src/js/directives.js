@@ -127,6 +127,19 @@
               position: 'bottomright'
             }).addTo(map);
 
+            map.on('layeradd', function(ev) {
+              if(ev.layer._vindig_id) {
+                if(layerMap[ev.layer._vindig_id].control)
+                  map.addControl(layerMap[ev.layer._vindig_id].control);
+              }
+            });
+            map.on('layerremove', function(ev) {
+              if(ev.layer._vindig_id) {
+                if(layerMap[ev.layer._vindig_id].control)
+                  map.removeControl(layerMap[ev.layer._vindig_id].control);
+              }
+            });
+
             scope.$watch('layers', function(layers, prevLayers) {
 
               if(layers !== prevLayers || _.isEmpty(layerMap)) {
