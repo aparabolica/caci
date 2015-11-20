@@ -35,7 +35,7 @@
             paddingBottomRight: [0,0],
             paddingTopLeft: [0,0]
           };
-          if(isDossier) {
+          if(isDossier && !prev) {
             options.paddingTopLeft[0] = halfWindow;
           } else if(prev) {
             options.paddingTopLeft[0] = -halfWindow;
