@@ -18,9 +18,15 @@
           $scope.initialized = true;
         };
 
-        $scope.isDossier = false;
+        // $scope.isDossier = false;
+
+        if($state.current.name == 'home.dossier')
+          $scope.isDossier = true;
+        else
+          $scope.isDossier = false;
 
         $rootScope.$on('$stateChangeSuccess', function(ev, toState) {
+
           if(toState.name !== 'home')
             $scope.initialized = true;
 
@@ -28,12 +34,21 @@
             $scope.isDossier = true;
           else
             $scope.isDossier = false;
+
         });
 
-        $scope.$watch('isDossier', function(isDossier, prev) {
+        $rootScope.$on('$stateChangeStart', function(ev, toState) {
+          if(toState.name == 'home.dossier')
+            $scope.isDossier = true;
+          else
+            $scope.isDossier = false;
+        });
+
+        $scope.$watch('isDossier', function(isDossier) {
+          $rootScope.$broadcast('invalidateMap');
           $timeout(function() {
             $rootScope.$broadcast('invalidateMap');
-          }, 400);
+          }, 1000);
         });
 
         // Async get cases

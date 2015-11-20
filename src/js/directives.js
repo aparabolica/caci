@@ -27,11 +27,10 @@
             });
 
             // watch map invalidation
-            $rootScope.$on('invalidateMap', function(ev, boundsOptions) {
+            $rootScope.$on('invalidateMap', function() {
               setTimeout(function() {
-                map.invalidateSize(false);
-              }, 300);
-              // map.fitBounds(map.getBounds(), boundsOptions || {});
+                map.invalidateSize(true);
+              }, 5);
             });
 
             /*
@@ -40,7 +39,7 @@
             scope.mapData = false;
             var mapInit = false
             scope.$watch('mapData', function(mapData, prev) {
-              if(mapData !== prev || !mapInit) {
+              if(mapData.ID !== prev.ID || !mapInit) {
                 mapInit = true;
                 scope.layers = mapData.layers;
                 setTimeout(function() {

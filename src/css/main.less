@@ -302,6 +302,8 @@ p {
   width: 70%;
   // transition: all .25s linear;
   #map {
+    width: 100%;
+    height: 100%;
     // transition: all .25s linear;
   }
   &.full {
@@ -319,6 +321,9 @@ p {
   &.collapsed {
     // currently the same as regular
     width: 70%;
+  }
+  .leaflet-top {
+    top: 50px;
   }
   .leaflet-bottom {
     bottom: 40px;
@@ -381,14 +386,6 @@ p {
         font-family: "Hind Siliguri";
       }
     }
-  }
-}
-
-#map {
-  width: 100%;
-  height: 100%;
-  .leaflet-top {
-    top: 50px;
   }
 }
 
