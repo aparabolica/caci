@@ -35,6 +35,8 @@
           else
             $scope.isDossier = false;
 
+          $rootScope.$broadcast('invalidateMap');
+
         });
 
         $rootScope.$on('$stateChangeStart', function(ev, toState) {
