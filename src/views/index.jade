@@ -9,9 +9,10 @@ section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized}')
 
 section#content(autoscroll='false')
   section#casos(ng-class='{collapsed: isDossier}')
-    form#casos-filters
+    form#casos-filters(ng-show='initialized')
       input(type='text' ng-model='filter.text' placeholder='Digite sua busca')
       div(range-slider min='1986' max='2015' model-max='filter.date.max' model-min='filter.date.min' show-values="true")
+      h2.results-count {{filtered.length}} casos encontrados
     ul.caso-list(ng-show='casos.length && initialized')
       li.clearfix(ng-repeat='caso in filtered = (casos | filter:filter.text | dateFilter:filter.date) | limitTo:100')
         article
