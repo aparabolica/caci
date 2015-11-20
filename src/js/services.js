@@ -13,6 +13,25 @@
       '$http',
       function($http) {
         return {
+          pages: function(params, filter) {
+            params = params || {};
+            params = _.extend({
+              type: 'page'
+            }, params);
+
+            filter = filter || {};
+            filter = _.extend({
+              posts_per_page: 50
+            }, filter);
+
+            params.filter = filter;
+
+            return $http({
+              method: 'GET',
+              url: vindig.api + '/posts',
+              params: params
+            });
+          },
           maps: function(params, filter) {
             params = params || {};
             params = _.extend({

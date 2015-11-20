@@ -9,7 +9,21 @@
       '$timeout',
       'Vindig',
       function($rootScope, $scope, $state, $timeout, Vindig) {
-        // $scope.initialized = true;
+
+        // Pages
+        Vindig.pages().then(function(data) {
+          $scope.pages = data.data;
+        });
+
+        // Nav
+        $scope.toggleNav = function() {
+          if($scope.showNav) {
+            $scope.showNav = false;
+          } else {
+            $scope.showNav = true;
+          }
+        }
+
         $scope.home = function() {
           if($state.current.name == 'home')
             $scope.initialized = false;

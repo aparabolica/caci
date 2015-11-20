@@ -32,7 +32,7 @@ section#content(autoscroll='false')
                 span.icon.icon-calendar
                 p.date-info(ng-bind-html='caso | casoDate')
           p {{caso.descricao}}
-          p.source(ng-show='caso.fonte_cimi') Fonte: {{caso.fonte_cimi}}
+          p.report(ng-show='caso.relatorio') {{caso.relatorio}}
 
 .map-container(ng-class='{full: isDossier}')
   map#map(map-data='mapData' markers='filtered | postToMarker')
