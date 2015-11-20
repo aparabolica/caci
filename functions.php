@@ -41,9 +41,16 @@ function vindig_scripts() {
 
   wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
 
+  $jeo_options = jeo_get_options();
+  $front_page_map = 0;
+  if($jeo_options['front_page'] && $jeo_options['front_page']['featured_map']) {
+    $front_page_map = $jeo_options['front_page']['featured_map'];
+  }
+
   wp_localize_script('app', 'vindig', array(
     'base' => str_replace(site_url(), '', get_stylesheet_directory_uri()),
-    'api' => esc_url(get_json_url())
+    'api' => esc_url(get_json_url()),
+    'featured_map' => $front_page_map
   ));
 
 }

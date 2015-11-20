@@ -28,6 +28,23 @@
             function(Vindig) {
               return Vindig.dossiers();
             }
+          ],
+          Map: [
+            '$q',
+            'Vindig',
+            function($q, Vindig) {
+              var deferred = $q.defer();
+              if(vindig.featured_map) {
+                Vindig.getPost(vindig.featured_map).then(function(data) {
+                  deferred.resolve(data.data);
+                });
+              } else {
+                Vindig.maps().then(function(data) {
+                  deferred.resolve(data.data[0]);
+                });
+              }
+              return deferred.promise;
+            }
           ]
         }
       });
@@ -43,6 +60,22 @@
             'Vindig',
             function($stateParams, Vindig) {
               return Vindig.getPost($stateParams.id);
+            }
+          ],
+          DossierMap: [
+            '$q',
+            'Dossier',
+            'Vindig',
+            function($q, Dossier, Vindig) {
+              if(Dossier.data.maps.length) {
+                var deferred = $q.defer();
+                Vindig.getPost(Dossier.data.maps[0]).then(function(data) {
+                  deferred.resolve(data.data);
+                });
+                return deferred.promise;
+              } else {
+                return false;
+              }
             }
           ]
         }

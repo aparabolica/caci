@@ -23,6 +23,7 @@
         $rootScope.$on('$stateChangeSuccess', function(ev, toState) {
           if(toState.name !== 'home')
             $scope.initialized = true;
+
           if(toState.name == 'home.dossier')
             $scope.isDossier = true;
           else
@@ -35,16 +36,15 @@
             paddingBottomRight: [0,0],
             paddingTopLeft: [0,0]
           };
-          if(isDossier && !prev) {
+          if(isDossier && prev == false) {
             options.paddingTopLeft[0] = halfWindow;
-          } else if(prev) {
-            options.paddingTopLeft[0] = -halfWindow;
           }
           $timeout(function() {
             $rootScope.$broadcast('invalidateMap', options);
           }, 420);
         });
 
+        // Async get cases
         Vindig.cases().then(function(data) {
           $scope.casos = data.data;
           var totalPages = data.headers('X-WP-TotalPages');
@@ -60,8 +60,19 @@
     app.controller('HomeCtrl', [
       '$scope',
       'Dossiers',
-      function($scope, Dossiers) {
-        console.log(Dossiers);
+      'Map',
+      function($scope, Dossiers, Map) {
+
+        $scope.$on('$stateChangeSuccess', function(ev, toState) {
+          if(toState.name == 'home') {
+            $scope.mapData = Map;
+          }
+        })
+
+        $scope.$on('dossierMap', function(ev, map) {
+          $scope.mapData = map;
+        });
+
         $scope.dossiers = Dossiers.data;
       }
     ]);
@@ -70,11 +81,11 @@
       '$scope',
       '$sce',
       'Dossier',
-      function($scope, $sce, Dossier) {
+      'DossierMap',
+      function($scope, $sce, Dossier, Map) {
         $scope.dossier = Dossier.data;
         $scope.dossier.content = $sce.trustAsHtml($scope.dossier.content);
-
-        console.log($scope.dossier);
+        $scope.$emit('dossierMap', Map);
       }
     ])
 

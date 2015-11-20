@@ -78,7 +78,7 @@
                 markers[post.ID] = {
                   lat: post.coordinates[1],
                   lng: post.coordinates[0],
-                  message: '<h2>' + post.title + '</h2>' + '<p>' + post.formatted_address + '</p>'
+                  message: '<h2>' + post.title + '</h2>'
                 };
               }
 

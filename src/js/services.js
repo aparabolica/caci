@@ -40,7 +40,8 @@
 
             filter = filter || {};
             filter = _.extend({
-              posts_per_page: 80
+              posts_per_page: 80,
+              without_map_query: 1
             }, filter);
 
             params.filter = filter;
@@ -59,7 +60,8 @@
 
             filter = filter || {};
             filter = _.extend({
-              posts_per_page: 50
+              posts_per_page: 50,
+              without_map_query: 1
             }, filter);
 
             params.filter = filter;
@@ -72,16 +74,21 @@
           },
           getLayer: function(layerObj, map) {
             var layer = {
-              name: layerObj.title
+              name: layerObj.title || ''
             };
             if(layerObj.type == 'mapbox') {
               var tileLayer = L.mapbox.tileLayer(layerObj.mapbox_id);
               var gridLayer = L.mapbox.gridLayer(layerObj.mapbox_id);
               layer.layer = L.layerGroup([tileLayer,gridLayer]);
-              map.addControl(L.mapbox.gridControl(gridLayer));
+              layer.control = L.mapbox.gridControl(gridLayer);
             } else if(layerObj.type == 'tilelayer') {
-              layer.layer = L.tileLayer(layerObj.url);
+              layer.layer = L.tileLayer(layerObj.tile_url);
             }
+
+            if(layer.layer) {
+              layer.layer._vindig_id = layerObj.ID;
+            }
+
             return layer;
           },
           getPost: function(id) {

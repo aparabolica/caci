@@ -27,6 +27,6 @@ section#content(autoscroll='false')
           p.source(ng-show='caso.fonte_cimi') Fonte: {{caso.fonte_cimi}}
 
 .map-container(ng-class='{full: isDossier}')
-  map#map(markers='casos | postToMarker')
+  map#map(map-data='mapData' markers='casos | postToMarker')
   
 div(ui-view)
