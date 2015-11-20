@@ -28,7 +28,7 @@
 
             return $http({
               method: 'GET',
-              url: vindig.api + 'posts',
+              url: vindig.api + '/posts',
               params: params
             });
           },
@@ -47,7 +47,7 @@
 
             return $http({
               method: 'GET',
-              url: vindig.api + 'posts',
+              url: vindig.api + '/posts',
               params: params
             });
           },
@@ -66,7 +66,7 @@
 
             return $http({
               method: 'GET',
-              url: vindig.api + 'posts',
+              url: vindig.api + '/posts',
               params: params
             });
           },

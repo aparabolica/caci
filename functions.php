@@ -43,7 +43,7 @@ function vindig_scripts() {
 
   wp_localize_script('app', 'vindig', array(
     'base' => str_replace(site_url(), '', get_stylesheet_directory_uri()),
-    'api' => get_option('permalink_structure') ? esc_url(get_json_url()) . '/' : esc_url(get_json_url())
+    'api' => esc_url(get_json_url())
   ));
 
 }

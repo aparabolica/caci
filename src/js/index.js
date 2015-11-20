@@ -1,4 +1,4 @@
-(function(angular, undefined) {
+(function(angular, vindig, undefined) {
 
   var app = angular.module('vindigena', [
     'ui.router'
@@ -20,7 +20,16 @@
       $stateProvider
       .state('home', {
         url: '/',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        templateUrl: vindig.base + '/views/index.html',
+        resolve: {
+          Dossiers: [
+            'Vindig',
+            function(Vindig) {
+              return Vindig.dossiers();
+            }
+          ]
+        }
       });
 
       /*
@@ -62,4 +71,4 @@
     angular.bootstrap(document, ['vindigena']);
   });
 
-})(window.angular);
+})(window.angular, window.vindig);

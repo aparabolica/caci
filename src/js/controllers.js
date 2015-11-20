@@ -25,7 +25,9 @@
 
     app.controller('HomeCtrl', [
       '$scope',
-      function($scope) {
+      'Dossiers',
+      function($scope, Dossiers) {
+        console.log(Dossiers);
       }
     ])
 
