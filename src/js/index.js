@@ -32,6 +32,22 @@
         }
       });
 
+      $stateProvider
+      .state('home.dossier', {
+        url: 'dossie/:id/',
+        controller: 'DossierCtrl',
+        templateUrl: vindig.base + '/views/dossier.html',
+        resolve: {
+          Dossier: [
+            '$stateParams',
+            'Vindig',
+            function($stateParams, Vindig) {
+              return Vindig.getPost($stateParams.id);
+            }
+          ]
+        }
+      })
+
       /*
       * Trailing slash rule
       */

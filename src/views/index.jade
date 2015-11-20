@@ -1,28 +1,14 @@
-section#dossies(ng-class='{collapsed: initialized}')
+section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized}')
   h2 Dossiês
   ul.dossie-list
-    li
-      .image(style='background-image:url(http://lorempixum.com/500/500/?1)')
+    li(ng-repeat='dossier in dossiers')
+      .image(style='background-image:url({{dossier.featured_image.attachment_meta.sizes.large.url}});')
       article
         h3
-          a Assassinatos em Antonio João - MS
-    li
-      .image(style='background-image:url(http://lorempixum.com/500/500/?2)')
-      article
-        h3
-          a Assassinatos nas regiões dos processos do STF (MS)
-    li
-      .image(style='background-image:url(http://lorempixum.com/500/500/?3)')
-      article
-        h3
-          a Extermínio para tomada de terra por mineradora no Par&aacute;
-    li
-      .image(style='background-image:url(http://lorempixum.com/500/500/?4)')
-      article
-        h3
-          a Presídio Krenak Fluxo de prisões.
-section#content(ui-view='', autoscroll='false')
-  section#casos
+          a(ui-sref='home.dossier({id: dossier.ID})') {{dossier.title}}
+
+section#content(autoscroll='false')
+  section#casos(ng-class='{collapsed: isDossier}')
     ul.caso-list(ng-show='casos.length && initialized')
       li.clearfix(ng-repeat='caso in casos | limitTo:100')
         article
@@ -39,6 +25,8 @@ section#content(ui-view='', autoscroll='false')
                 p.date-info(ng-bind-html='caso | casoDate')
           p {{caso.descricao}}
           p.source(ng-show='caso.fonte_cimi') Fonte: {{caso.fonte_cimi}}
-.map-container
+
+.map-container(ng-class='{full: isDossier}')
   map#map(markers='casos | postToMarker')
-      
+  
+div(ui-view)

@@ -1,35 +1,17 @@
 
-<section id="dossies" ng-class="{collapsed: initialized}">
+<section id="dossies" ng-show="dossiers.length" ng-class="{collapsed: initialized}">
   <h2>Dossiês</h2>
   <ul class="dossie-list">
-    <li>
-      <div style="background-image:url(http://lorempixum.com/500/500/?1)" class="image"></div>
+    <li ng-repeat="dossier in dossiers">
+      <div style="background-image:url({{dossier.featured_image.attachment_meta.sizes.large.url}});" class="image"></div>
       <article>
-        <h3><a>Assassinatos em Antonio João - MS</a></h3>
-      </article>
-    </li>
-    <li>
-      <div style="background-image:url(http://lorempixum.com/500/500/?2)" class="image"></div>
-      <article>
-        <h3><a>Assassinatos nas regiões dos processos do STF (MS)</a></h3>
-      </article>
-    </li>
-    <li>
-      <div style="background-image:url(http://lorempixum.com/500/500/?3)" class="image"></div>
-      <article>
-        <h3><a>Extermínio para tomada de terra por mineradora no Par&aacute;</a></h3>
-      </article>
-    </li>
-    <li>
-      <div style="background-image:url(http://lorempixum.com/500/500/?4)" class="image"></div>
-      <article>
-        <h3><a>Presídio Krenak Fluxo de prisões.</a></h3>
+        <h3><a ui-sref="home.dossier({id: dossier.ID})">{{dossier.title}}</a></h3>
       </article>
     </li>
   </ul>
 </section>
-<section id="content" ui-view="" autoscroll="false">
-  <section id="casos">
+<section id="content" autoscroll="false">
+  <section id="casos" ng-class="{collapsed: isDossier}">
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
       <li ng-repeat="caso in casos | limitTo:100" class="clearfix">
         <article>
@@ -54,4 +36,5 @@
     </ul>
   </section>
 </section>
-<div class="map-container"><map id="map" markers="casos | postToMarker"></map></div>
+<div ng-class="{full: isDossier}" class="map-container"><map id="map" markers="casos | postToMarker"></map></div>
+<div ui-view></div>

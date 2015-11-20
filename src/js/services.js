@@ -83,6 +83,9 @@
               layer.layer = L.tileLayer(layerObj.url);
             }
             return layer;
+          },
+          getPost: function(id) {
+            return $http.get(vindig.api + '/posts/' + id);
           }
         }
       }

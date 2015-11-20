@@ -5,8 +5,9 @@
   module.exports = function(app) {
 
     app.directive('map', [
+      '$rootScope',
       'Vindig',
-      function(Vindig) {
+      function($rootScope, Vindig) {
         return {
           restrict: 'E',
           scope: {
@@ -26,6 +27,12 @@
                 zoom: mapData.zoom,
                 minZoom: parseInt(mapData.min_zoom),
                 maxZoom: parseInt(mapData.max_zoom)
+              });
+
+              $rootScope.$on('invalidateMap', function(ev, boundsOptions) {
+                console.log(boundsOptions);
+                map.fitBounds(map.getBounds(), boundsOptions || {});
+                map.invalidateSize(true);
               });
 
               var fixed = [];

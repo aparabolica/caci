@@ -174,6 +174,10 @@ p {
         h3 {
           font-size: 22px;
           line-height: 1;
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
         }
       }
     }
@@ -181,7 +185,7 @@ p {
 }
 
 #casos {
-  position: absolute;
+  position: fixed;
   right: 0;
   width: 30%;
   top: 0;
@@ -190,6 +194,13 @@ p {
   z-index: 9999;
   margin-top: 50px;
   overflow: auto;
+  transition: all .4s ease-in-out;
+  &.collapsed {
+    right: -30%;
+    &:hover {
+      right: 0;
+    }
+  }
   .caso-list {
     list-style: none;
     margin: 0;
@@ -289,9 +300,13 @@ p {
   left: 0;
   bottom: 0;
   width: 70%;
-  transition: all 2s linear;
+  transition: all .4s linear;
+  &.full {
+    width: 100%;
+  }
   &.collapsed {
-    // width: 60%;
+    // currently the same as regular
+    width: 70%;
   }
   .leaflet-bottom {
     bottom: 40px;
@@ -362,5 +377,32 @@ p {
   height: 100%;
   .leaflet-top {
     top: 50px;
+  }
+}
+
+#dossier.single {
+  position: relative;
+  z-index: 100;
+  margin-top: 20%;
+  margin-left: 5%;
+  margin-right: 55%;
+  min-width: 500px;
+  .dossier-header {
+    margin: 0 0 30px;
+    h1 {
+      color: #fff;
+      font-size: 40px;
+      width: 70%;
+      line-height: 1.2;
+    }
+  }
+  .dosser-content {
+    font-size: 18px;
+    background: #fff;
+    padding: 30px;
+    p,
+    ul {
+      margin: 0 0 30px;
+    }
   }
 }

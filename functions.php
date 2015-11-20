@@ -37,7 +37,7 @@ function vindig_scripts() {
 
   wp_register_style('icons', get_stylesheet_directory_uri() . '/css/icons.css');
 
-  wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('underscore', 'angular', 'angular-ui-router', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer'));
+  wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer'));
 
   wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
 
