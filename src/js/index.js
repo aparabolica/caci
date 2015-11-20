@@ -67,15 +67,12 @@
             'Dossier',
             'Vindig',
             function($q, Dossier, Vindig) {
-              if(Dossier.data.maps.length) {
-                var deferred = $q.defer();
-                Vindig.getPost(Dossier.data.maps[0]).then(function(data) {
-                  deferred.resolve(data.data);
-                });
-                return deferred.promise;
-              } else {
-                return false;
-              }
+              var mapId = Dossier.data.maps.length ? Dossier.data.maps[0] : vindig.featured_map;
+              var deferred = $q.defer();
+              Vindig.getPost(mapId).then(function(data) {
+                deferred.resolve(data.data);
+              });
+              return deferred.promise;
             }
           ]
         }
