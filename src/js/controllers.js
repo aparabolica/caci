@@ -31,17 +31,9 @@
         });
 
         $scope.$watch('isDossier', function(isDossier, prev) {
-          var halfWindow = jQuery(window).width()/2;
-          var options = {
-            paddingBottomRight: [0,0],
-            paddingTopLeft: [0,0]
-          };
-          if(isDossier && prev == false) {
-            options.paddingTopLeft[0] = halfWindow;
-          }
           $timeout(function() {
-            $rootScope.$broadcast('invalidateMap', options);
-          }, 420);
+            $rootScope.$broadcast('invalidateMap');
+          }, 400);
         });
 
         // Async get cases

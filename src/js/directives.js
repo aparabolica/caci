@@ -28,36 +28,43 @@
 
             // watch map invalidation
             $rootScope.$on('invalidateMap', function(ev, boundsOptions) {
-              map.invalidateSize(true);
+              setTimeout(function() {
+                map.invalidateSize(false);
+              }, 300);
               // map.fitBounds(map.getBounds(), boundsOptions || {});
             });
 
             /*
              * Map data
              */
-            scope.$watch('mapData', function(mapData) {
-              console.log(mapData);
-              if(mapData) {
-                map.setView(mapData.center, mapData.zoom);
-                if(mapData.min_zoom)
-                  map.options.minZoom = parseInt(mapData.min_zoom);
-                if(mapData.max_zoom)
-                  map.options.maxZoom = parseInt(mapData.max_zoom);
-                if(mapData.pan_limits) {
-                  map.setMaxBounds(L.latLngBounds(
-                    [
-                      mapData.pan_limits.south,
-                      mapData.pan_limits.west
-                    ],
-                    [
-                      mapData.pan_limits.north,
-                      mapData.pan_limits.east
-                    ]
-                  ));
-                }
+            scope.mapData = false;
+            var mapInit = false
+            scope.$watch('mapData', function(mapData, prev) {
+              if(mapData !== prev || !mapInit) {
+                mapInit = true;
                 scope.layers = mapData.layers;
+                setTimeout(function() {
+                  if(mapData.min_zoom)
+                    map.options.minZoom = parseInt(mapData.min_zoom);
+                  if(mapData.max_zoom)
+                    map.options.maxZoom = parseInt(mapData.max_zoom);
+                  if(mapData.pan_limits) {
+                    map.setMaxBounds(L.latLngBounds(
+                      [
+                        mapData.pan_limits.south,
+                        mapData.pan_limits.west
+                      ],
+                      [
+                        mapData.pan_limits.north,
+                        mapData.pan_limits.east
+                      ]
+                    ));
+                  }
+                  map.setView(mapData.center);
+                  map.setZoom(mapData.zoom);
+                }, 500);
               }
-            }, true);
+            });
 
             /*
              * Markers
@@ -161,6 +168,7 @@
                     } else if(layer.filtering == 'switch') {
                       switchable.push(layerMap[layer.ID]);
                     }
+
                   });
 
                   _.each(fixed, function(layer) {
