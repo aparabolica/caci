@@ -23,6 +23,9 @@
             $scope.showNav = true;
           }
         }
+        $rootScope.$on('$stateChangeStart', function() {
+          $scope.showNav = false;
+        });
 
         $scope.home = function() {
           if($state.current.name == 'home')
@@ -113,7 +116,17 @@
           $rootScope.$broadcast('invalidateMap');
         }, 300);
       }
-    ])
+    ]);
+
+    app.controller('PageCtrl', [
+      '$scope',
+      '$sce',
+      'Page',
+      function($scope, $sce, Page) {
+        $scope.page = Page.data;
+        $scope.page.content = $sce.trustAsHtml($scope.page.content);
+      }
+    ]);
 
   };
 

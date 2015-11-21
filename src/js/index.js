@@ -48,9 +48,21 @@
             }
           ]
         }
-      });
-
-      $stateProvider
+      })
+      .state('home.page', {
+        url: 'page/:id/',
+        controller: 'PageCtrl',
+        templateUrl: vindig.base + '/views/page.html',
+        resolve: {
+          Page: [
+            '$stateParams',
+            'Vindig',
+            function($stateParams, Vindig) {
+              return Vindig.getPost($stateParams.id);
+            }
+          ]
+        }
+      })
       .state('home.dossier', {
         url: 'dossie/:id/',
         controller: 'DossierCtrl',
@@ -77,7 +89,7 @@
             }
           ]
         }
-      })
+      });
 
       /*
       * Trailing slash rule

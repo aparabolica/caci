@@ -24,7 +24,7 @@ p {
 
 #masthead {
   position: absolute;
-  z-index: 99990;
+  z-index: 9997;
   top: 0;
   left: 0;
   right: 0;
@@ -45,17 +45,22 @@ p {
     .icon {
       font-size: 30px;
       line-height: 1;
+      position: relative;
+      z-index: 2;
+      text-decoration: none;
     }
     ul {
+      z-index: 1;
       position: fixed;
-      top: 50px;
-      right: 0;
+      top: 0;
+      right: -30%;
       bottom: 0;
       background: #fff;
       width: 30%;
       margin: 0;
-      padding: 0;
+      padding: 50px 0 0;
       list-style: none;
+      transition: all .2s ease-in-out;
       li {
         margin: 0;
         padding: 0;
@@ -65,7 +70,13 @@ p {
           line-height: 1;
           padding: 20px;
           border-bottom: 1px solid #eee;
+          text-decoration: none;
         }
+      }
+    }
+    &.active {
+      ul {
+        right: 0;
       }
     }
   }
@@ -111,6 +122,7 @@ p {
     color: #333;
   }
   &.collapsed {
+    z-index: 99990;
     position: fixed;
     padding: 10px;
     height: 30px;
@@ -149,7 +161,7 @@ p {
   position: fixed;
   bottom: 0;
   left: 0;
-  z-index: 99999;
+  z-index: 10000;
   padding-top: 10px;
   width: 100%;
   transition: all .4s ease-in-out;
@@ -223,7 +235,6 @@ p {
   top: 0;
   bottom: 0;
   background: url(../img/halftone_clear.png);
-  z-index: 9999;
   margin-top: 50px;
   overflow: auto;
   transition: all .4s ease-in-out;
@@ -441,8 +452,9 @@ p {
   z-index: 100;
   margin-top: 20%;
   margin-left: 5%;
-  margin-right: 55%;
+  margin-right: 50%;
   min-width: 500px;
+  max-width: 800px;
   .dossier-header {
     margin: 0 0 30px;
     h1 {
@@ -452,8 +464,32 @@ p {
       line-height: 1.2;
     }
   }
-  .dosser-content {
+  .dossier-content {
     font-size: 18px;
+    background: #fff;
+    padding: 30px;
+    p,
+    ul {
+      margin: 0 0 30px;
+    }
+  }
+}
+
+#page.single {
+  position: relative;
+  z-index: 99982;
+  background: rgba(255,255,255,0.8);
+  padding-top: 20%;
+  padding-left: 5%;
+  padding-right: 40%;
+  min-width: 500px;
+  max-width: 800px;
+  margin: 0;
+  .page-header {
+    margin: 0 0 30px;
+  }
+  .page-content {
+    font-size: 20px;
     background: #fff;
     padding: 30px;
     p,

@@ -14,11 +14,11 @@
         <h1><a ui-sref="home" ng-click="home()"><?php bloginfo('name'); ?></a></h1>
         <nav class="button-nav"><a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button">Navegar pelos casos</a></nav>
       </div>
-      <nav id="mastnav">
-        <a class="icon icon-menu" ng-click="toggleNav()"></a>
-        <ul ng-show="showNav">
+      <nav id="mastnav" ng-class="{active: showNav}">
+        <a class="icon icon-menu" ng-click="toggleNav()" href="javascript:void(0);"></a>
+        <ul>
           <li ng-repeat="page in pages">
-            <a ui-sref="page({id: page.ID})">{{page.title}}</a>
+            <a ui-sref="home.page({id: page.ID})">{{page.title}}</a>
           </li>
         </ul>
       </nav>
