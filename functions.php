@@ -10,7 +10,7 @@ if(!class_exists('Acf')) {
     $path = get_stylesheet_directory() . '/inc/acf/';
     return $path;
   }
-  add_filter('acf/settings/path', 'vindig_acf_settings_path');
+  add_filter('acf/helpers/get_path', 'vindig_acf_settings_path');
 
   function vindig_acf_settings_dir( $dir ) {
     // update path
@@ -18,10 +18,9 @@ if(!class_exists('Acf')) {
     // return
     return $dir;
   }
-  add_filter('acf/settings/dir', 'vindig_acf_settings_dir');
+  add_filter('acf/helpers/get_dir', 'vindig_acf_settings_dir');
 
-  // 3. Hide ACF field group menu item
-  add_filter('acf/settings/show_admin', '__return_false');
+  define('ACF_LITE', true);
 
   require_once(STYLESHEETPATH . '/inc/acf/acf.php');
 }
