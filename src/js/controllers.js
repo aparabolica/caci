@@ -134,13 +134,16 @@
 
     app.controller('CaseCtrl', [
       '$rootScope',
+      '$stateParams',
       '$scope',
       '$sce',
       'Case',
-      function($rootScope, $scope, $sce, Case) {
+      function($rootScope, $stateParams, $scope, $sce, Case) {
         $scope.caso = Case.data;
         $scope.caso.content = $sce.trustAsHtml($scope.caso.content);
-        $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
+        if($stateParams.focus != false) {
+          $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
+        }
         $rootScope.$broadcast('invalidateMap');
       }
     ]);

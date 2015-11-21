@@ -50,7 +50,7 @@
         }
       })
       .state('home.page', {
-        url: 'page/:id/',
+        url: 'p/:id/',
         controller: 'PageCtrl',
         templateUrl: vindig.base + '/views/page.html',
         resolve: {
@@ -64,9 +64,12 @@
         }
       })
       .state('home.case', {
-        url: 'case/:id/',
+        url: 'caso/:id/',
         controller: 'CaseCtrl',
         templateUrl: vindig.base + '/views/case.html',
+        params: {
+          focus: true
+        },
         resolve: {
           Case: [
             '$stateParams',

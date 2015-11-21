@@ -61,7 +61,10 @@
               }, 15);
             });
 
+            // watch focus map
+            var calledFocus;
             $rootScope.$on('focusMap', function(ev, coordinates) {
+              calledFocus = coordinates;
               map.fitBounds(L.latLngBounds([[coordinates[1], coordinates[0]]]));
             });
 
@@ -91,8 +94,13 @@
                       ]
                     ));
                   }
-                  map.setView(mapData.center);
-                  map.setZoom(mapData.zoom);
+                  if(calledFocus) {
+                    map.fitBounds(L.latLngBounds([[calledFocus[1], calledFocus[0]]]));
+                    calledFocus = false;
+                  } else {
+                    map.setView(mapData.center);
+                    map.setZoom(mapData.zoom);
+                  }
                 }, 500);
               }
             });
@@ -144,8 +152,11 @@
                 markers[key].on('mouseout', function(ev) {
                   ev.target.closePopup();
                 });
-                markers[key].on('click', function() {
-                  $state.go(markers[key].post.state.name, markers[key].post.state.params);
+                markers[key].on('click', function(ev) {
+                  var params =  _.extend({
+                    focus: false
+                  }, ev.target.post.state.params);
+                  $state.go(ev.target.post.state.name, params);
                 });
               }
               for(var key in markers) {
