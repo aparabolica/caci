@@ -111,8 +111,6 @@
           $scope.mapData = map;
         });
 
-        console.log('hey this is home ctrl');
-
         $scope.dossiers = Dossiers.data;
       }
     ]);

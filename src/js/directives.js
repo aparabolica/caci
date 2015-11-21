@@ -1,8 +1,35 @@
-(function(vindig, L, undefined) {
+(function(vindig, jQuery, L, undefined) {
 
   L.mapbox.accessToken = "pk.eyJ1IjoiaW5mb2FtYXpvbmlhIiwiYSI6InItajRmMGsifQ.JnRnLDiUXSEpgn7bPDzp7g"
 
   module.exports = function(app) {
+
+    app.directive('forceOnclick', [
+      function() {
+        return {
+          restrict: 'A',
+          scope: {
+            'forceOnclick': '=',
+            'forceParent': '@'
+          },
+          link: function(scope, element, attrs) {
+            var ms = scope.forceOnclick || 500;
+            var el;
+            if(scope.forceParent) {
+              el = jQuery('#' + scope.forceParent);
+            } else {
+              el = jQuery(element);
+            }
+            jQuery(element).on('click', function() {
+              el.addClass('force');
+              setTimeout(function() {
+                el.removeClass('force');
+              }, ms);
+            });
+          }
+        }
+      }
+    ])
 
     app.directive('map', [
       '$rootScope',
@@ -225,4 +252,4 @@
 
   };
 
-})(window.vindig, window.L);
+})(window.vindig, window.jQuery, window.L);
