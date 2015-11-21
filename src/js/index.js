@@ -63,6 +63,20 @@
           ]
         }
       })
+      .state('home.case', {
+        url: 'case/:id/',
+        controller: 'CaseCtrl',
+        templateUrl: vindig.base + '/views/case.html',
+        resolve: {
+          Case: [
+            '$stateParams',
+            'Vindig',
+            function($stateParams, Vindig) {
+              return Vindig.getPost($stateParams.id);
+            }
+          ]
+        }
+      })
       .state('home.dossier', {
         url: 'dossie/:id/',
         controller: 'DossierCtrl',

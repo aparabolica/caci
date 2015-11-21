@@ -40,6 +40,11 @@
         else
           $scope.isDossier = false;
 
+        if($state.current.name == 'home.case')
+          $scope.isCase = true;
+        else
+          $scope.isCase = false;
+
         $rootScope.$on('$stateChangeSuccess', function(ev, toState) {
 
           if(toState.name !== 'home')
@@ -52,6 +57,11 @@
             $scope.isDossier = true;
           else
             $scope.isDossier = false;
+
+          if(toState.name == 'home.case')
+            $scope.isCase = true;
+          else
+            $scope.isCase = false;
         });
 
         $scope.$watch('isDossier', function(isDossier, prev) {
@@ -78,6 +88,10 @@
             min: 1986
           }
         };
+
+        $scope.focusMap = function(caso) {
+          $rootScope.$broadcast('focusMap', caso.coordinates);
+        };
       }
     ]);
 
@@ -88,14 +102,16 @@
       function($scope, Dossiers, Map) {
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
-          if(toState.name == 'home') {
+          if(toState.name == 'home' || toState.name == 'home.case' || toState.name == 'home.page') {
             $scope.mapData = Map;
           }
-        })
+        });
 
         $scope.$on('dossierMap', function(ev, map) {
           $scope.mapData = map;
         });
+
+        console.log('hey this is home ctrl');
 
         $scope.dossiers = Dossiers.data;
       }
@@ -115,6 +131,19 @@
         $timeout(function() {
           $rootScope.$broadcast('invalidateMap');
         }, 300);
+      }
+    ]);
+
+    app.controller('CaseCtrl', [
+      '$rootScope',
+      '$scope',
+      '$sce',
+      'Case',
+      function($rootScope, $scope, $sce, Case) {
+        $scope.caso = Case.data;
+        $scope.caso.content = $sce.trustAsHtml($scope.caso.content);
+        $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
+        $rootScope.$broadcast('invalidateMap');
       }
     ]);
 

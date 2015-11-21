@@ -1,4 +1,4 @@
-section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized}')
+section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized, "in-case": isCase}')
   h2 Dossiês
   ul.dossie-list
     li(ng-repeat='dossier in dossiers')
@@ -8,7 +8,7 @@ section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized}')
           a(ui-sref='home.dossier({id: dossier.ID})') {{dossier.title}}
 
 section#content(autoscroll='false')
-  section#casos(ng-class='{collapsed: isDossier}')
+  section#casos(ng-class='{collapsed: isDossier, "in-case": isCase}')
     form#casos-filters(ng-show='initialized')
       input(type='text' ng-model='filter.text' placeholder='Digite sua busca')
       div(range-slider min='1986' max='2015' model-max='filter.date.max' model-min='filter.date.min' show-values="true")
@@ -18,9 +18,11 @@ section#content(autoscroll='false')
         article
           .location
             span.icon.icon-pin
-            p.location-info(ng-bind-html='caso | caseLocation')
+            p.location-info
+              a(ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html='caso | caseLocation')
           header.caso-header
-            h3 {{caso | casoName}}
+            h3
+              a(ui-sref="home.case({id: caso.ID})"){{caso | casoName}}
             .header-meta
               .age.meta(ng-show='caso.idade')
                 span.icon.icon-chevron-small-right
@@ -34,7 +36,7 @@ section#content(autoscroll='false')
           p {{caso.descricao}}
           p.report(ng-show='caso.relatorio') {{caso.relatorio}}
 
-.map-container(ng-class='{full: isDossier}')
+.map-container(ng-class='{full: isDossier, "in-case": isCase}')
   map#map(map-data='mapData' markers='filtered | postToMarker')
   
 div(ui-view)

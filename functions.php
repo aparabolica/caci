@@ -42,7 +42,7 @@ function vindig_scripts() {
 
   wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'angular-rangeslider', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer'));
 
-  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-rangeslider', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
+  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
 
   $jeo_options = jeo_get_options();
   $front_page_map = 0;

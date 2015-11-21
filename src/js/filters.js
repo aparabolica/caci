@@ -79,7 +79,8 @@
     ]);
 
     app.filter('postToMarker', [
-      function() {
+      'casoNameFilter',
+      function(casoNameFilter) {
         return _.memoize(function(input) {
 
           if(input && input.length) {
@@ -92,7 +93,11 @@
                 markers[post.ID] = {
                   lat: post.coordinates[1],
                   lng: post.coordinates[0],
-                  message: '<h2>' + post.title + '</h2>'
+                  message: '<h2>' + casoNameFilter(post) + '</h2>',
+                  state: {
+                    name: 'home.' + post.type,
+                    params: {id: post.ID}
+                  }
                 };
               }
 

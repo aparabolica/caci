@@ -175,6 +175,9 @@ p {
       vertical-align: baseline;
     }
   }
+  &.in-case {
+    width: 60%;
+  }
   h2 {
     font-size: 26px;
     text-transform: uppercase;
@@ -236,10 +239,19 @@ p {
   bottom: 0;
   background: url(../img/halftone_clear.png);
   margin-top: 50px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   transition: all .4s ease-in-out;
+  z-index: 10;
+  border-left: 1px solid #ccc;
   &.collapsed {
     right: -30%;
+    &:hover {
+      right: 0;
+    }
+  }
+  &.in-case {
+    right: -25%;
     &:hover {
       right: 0;
     }
@@ -279,6 +291,10 @@ p {
             font-size: 24px;
             line-height: 28px;
             margin: 0 0 10px;
+            a {
+              text-decoration: none;
+              color: inherit;
+            }
           }
           .header-meta {
             .meta {
@@ -321,6 +337,10 @@ p {
           border-radius: 3px;
           position: relative;
           background: #fff;
+          a {
+            color: inherit;
+            text-decoration: none;
+          }
           .icon {
             font-size: 22px;
             text-shadow: 2px 1px 0 rgba(255, 15, 0, .6);
@@ -376,6 +396,9 @@ p {
       left: -50%;
     }
   }
+  &.in-case {
+    width: 60%;
+  }
   &.collapsed {
     // currently the same as regular
     width: 70%;
@@ -385,6 +408,12 @@ p {
   }
   .leaflet-bottom {
     bottom: 40px;
+  }
+  .leaflet-popup-content {
+    h2,
+    h3 {
+      text-shadow: 0 0 0;
+    }
   }
   .leaflet-marker-icon.pin {
     &:before {
@@ -460,6 +489,17 @@ p {
       }
     }
   }
+}
+
+#case.single {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 40%;
+  padding: 40px 10% 40px 40px;
+  z-index: 5;
+  background: #fff;
+  box-sizing: border-box;
 }
 
 #dossier.single {

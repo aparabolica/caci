@@ -6,8 +6,9 @@
 
     app.directive('map', [
       '$rootScope',
+      '$state',
       'Vindig',
-      function($rootScope, Vindig) {
+      function($rootScope, $state, Vindig) {
         return {
           restrict: 'E',
           scope: {
@@ -31,6 +32,10 @@
               setTimeout(function() {
                 map.invalidateSize(true);
               }, 15);
+            });
+
+            $rootScope.$on('focusMap', function(ev, coordinates) {
+              map.fitBounds(L.latLngBounds([[coordinates[1], coordinates[0]]]));
             });
 
             /*
@@ -71,7 +76,8 @@
             var icon = L.divIcon({
               className: 'pin',
               iconSize: [18,18],
-              iconAnchor: [9, 18]
+              iconAnchor: [9, 18],
+              popupAnchor: [0, -18]
             });
 
             var markerLayer = L.markerClusterGroup({
@@ -102,6 +108,17 @@
                 var post = posts[key];
                 markers[key] = L.marker([post.lat,post.lng], {
                   icon: icon
+                });
+                markers[key].post = post;
+                markers[key].bindPopup(post.message);
+                markers[key].on('mouseover', function(ev) {
+                  ev.target.openPopup();
+                });
+                markers[key].on('mouseout', function(ev) {
+                  ev.target.closePopup();
+                });
+                markers[key].on('click', function() {
+                  $state.go(markers[key].post.state.name, markers[key].post.state.params);
                 });
               }
               for(var key in markers) {
