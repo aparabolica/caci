@@ -27,7 +27,7 @@
       <h2 class="results-count">{{filtered.length}} casos encontrados</h2>
     </form>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-      <li ng-repeat="caso in filtered = (casos | filter:filter.text | filter:filter.strict:true | dateFilter:filter.date) | limitTo:100" class="clearfix">
+      <li ng-repeat="caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date) | limitTo:50" class="clearfix">
         <article>
           <div class="location"><span class="icon icon-pin"></span>
             <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation"></a></p>

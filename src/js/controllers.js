@@ -106,8 +106,15 @@
           $scope.dropdownFilters.uf = _.sortBy(Vindig.getUniq(casos, 'uf'), function(item) { return item; });
           $scope.dropdownFilters.relatorio = _.sortBy(Vindig.getUniq(casos, 'relatorio'), function(item) { return item; });
           $scope.dropdownFilters.povo = _.sortBy(Vindig.getUniq(casos, 'povo'), function(item) { return item; });
-          
+
         });
+
+        // $scope.$watch('filter.strict', function(strict) {
+        //   for(var key in strict) {
+        //     if(!strict[key]) strict[key] = '';
+        //   }
+        //   console.log(strict);
+        // }, true);
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
           if(toState.name == 'home.dossier')

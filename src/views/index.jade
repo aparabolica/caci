@@ -20,7 +20,7 @@ section#content(autoscroll='false')
       div(range-slider min='dateFilters[0] || 0' max='dateFilters[1] || 0' model-max='filter.date.max' model-min='filter.date.min' show-values="true")
       h2.results-count {{filtered.length}} casos encontrados
     ul.caso-list(ng-show='casos.length && initialized')
-      li.clearfix(ng-repeat='caso in filtered = (casos | filter:filter.text | filter:filter.strict:true | dateFilter:filter.date) | limitTo:100')
+      li.clearfix(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date) | limitTo:50')
         article
           .location
             span.icon.icon-pin
