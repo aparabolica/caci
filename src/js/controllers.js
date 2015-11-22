@@ -84,20 +84,38 @@
           }
         });
 
+        var anos;
+
         $scope.filter = {
           text: '',
           date: {
-            max: 2015,
-            min: 1986
+            min: 0,
+            max: 0
           }
         };
+        $scope.dateFilters = [];
+        $scope.dropdownFilters = {};
+        $scope.$watch('casos', function(casos) {
+
+          var anos = _.sortBy(Vindig.getUniq(casos, 'ano'), function(item) { return parseInt(item); });
+
+          $scope.dateFilters = [parseInt(_.min(anos)), parseInt(_.max(anos))];
+          $scope.filter.date.min = parseInt(_.min(anos));
+          $scope.filter.date.max = parseInt(_.max(anos));
+
+          $scope.dropdownFilters.uf = _.sortBy(Vindig.getUniq(casos, 'uf'), function(item) { return item; });
+          $scope.dropdownFilters.relatorio = _.sortBy(Vindig.getUniq(casos, 'relatorio'), function(item) { return item; });
+          $scope.dropdownFilters.povo = _.sortBy(Vindig.getUniq(casos, 'povo'), function(item) { return item; });
+          
+        });
+
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
           if(toState.name == 'home.dossier')
             $scope.filter = {
               text: '',
               date: {
                 max: 2015,
-                min: 1986
+                min: 1985
               }
             };
         });

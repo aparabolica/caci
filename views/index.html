@@ -14,11 +14,20 @@
   <section id="casos" ng-class="{collapsed: isDossier, &quot;in-case&quot;: isCase}">
     <form id="casos-filters" ng-show="initialized">
       <input type="text" ng-model="filter.text" placeholder="Digite sua busca">
-      <div range-slider min="1986" max="2015" model-max="filter.date.max" model-min="filter.date.min" show-values="true"></div>
+      <select ng-model="filter.strict.uf" ng-options="uf for uf in dropdownFilters.uf track by uf">
+        <option value="">Selecione um estado</option>
+      </select>
+      <select ng-model="filter.strict.povo" ng-options="povo for povo in dropdownFilters.povo track by povo">
+        <option value="">Selecione um povo</option>
+      </select>
+      <select ng-model="filter.strict.relatorio" ng-options="relatorio for relatorio in dropdownFilters.relatorio track by relatorio">
+        <option value="">Selecione um relatório</option>
+      </select>
+      <div range-slider min="dateFilters[0] || 0" max="dateFilters[1] || 0" model-max="filter.date.max" model-min="filter.date.min" show-values="true"></div>
       <h2 class="results-count">{{filtered.length}} casos encontrados</h2>
     </form>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-      <li ng-repeat="caso in filtered = (casos | filter:filter.text | dateFilter:filter.date) | limitTo:100" class="clearfix">
+      <li ng-repeat="caso in filtered = (casos | filter:filter.text | filter:filter.strict:true | dateFilter:filter.date) | limitTo:100" class="clearfix">
         <article>
           <div class="location"><span class="icon icon-pin"></span>
             <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation"></a></p>

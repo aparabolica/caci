@@ -75,7 +75,7 @@ class Vindig_Dossier {
             'max' => '',
           ),
         ),
-        'location' => array (
+        'location' => array(
           array (
             array (
               'param' => 'post_type',
@@ -86,7 +86,7 @@ class Vindig_Dossier {
             ),
           ),
         ),
-        'options' => array (
+        'options' => array(
           'position' => 'normal',
           'layout' => 'no_box',
           'hide_on_screen' => array(),
@@ -94,7 +94,7 @@ class Vindig_Dossier {
         'menu_order' => 0,
       ));
     }
-  
+
   }
 
   function json_prepare_post($_post, $post, $context) {
