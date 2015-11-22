@@ -45,6 +45,10 @@
         else
           $scope.isCase = false;
 
+        $rootScope.$on('dossierCases', function(ev, cases) {
+          $scope.dossierCases = cases;
+        });
+
         $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
 
           if(toState.name !== 'home')
@@ -56,6 +60,9 @@
         });
 
         $rootScope.$on('$stateChangeStart', function(ev, toState) {
+
+          $scope.dossierCases = false;
+
           if(toState.name == 'home.dossier')
             $scope.isDossier = true;
           else
@@ -109,22 +116,17 @@
 
         });
 
-        // $scope.$watch('filter.strict', function(strict) {
-        //   for(var key in strict) {
-        //     if(!strict[key]) strict[key] = '';
-        //   }
-        //   console.log(strict);
-        // }, true);
+        $scope.clearFilters = function() {
+          $scope.filter.text = '';
+          $scope.filter.date.min = parseInt(_.min(anos));
+          $scope.filter.date.max = parseInt(_.max(anos));
+          $scope.filter.strict = {};
+        }
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
-          if(toState.name == 'home.dossier')
-            $scope.filter = {
-              text: '',
-              date: {
-                max: 2015,
-                min: 1985
-              }
-            };
+          if(toState.name == 'home.dossier') {
+            $scope.clearFilters();
+          }
         });
 
         $scope.focusMap = function(caso) {
@@ -167,6 +169,7 @@
         $timeout(function() {
           $rootScope.$broadcast('invalidateMap');
         }, 300);
+        $rootScope.$broadcast('dossierCases', $scope.dossier.casos);
       }
     ]);
 

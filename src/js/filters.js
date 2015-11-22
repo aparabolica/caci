@@ -2,19 +2,19 @@
 
   module.exports = function(app) {
 
-    app.filter('exact', function(){
-      return function(items, match){
+    app.filter('exact', function() {
+      return function(input, match){
         var matching = [], matches, falsely = true;
 
-        // Return the items unchanged if all filtering attributes are falsy
+        // Return the input unchanged if all filtering attributes are falsy
         angular.forEach(match, function(value, key){
           falsely = falsely && !value;
         });
         if(falsely){
-          return items;
+          return input;
         }
 
-        angular.forEach(items, function(item){ // e.g. { title: "ball" }
+        angular.forEach(input, function(item){ // e.g. { title: "ball" }
           matches = true;
           angular.forEach(match, function(value, key){ // e.g. 'all', 'title'
             if(!!value){ // do not compare if value is empty
@@ -26,6 +26,18 @@
           }
         });
         return matching;
+      }
+    });
+
+    app.filter('caseIds', function() {
+      return function(input, cases) {
+        console.log(cases);
+        if(cases && cases.length) {
+          input = _.filter(input, function(item) {
+            return cases.indexOf(item.ID) != -1;
+          });
+        }
+        return input;
       }
     });
 
