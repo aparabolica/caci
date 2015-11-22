@@ -45,10 +45,13 @@
         else
           $scope.isCase = false;
 
-        $rootScope.$on('$stateChangeSuccess', function(ev, toState) {
+        $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
 
           if(toState.name !== 'home')
             $scope.initialized = true;
+
+          if(fromState.name == 'home.case')
+            $rootScope.$broadcast('invalidateMap');
 
         });
 
@@ -88,6 +91,16 @@
             min: 1986
           }
         };
+        $scope.$on('$stateChangeSuccess', function(ev, toState) {
+          if(toState.name == 'home.dossier')
+            $scope.filter = {
+              text: '',
+              date: {
+                max: 2015,
+                min: 1986
+              }
+            };
+        });
 
         $scope.focusMap = function(caso) {
           $rootScope.$broadcast('focusMap', caso.coordinates);
