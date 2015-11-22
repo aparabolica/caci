@@ -105,9 +105,11 @@
             }
 
             if(layer.layer) {
+              if(layerObj.zIndex) {
+                layer.layer.setZIndex(layerObj.zIndex);
+              }
               layer.layer._vindig_id = layerObj.ID;
             }
-
             return layer;
           },
           getPost: function(id) {

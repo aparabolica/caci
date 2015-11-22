@@ -31,7 +31,6 @@
 
     app.filter('caseIds', function() {
       return function(input, cases) {
-        console.log(cases);
         if(cases && cases.length) {
           input = _.filter(input, function(item) {
             return cases.indexOf(item.ID) != -1;

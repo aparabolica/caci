@@ -116,7 +116,7 @@
             });
 
             var markerLayer = L.markerClusterGroup({
-              zIndex: 10,
+              zIndex: 100,
               maxClusterRadius: 40,
               polygonOptions: {
                 fillColor: '#000',
@@ -178,7 +178,8 @@
 
             var layerControl = L.control.layers({}, {}, {
               collapsed: false,
-              position: 'bottomright'
+              position: 'bottomright',
+              autoZIndex: false
             }).addTo(map);
 
             map.on('layeradd', function(ev) {
@@ -220,14 +221,11 @@
                 }
 
                 if(layers && layers.length) {
-
-                  _.each(layers, function(layer) {
-
+                  _.each(layers, function(layer, i) {
+                    layer.zIndex = i+10;
                     layer.ID = layer.ID || 'base';
-
                     if(!layerMap[layer.ID] || layer.ID == 'base')
                       layerMap[layer.ID] = Vindig.getLayer(layer, map);
-
                     if(layer.filtering == 'fixed' || !layer.filtering) {
                       fixed.push(layerMap[layer.ID]);
                     } else if(layer.filtering == 'swap') {
@@ -235,7 +233,6 @@
                     } else if(layer.filtering == 'switch') {
                       switchable.push(layerMap[layer.ID]);
                     }
-
                   });
 
                   _.each(fixed, function(layer) {
