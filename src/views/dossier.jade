@@ -2,3 +2,7 @@ article#dossier.single
   header.dossier-header
     h1 {{dossier.title}}
   section.dossier-content.single-content(ng-bind-html="dossier.content")
+  section.dossier-author
+    h2 Autor
+    h3 {{dossier.author.name}}
+    p {{dossier.author.description}}
