@@ -101,6 +101,7 @@ class Vindig_Dossier {
     if($post['post_type'] == 'dossier') {
       $_post['casos'] = get_field('casos', $post['ID']);
     }
+    $_post['excerpt'] = $post['post_excerpt'];
     return $_post;
   }
 

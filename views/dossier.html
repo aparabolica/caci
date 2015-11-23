@@ -3,7 +3,10 @@
   <header class="dossier-header">
     <h1>{{dossier.title}}</h1>
   </header>
-  <section ng-bind-html="dossier.content" fit-vids class="dossier-content single-content"></section>
+  <section class="dossier-content single-content">
+    <p ng-show="dossier.excerpt" class="excerpt">{{dossier.excerpt}}</p>
+    <div ng-bind-html="dossier.content" fit-vids></div>
+  </section>
   <section class="dossier-author">
     <h2>Autor</h2>
     <h3>{{dossier.author.name}}</h3>

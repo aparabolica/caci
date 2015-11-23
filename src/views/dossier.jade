@@ -1,7 +1,9 @@
 article#dossier.single
   header.dossier-header
     h1 {{dossier.title}}
-  section.dossier-content.single-content(ng-bind-html="dossier.content" fit-vids)
+  section.dossier-content.single-content
+    p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
+    div(ng-bind-html="dossier.content" fit-vids)
   section.dossier-author
     h2 Autor
     h3 {{dossier.author.name}}
