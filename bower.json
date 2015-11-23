@@ -20,6 +20,7 @@
     "normalize.css": "~3.0.3",
     "mapbox.js": "~2.2.3",
     "leaflet.markerclusterer": "~0.4.0",
-    "angular-rangeslider": "~0.0.14"
+    "angular-rangeslider": "~0.0.14",
+    "angular-fitvids": "https://github.com/miguelpeixe/angular-fitvids.git#~0.1.1"
   }
 }

@@ -2,7 +2,8 @@
 
   var app = angular.module('vindigena', [
     'ui.router',
-    'ui-rangeSlider'
+    'ui-rangeSlider',
+    'fitVids'
   ]);
 
   app.config([
