@@ -25,12 +25,6 @@
         controller: 'HomeCtrl',
         templateUrl: vindig.base + '/views/index.html',
         resolve: {
-          Dossiers: [
-            'Vindig',
-            function(Vindig) {
-              return Vindig.dossiers();
-            }
-          ],
           Map: [
             '$q',
             'Vindig',

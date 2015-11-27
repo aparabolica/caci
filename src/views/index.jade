@@ -1,14 +1,8 @@
-section#dossies(ng-show='dossiers.length' ng-class='{collapsed: initialized, "in-case": isCase}')
-  h2 Dossiês
-  ul.dossie-list
-    li(ng-repeat='dossier in dossiers')
-      .image(style='background-image:url({{dossier.featured_image.attachment_meta.sizes.large.url}});')
-      article
-        h3
-          a(ui-sref='home.dossier({id: dossier.ID})') {{dossier.title}}
-
 section#content(autoscroll='false')
-  section#casos(ng-class='{collapsed: isDossier, "in-case": isCase}')
+  section#casos(ng-class='{"collapsed": isDossier || !initialized, "in-case": isCase, "active": showList}')
+    a.toggle-link(href="javascript:void(0);" ng-click="toggleCasos()") 
+      span(ng-hide="showList") Lista de casos
+      span(ng-show="showList") -
     form#casos-filters(ng-show='initialized')
       input(type='text' ng-model='filter.text' placeholder='Digite sua busca')
       select(ng-model='filter.strict.uf' ng-options='uf for uf in dropdownFilters.uf track by uf')
@@ -42,7 +36,7 @@ section#content(autoscroll='false')
           p {{caso.descricao}}
           p.report(ng-show='caso.relatorio') {{caso.relatorio}}
 
-.map-container(ng-class='{full: isDossier, "in-case": isCase}')
+.map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized}')
   map#map(map-data='mapData' markers='filtered | postToMarker')
   
 div(ui-view)

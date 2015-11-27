@@ -35,6 +35,12 @@
           $scope.initialized = true;
         };
 
+        $scope.$watch('initialized', function() {
+          $timeout(function() {
+            $rootScope.$broadcast('invalidateMap');
+          }, 200);
+        });
+
         if($state.current.name == 'home.dossier')
           $scope.isDossier = true;
         else
@@ -81,14 +87,18 @@
         });
 
         // Async get cases
-        Vindig.cases().then(function(data) {
-          $scope.casos = data.data;
-          var totalPages = data.headers('X-WP-TotalPages');
+        Vindig.cases().then(function(res) {
+          $scope.casos = res.data;
+          var totalPages = res.headers('X-WP-TotalPages');
           for(var i = 2; i <= totalPages; i++) {
-            Vindig.cases({page: i}).then(function(data) {
-              $scope.casos = $scope.casos.concat(data.data);
+            Vindig.cases({page: i}).then(function(res) {
+              $scope.casos = $scope.casos.concat(res.data);
             });
           }
+        });
+
+        Vindig.dossiers().then(function(res) {
+          $scope.dossiers = res.data;
         });
 
         var anos;
@@ -132,14 +142,26 @@
         $scope.focusMap = function(caso) {
           $rootScope.$broadcast('focusMap', caso.coordinates);
         };
+
+        // Case list
+        $scope.showList = false
+        $scope.toggleCasos = function() {
+          if($scope.showList) {
+            $scope.showList = false;
+          } else {
+            $scope.showList = true;
+          }
+          $timeout(function() {
+            $rootScope.$broadcast('invalidateMap');
+          }, 200);
+        }
       }
     ]);
 
     app.controller('HomeCtrl', [
       '$scope',
-      'Dossiers',
       'Map',
-      function($scope, Dossiers, Map) {
+      function($scope, Map) {
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
           if(toState.name == 'home' || toState.name == 'home.case' || toState.name == 'home.page') {
@@ -151,7 +173,6 @@
           $scope.mapData = map;
         });
 
-        $scope.dossiers = Dossiers.data;
       }
     ]);
 

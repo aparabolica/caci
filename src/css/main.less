@@ -76,7 +76,7 @@ input[type="submit"] {
   .header-main {
     float: left;
     width: 50%;
-    padding-top: 10%;
+    padding-top: 6%;
     transition: all .4s ease-in-out;
   }
   #mastnav {
@@ -90,7 +90,7 @@ input[type="submit"] {
       z-index: 2;
       text-decoration: none;
     }
-    ul {
+    > ul {
       z-index: 1;
       position: fixed;
       top: 0;
@@ -102,10 +102,10 @@ input[type="submit"] {
       padding: 50px 0 0;
       list-style: none;
       transition: all .2s ease-in-out;
-      li {
+      > li {
         margin: 0;
         padding: 0;
-        a {
+        > a {
           display: block;
           font-size: 30px;
           line-height: 1;
@@ -147,7 +147,7 @@ input[type="submit"] {
   }
   h1 {
     color: #111;
-    margin: 0 0 10px;
+    margin: 0 0 20px;
     text-transform: uppercase;
     font-size: 4vw;
     line-height: 1;
@@ -194,54 +194,73 @@ input[type="submit"] {
     border-radius: 3px;
     padding: 10px 15px;
     text-decoration: none;
-    background: rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.5);
+    font-size: 20px;
+    -webkit-animation: neon 1s ease-in-out infinite alternate;
+    -moz-animation: neon 1s ease-in-out infinite alternate;
+    animation: neon 1s ease-in-out infinite alternate;
+    font-weight: 600;
+    &:hover {
+      background: #fff;
+      -webkit-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+      -moz-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+      box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+    }
+  }
+}
+
+@-webkit-keyframes neon {
+  from {
+    -webit-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+  }
+  to {
+    -webkit-box-shadow: 0 0 10px rgba(255, 15, 0, 0.6);
+  }
+}
+
+@-moz-keyframes neon {
+  from {
+    -moz-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+  }
+  to {
+    -moz-box-shadow: 0 0 10px rgba(255, 15, 0, 0.6);
+  }
+}
+
+@keyframes neon {
+  from {
+    box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+  }
+  to {
+    box-shadow: 0 0 10px rgba(255, 15, 0, 0.6);
   }
 }
 
 #dossies {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 10000;
-  padding-top: 10px;
   width: 100%;
   transition: all .4s ease-in-out;
-  &.collapsed {
-    width: 70%;
-    bottom: -100px;
-    &:hover {
-      bottom: 0;
-    }
-    .dossie-list li {
-      vertical-align: baseline;
-    }
-  }
-  &.in-case {
-    width: 60%;
-  }
+  position: absolute;
+  bottom: 0;
   h2 {
     font-size: 26px;
     text-transform: uppercase;
-    margin: -25px 20px 5px;
     line-height: 1;
+    padding-left: 20px;
   }
   .dossie-list {
     list-style: none;
     margin: 0;
     padding: 0;
     width: 100%;
-    display: table;
+    display: block;
     border-top: 1px solid rgba(0,0,0,0.4);
     background: url(../img/halftone_clear.png);
     li {
-      display: table-cell;
+      display: block;
       padding: 10px 20px;
-      table-layout: fixed;
-      vertical-align: middle;
-      width: 1%;
-      border-right: 1px solid rgba(0,0,0,0.4);
-      // color: #f0f0f0;
+      border-top: 1px solid rgba(0,0,0,0.4);
       position: relative;
+      margin: 0;
       &:last-child {
         border-right: 0;
       }
@@ -274,22 +293,22 @@ input[type="submit"] {
 
 #casos {
   position: fixed;
-  right: 0;
+  right: -30%;
   width: 30%;
   top: 0;
   bottom: 0;
   background: url(../img/halftone_clear.png);
   margin-top: 50px;
-  overflow-x: hidden;
-  overflow-y: auto;
   transition: all .4s ease-in-out;
   z-index: 10;
   border-left: 1px solid #ccc;
+  &.active {
+    right: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
   &.collapsed {
-    right: -30%;
-    &:hover {
-      right: 0;
-    }
+    right: -30% !important;
   }
   &.in-case {
     right: -25%;
@@ -298,6 +317,22 @@ input[type="submit"] {
     }
     &.force {
       right: -25% !important;
+    }
+  }
+  .toggle-link {
+    position: absolute;
+    right: 100%;
+    top: 40%;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    border-radius: 4px 0 0 4px;
+    padding: 10px;
+    z-index: 9999;
+    text-align: right;
+    color: #999;
+    transition: all .2s ease-in-out;
+    &:hover {
+      color: #333;
     }
   }
   #casos-filters {
@@ -425,12 +460,12 @@ input[type="submit"] {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 70%;
-  // transition: all .25s linear;
+  width: 100%;
+  // transition: all .2s linear;
   #map {
     width: 100%;
     height: 100%;
-    // transition: all .25s linear;
+    // transition: all .2s linear;
   }
   &.full {
     width: 66.6666%;
@@ -580,10 +615,10 @@ input[type="submit"] {
 #dossier.single {
   position: relative;
   z-index: 100;
-  margin-top: 20%;
+  margin-top: 16%;
   margin-left: 5%;
-  width: 45%;
-  min-width: 500px;
+  width: 50%;
+  min-width: 600px;
   max-width: 800px;
   .dossier-header {
     margin: 0 0 30px;

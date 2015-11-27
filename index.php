@@ -20,6 +20,17 @@
           <li ng-repeat="page in pages">
             <a ui-sref="home.page({id: page.ID})">{{page.title}}</a>
           </li>
+          <li id="dossies">
+            <h2>Dossiês</h2>
+            <ul class="dossie-list">
+              <li ng-repeat="dossier in dossiers">
+                <div style="background-image:url({{dossier.featured_image.attachment_meta.sizes.large.url}});" class="image"></div>
+                <article>
+                  <h3><a ui-sref="home.dossier({id: dossier.ID})">{{dossier.title}}</a></h3>
+                </article>
+              </li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <aside id="intro" ng-hide="initialized">
