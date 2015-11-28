@@ -1,6 +1,6 @@
 
 <section id="content" autoscroll="false">
-  <section id="casos" ng-class="{&quot;collapsed&quot;: isDossier || !initialized, &quot;in-case&quot;: isCase, &quot;active&quot;: showList}"><a href="javascript:void(0);" ng-click="toggleCasos()" class="toggle-link"> <span ng-hide="showList">Lista de casos</span><span ng-show="showList">-</span></a>
+  <section id="casos" ng-class="{&quot;collapsed&quot;: isDossier || !initialized, &quot;in-case&quot;: isCase, &quot;active&quot;: showList}"><a href="javascript:void(0);" ng-click="toggleCasos()" ng-show="initialized" class="toggle-link"> <span ng-hide="showList">Lista de casos</span><span ng-show="showList">-</span></a>
     <form id="casos-filters" ng-show="initialized">
       <input type="text" ng-model="filter.text" placeholder="Digite sua busca">
       <select ng-model="filter.strict.uf" ng-options="uf for uf in dropdownFilters.uf track by uf">

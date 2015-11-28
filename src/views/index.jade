@@ -1,6 +1,6 @@
 section#content(autoscroll='false')
   section#casos(ng-class='{"collapsed": isDossier || !initialized, "in-case": isCase, "active": showList}')
-    a.toggle-link(href="javascript:void(0);" ng-click="toggleCasos()") 
+    a.toggle-link(href="javascript:void(0);" ng-click="toggleCasos()" ng-show="initialized") 
       span(ng-hide="showList") Lista de casos
       span(ng-show="showList") -
     form#casos-filters(ng-show='initialized')

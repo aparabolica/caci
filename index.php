@@ -20,6 +20,18 @@
           <li ng-repeat="page in pages">
             <a ui-sref="home.page({id: page.ID})">{{page.title}}</a>
           </li>
+          <li id="by">
+            <ul class="by-list">
+              <h3>Um projeto de</h3>
+              <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
+            </ul>
+          </li>
+          <li id="share">
+            <ul class="share-list row">
+              <li><a class="icon icon-facebook" href="http://facebook.com/" target="_blank" rel="external"></a></li>
+              <li><a class="icon icon-twitter" href="http://twitter.com/" target="_blank" rel="external"></a></li>
+            </ul>
+          </li>
           <li id="dossies">
             <h2>Dossiês</h2>
             <ul class="dossie-list">
