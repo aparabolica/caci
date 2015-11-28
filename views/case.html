@@ -2,6 +2,21 @@
 <article id="case" class="single">
   <header class="case-header"><a ui-sref="home" class="icon icon-cross"></a>
     <h1>{{caso | casoName}}</h1>
+    <div class="location"><span class="icon icon-pin"></span>
+      <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation:true"></a></p>
+    </div>
+    <div class="case-meta">
+      <div ng-show="caso.aldeia" class="village meta"><span class="icon icon-circle"></span>
+        <p>Aldeia {{caso.aldeia}}</p>
+      </div>
+      <div ng-show="caso.idade" class="age meta"><span class="icon icon-chevron-small-right"></span>
+        <p>{{caso.idade}} anos</p>
+      </div>
+      <div class="date meta"><span class="icon icon-calendar"></span>
+        <p ng-bind-html="caso | casoDate" class="date-info"></p>
+      </div>
+    </div>
   </header>
   <section ng-bind-html="caso.content" class="case-content"></section>
+  <p ng-show="caso.relatorio" class="report">{{caso.relatorio}}</p>
 </article>

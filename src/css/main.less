@@ -616,6 +616,59 @@ input[type="submit"] {
   h1 {
     line-height: 1.2;
   }
+  .location {
+    position: relative;
+    padding: 10px;
+    background: #f6f6f6;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    margin: 0 0 20px;
+    p {
+      margin: 0;
+    }
+    .icon {
+      position: absolute;
+      right: -5px;
+      top: -10px;
+      font-size: 20px;
+    }
+    .location-info {
+      > a > span {
+        display: block;
+        color: #333;
+        span {
+          display: inline-block;
+          font-weight: 600;
+          width: 40%;
+        }
+      }
+    }
+  }
+  .case-meta {
+    margin-bottom: 20px;
+  }
+  .meta {
+    display: inline-block;
+    color: #666;
+    margin-right: 10px;
+    font-family: "Hind Siliguri";
+    .icon {
+      margin-right: 5px;
+    }
+    p {
+      margin: 0;
+      display: inline-block;
+      font-size: 16px;
+    }
+    &.date {
+      p.date-info {
+        .mes,
+        .dia {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
 
 .single-content {

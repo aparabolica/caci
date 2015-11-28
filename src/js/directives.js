@@ -152,8 +152,6 @@
 
             markerLayer.addTo(map);
 
-            console.log(scope.heatMarker);
-
             if(scope.heatMarker) {
               var heatLayer = L.heatLayer([], {
                 blur: 30

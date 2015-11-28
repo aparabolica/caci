@@ -86,16 +86,25 @@
     app.filter('caseLocation', [
       '$sce',
       function($sce) {
-        return function(input) {
+        return function(input, showLabels) {
           var location = '';
           if(input.terra_indigena) {
-            location = '<span class="ti">' + input.terra_indigena + '</span>';
+            if(showLabels)
+              location = '<span class="ti"><span class="label">Terra indígena</span> ' + input.terra_indigena + '</span>';
+            else
+              location = '<span class="ti">' + input.terra_indigena + '</span>';
           }
           if(input.municipio) {
-            location += '<span class="mun">' + input.municipio + '</span>';
+            if(showLabels)
+              location += '<span class="mun"><span class="label">Município</span> ' + input.municipio + '</span>';
+            else
+              location += '<span class="mun">' + input.municipio + '</span>';
           }
           if(input.uf) {
-            location += '<span class="uf">' + input.uf + '</span>';
+            if(showLabels)
+              location += '<span class="uf"><span class="label">Estado</span> ' + input.uf + '</span>';
+            else
+              location += '<span class="uf">' + input.uf + '</span>';
           }
           return $sce.trustAsHtml(location);
         }

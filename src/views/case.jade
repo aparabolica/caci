@@ -2,4 +2,19 @@ article#case.single
   header.case-header
     a(ui-sref="home" class="icon icon-cross")
     h1 {{caso | casoName}}
+    .location
+      span.icon.icon-pin
+      p.location-info
+        a(ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html='caso | caseLocation:true')
+    .case-meta
+      .village.meta(ng-show='caso.aldeia')
+        span.icon.icon-circle
+        p Aldeia {{caso.aldeia}}
+      .age.meta(ng-show='caso.idade')
+        span.icon.icon-chevron-small-right
+        p {{caso.idade}} anos
+      .date.meta
+        span.icon.icon-calendar
+        p.date-info(ng-bind-html='caso | casoDate')
   section.case-content(ng-bind-html="caso.content")
+  p.report(ng-show='caso.relatorio') {{caso.relatorio}}
