@@ -289,7 +289,6 @@
 
                   swapable = swapable.reverse();
                   _.each(swapable, function(layer) {
-                    console.log(layer);
                     layerControl.addBaseLayer(layer.layer, layer.name);
                   });
 
