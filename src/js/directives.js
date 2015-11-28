@@ -272,10 +272,12 @@
                     map.addLayer(layer.layer);
                   });
 
+                  swapable = swapable.reverse();
                   _.each(swapable, function(layer) {
                     layerControl.addBaseLayer(layer.layer, layer.name);
                   });
 
+                  switchable = switchable.reverse();
                   _.each(switchable, function(layer) {
                     layerControl.addOverlay(layer.layer, layer.name);
                   });
