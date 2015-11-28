@@ -27,16 +27,12 @@
               <div ng-show="caso.idade" class="age meta"><span class="icon icon-chevron-small-right"></span>
                 <p>{{caso.idade}} anos</p>
               </div>
-              <div ng-show="caso.aldeia" class="village meta"><span class="icon icon-home"></span>
-                <p>{{caso.aldeia}}</p>
-              </div>
               <div class="date meta"><span class="icon icon-calendar"></span>
                 <p ng-bind-html="caso | casoDate" class="date-info"></p>
               </div>
             </div>
           </header>
           <p>{{caso.descricao}}</p>
-          <p ng-show="caso.relatorio" class="report">{{caso.relatorio}}</p>
         </article>
       </li>
     </ul>

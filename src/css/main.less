@@ -315,6 +315,9 @@ input[type="submit"] {
   }
   &.in-case {
     right: -25%;
+    .toggle-link {
+      display: none;
+    }
     &:hover {
       right: 0;
     }
@@ -485,12 +488,12 @@ input[type="submit"] {
       }
     }
   }
-  &.in-case {
-    width: 60%;
-  }
   &.collapsed {
     // currently the same as regular
     width: 70%;
+  }
+  &.in-case {
+    width: 60%;
   }
   .leaflet-top {
     top: 50px;

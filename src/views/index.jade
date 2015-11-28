@@ -27,14 +27,10 @@ section#content(autoscroll='false')
               .age.meta(ng-show='caso.idade')
                 span.icon.icon-chevron-small-right
                 p {{caso.idade}} anos
-              .village.meta(ng-show='caso.aldeia')
-                span.icon.icon-home
-                p {{caso.aldeia}}
               .date.meta
                 span.icon.icon-calendar
                 p.date-info(ng-bind-html='caso | casoDate')
           p {{caso.descricao}}
-          p.report(ng-show='caso.relatorio') {{caso.relatorio}}
 
 .map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized}')
   map#map(map-data='mapData' markers='filtered | postToMarker' heat-marker="false")
