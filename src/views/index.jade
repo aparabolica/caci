@@ -37,6 +37,6 @@ section#content(autoscroll='false')
           p.report(ng-show='caso.relatorio') {{caso.relatorio}}
 
 .map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized}')
-  map#map(map-data='mapData' markers='filtered | postToMarker')
+  map#map(map-data='mapData' markers='filtered | postToMarker' heat-marker="false")
   
 div(ui-view)

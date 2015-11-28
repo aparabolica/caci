@@ -40,7 +40,8 @@
           restrict: 'E',
           scope: {
             'mapData': '=',
-            'markers': '='
+            'markers': '=',
+            'heatMarker': '='
           },
           link: function(scope, element, attrs) {
 
@@ -128,19 +129,49 @@
                 weight: 1,
                 color: '#222',
                 opacity: 0.4
+              },
+              iconCreateFunction: function(cluster) {
+
+                var childCount = cluster.getChildCount();
+
+                var c = ' marker-cluster-';
+                if (childCount < 10) {
+                  c += 'small';
+                } else if (childCount < 100) {
+                  c += 'medium';
+                } else {
+                  c += 'large';
+                }
+
+                var icon = L.divIcon({ html: '<div><span>' + childCount + '</span></div>', className: 'marker-cluster' + c, iconSize: new L.Point(40, 40) });
+
+                return icon;
+
               }
             });
 
             markerLayer.addTo(map);
 
+            console.log(scope.heatMarker);
+
+            if(scope.heatMarker) {
+              var heatLayer = L.heatLayer([], {
+                blur: 30
+              });
+              heatLayer.addTo(map);
+            }
+
             var markers = [];
+            var latlngs = [];
             scope.$watch('markers', _.debounce(function(posts) {
               for(var key in markers) {
                 markerLayer.removeLayer(markers[key]);
               }
               markers = [];
+              latlngs = [];
               for(var key in posts) {
                 var post = posts[key];
+                latlngs.push([post.lat,post.lng]);
                 markers[key] = L.marker([post.lat,post.lng], {
                   icon: icon
                 });
@@ -162,6 +193,8 @@
               for(var key in markers) {
                 markers[key].addTo(markerLayer);
               }
+              if(scope.heatMarker)
+                heatLayer.setLatLngs(latlngs);
             }, 300), true);
 
             /*
