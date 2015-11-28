@@ -79,30 +79,46 @@
                 mapInit = true;
                 scope.layers = mapData.layers;
                 setTimeout(function() {
+
                   if(mapData.min_zoom)
                     map.options.minZoom = parseInt(mapData.min_zoom);
+                  else
+                    map.options.minZoom = 1;
+
                   if(mapData.max_zoom)
                     map.options.maxZoom = parseInt(mapData.max_zoom);
-                  if(mapData.pan_limits) {
-                    map.setMaxBounds(L.latLngBounds(
-                      [
-                        mapData.pan_limits.south,
-                        mapData.pan_limits.west
-                      ],
-                      [
-                        mapData.pan_limits.north,
-                        mapData.pan_limits.east
-                      ]
-                    ));
-                  }
-                  if(calledFocus) {
-                    map.fitBounds(L.latLngBounds([[calledFocus[1], calledFocus[0]]]));
-                    calledFocus = false;
-                  } else {
-                    map.setView(mapData.center);
+                  else
+                    map.options.maxZoom = 18;
+
+                  setTimeout(function() {
+                    map.setView(mapData.center, mapData.zoom, {
+                      reset: true
+                    });
                     map.setZoom(mapData.zoom);
-                  }
-                }, 500);
+                    setTimeout(function() {
+                      map.setView(mapData.center, mapData.zoom, {
+                        reset: true
+                      });
+                      map.setZoom(mapData.zoom);
+                    }, 100);
+                  }, 200);
+
+                  setTimeout(function() {
+                    if(mapData.pan_limits) {
+                      map.setMaxBounds(L.latLngBounds(
+                        [
+                          mapData.pan_limits.south,
+                          mapData.pan_limits.west
+                        ],
+                        [
+                          mapData.pan_limits.north,
+                          mapData.pan_limits.east
+                        ]
+                      ));
+                    }
+                  }, 400);
+
+                }, 200);
               }
             });
 

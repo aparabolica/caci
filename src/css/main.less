@@ -346,6 +346,9 @@ input[type="submit"] {
   }
   &.collapsed {
     right: -30% !important;
+    .toggle-link {
+      display: none;
+    }
   }
   &.in-case {
     right: -25%;
@@ -371,6 +374,7 @@ input[type="submit"] {
     color: #999;
     transition: all .4s ease-in-out;
     z-index: 5;
+    outline: none;
     &:hover {
       color: #333;
     }
