@@ -275,19 +275,21 @@
                       layerMap[layer.ID] = Vindig.getLayer(layer, map);
                     if(layer.filtering == 'fixed' || !layer.filtering) {
                       fixed.push(layerMap[layer.ID]);
+                      map.addLayer(layerMap[layer.ID].layer);
                     } else if(layer.filtering == 'swap') {
+                      if(layer.first_swap)
+                        map.addLayer(layerMap[layer.ID].layer);
                       swapable.push(layerMap[layer.ID]);
                     } else if(layer.filtering == 'switch') {
+                      if(!layer.hidden)
+                        map.addLayer(layerMap[layer.ID].layer);
                       switchable.push(layerMap[layer.ID]);
                     }
                   });
 
-                  _.each(fixed, function(layer) {
-                    map.addLayer(layer.layer);
-                  });
-
                   swapable = swapable.reverse();
                   _.each(swapable, function(layer) {
+                    console.log(layer);
                     layerControl.addBaseLayer(layer.layer, layer.name);
                   });
 
