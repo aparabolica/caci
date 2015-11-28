@@ -21,10 +21,8 @@
             <a ui-sref="home.page({id: page.ID})">{{page.title}}</a>
           </li>
           <li id="by">
-            <ul class="by-list">
-              <h3>Um projeto de</h3>
-              <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
-            </ul>
+            <h3>Um projeto de</h3>
+            <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
           </li>
           <li id="share">
             <ul class="share-list row">
