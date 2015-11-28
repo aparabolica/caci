@@ -306,6 +306,9 @@ input[type="submit"] {
     right: 0;
     overflow-x: hidden;
     overflow-y: scroll;
+    .toggle-link {
+      right: 30%;
+    }
   }
   &.collapsed {
     right: -30% !important;
@@ -320,17 +323,17 @@ input[type="submit"] {
     }
   }
   .toggle-link {
-    position: absolute;
-    right: 100%;
+    position: fixed;
+    right: 0;
     top: 40%;
     background: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    // box-shadow: 0 0 10px rgba(0,0,0,0.3);
     border-radius: 4px 0 0 4px;
     padding: 10px;
-    z-index: 9999;
     text-align: right;
     color: #999;
-    transition: all .2s ease-in-out;
+    transition: all .4s ease-in-out;
+    z-index: 5;
     &:hover {
       color: #333;
     }
