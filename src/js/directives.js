@@ -229,6 +229,8 @@
               autoZIndex: false
             }).addTo(map);
 
+            layerControl.addOverlay(markerLayer, 'Casos');
+
             map.on('layeradd', function(ev) {
               if(ev.layer._vindig_id) {
                 if(layerMap[ev.layer._vindig_id].control)
