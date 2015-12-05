@@ -706,6 +706,19 @@ input[type="submit"] {
 }
 
 .single-content {
+  font-size: 18px;
+  background: #fff;
+  padding: 30px;
+  .excerpt {
+    font-size: 22px;
+    color: #666;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  p,
+  ul {
+    margin: 0 0 30px;
+  }
   h2 {
     text-shadow: 0 0 0;
     font-size: 30px;
@@ -716,6 +729,57 @@ input[type="submit"] {
   h3 {
     line-height: 1.2;
     font-size: 24px;
+  }
+  p {
+
+  }
+  .quote-container {
+    display: block;
+    color: #666;
+    font-style: italic;
+    position: relative;
+    padding-left: 10px;
+    &:before {
+      content: '\e702';
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      float: left;
+      font-size: 45px;
+      position: absolute;
+      top: -20px;
+      left: -10px;
+      color: #ddd;
+    }
+    p {
+      margin: 0 0 10px;
+    }
+    .quote-text {
+      position: relative;
+      z-index: 2;
+    }
+    .quote-author {
+      font-weight: 600;
+    }
+  }
+  .align-block {
+    width: 35%;
+    color: #666;
+    &.alignright {
+      padding-left: 20px;
+      border-left: 4px solid #ddd;
+    }
+    &.alignleft {
+      padding-right: 20px;
+      border-right: 4px solid #ddd;
+    }
   }
 }
 
@@ -734,21 +798,6 @@ input[type="submit"] {
       font-size: 40px;
       width: 70%;
       line-height: 1.2;
-    }
-  }
-  .dossier-content {
-    font-size: 18px;
-    background: #fff;
-    padding: 30px;
-    .excerpt {
-      font-size: 22px;
-      color: #666;
-      font-style: italic;
-      line-height: 1.5;
-    }
-    p,
-    ul {
-      margin: 0 0 30px;
     }
   }
   .dossier-author {
