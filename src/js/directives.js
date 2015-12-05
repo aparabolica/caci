@@ -4,6 +4,32 @@
 
   module.exports = function(app) {
 
+    app.directive('tagExternal', [
+      '$timeout',
+      function($timeout) {
+        return {
+          restrict: 'A',
+          link: function(scope, element, attrs) {
+            function isExternal(url) {
+              var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
+              if (typeof match[1] === "string" && match[1].length > 0 && match[1].toLowerCase() !== location.protocol) return true;
+              if (typeof match[2] === "string" && match[2].length > 0 && match[2].replace(new RegExp(":("+{"http:":80,"https:":443}[location.protocol]+")?$"), "") !== location.host) return true;
+              return false;
+            }
+            $timeout(function() {
+              jQuery(element).find('a').each(function() {
+                if(isExternal(jQuery(this).attr('href')))
+                  jQuery(this).addClass('external').attr({
+                    'rel': 'external',
+                    'target': '_blank'
+                  });
+              });
+            }, 200);
+          }
+        }
+      }
+    ])
+
     app.directive('forceOnclick', [
       function() {
         return {

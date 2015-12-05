@@ -10,6 +10,7 @@ class Vindig_Shortcodes {
 
     add_shortcode('vindig_quote', array($this, 'quote'));
     add_shortcode('align', array($this, 'align'));
+    add_shortcode('warning', array($this, 'warning'));
 
   }
 
@@ -47,6 +48,20 @@ class Vindig_Shortcodes {
     ), $atts);
 
     return '<div class="align-block align' . $a['direction'] . '">' . do_shortcode($content) . '</div>';
+
+  }
+
+  function warning($atts, $content = null) {
+
+    if(!$content) {
+      return '';
+    }
+
+    $a = shortcode_atts(array(
+      'color' => 'rgb(221, 70, 50)'
+    ), $atts);
+
+    return '<div class="warning" style="border-color: ' . $a['color'] . ';"><span class="icon icon-warning" style="color: ' . $a['color'] . ';"></span>' . $content . '</div>';
 
   }
 

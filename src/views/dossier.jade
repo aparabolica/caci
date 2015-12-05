@@ -1,7 +1,7 @@
 article#dossier.single
   header.dossier-header
     h1 {{dossier.title}}
-  section.dossier-content.single-content
+  section.dossier-content.single-content(tag-external)
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
     div(ng-bind-html="dossier.content" fit-vids)
   section.dossier-author

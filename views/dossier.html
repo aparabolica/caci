@@ -3,7 +3,7 @@
   <header class="dossier-header">
     <h1>{{dossier.title}}</h1>
   </header>
-  <section class="dossier-content single-content">
+  <section tag-external class="dossier-content single-content">
     <p ng-show="dossier.excerpt" class="excerpt">{{dossier.excerpt}}</p>
     <div ng-bind-html="dossier.content" fit-vids></div>
   </section>

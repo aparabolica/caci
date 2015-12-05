@@ -730,8 +730,24 @@ input[type="submit"] {
     line-height: 1.2;
     font-size: 24px;
   }
-  p {
-
+  a.external {
+    &:after {
+      display: inline-block;
+      padding: 0 5px;
+      color: #333;
+      font-size: 12px;
+      content: '\e6a0';
+      font-family: 'icomoon';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      /* Better Font Rendering =========== */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
   }
   .quote-container {
     display: block;
@@ -779,6 +795,18 @@ input[type="submit"] {
     &.alignleft {
       padding-right: 20px;
       border-right: 4px solid #ddd;
+    }
+  }
+  .warning {
+    padding: 20px;
+    border-width: 1px;
+    border-style: solid;
+    margin: 0 0 30px;
+    color: #666;
+    .icon {
+      float: left;
+      font-size: 20px;
+      margin: 0 20px 0 0;
     }
   }
 }
