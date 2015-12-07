@@ -3,5 +3,7 @@
   <header class="page-header">
     <h1>{{page.title}}</h1>
   </header>
-  <section ng-bind-html="page.content" class="page-content single-content"></section>
+  <section class="page-content single-content"><a ui-sref="home" class="home-link"><span class="icon icon-home"></span>Voltar para o mapa principal</a>
+    <div ng-bind-html="page.content"></div>
+  </section>
 </article>

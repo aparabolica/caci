@@ -2,6 +2,9 @@ article#dossier.single
   header.dossier-header
     h1 {{dossier.title}}
   section.dossier-content.single-content(tag-external)
+    a.home-link(ui-sref="home")
+      span.icon.icon-home
+      | Voltar para o mapa principal
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
     div(ng-bind-html="dossier.content" fit-vids)
   section.dossier-author
