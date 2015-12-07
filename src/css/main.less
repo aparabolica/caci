@@ -837,6 +837,18 @@ input[type="submit"] {
     border-left: 4px solid #ddd;
     padding: 0 0 0 30px;
     margin: 0 0 30px 30px;
+    ul {
+      list-style: none;
+      margin: 0 0 0 -30px;
+      padding: 0;
+      li {
+        padding: 10px 10px 10px 30px;
+        border-bottom: 1px solid #ddd;
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
   }
 }
 
