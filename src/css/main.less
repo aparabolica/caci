@@ -87,11 +87,31 @@ input[type="submit"] {
   }
   #mastnav {
     position: absolute;
-    top: 10px;
+    top: 0px;
     right: 10px;
-    .icon {
-      font-size: 30px;
+    .nav-links {
+      margin-top: 10px;
+      margin-right: 10px;
+      float: right;
+      a {
+        float: left;
+      }
+    }
+    > a,
+    .nav-links a {
+      display: inline-block;
+      text-transform: uppercase;
+      margin-left: 20px;
       line-height: 1;
+      font-weight: 600;
+      font-family: "Hind Siliguri","Helvetica","Arial",sans-serif;
+      margin-top: -10px;
+      line-height: 50px;
+    }
+    .icon {
+      display: inline-block;
+      font-size: 30px;
+      line-height: 50px;
       position: relative;
       z-index: 2;
       text-decoration: none;
@@ -276,30 +296,54 @@ input[type="submit"] {
 }
 
 #dossies {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  z-index: 10000;
   width: 100%;
   transition: all .4s ease-in-out;
-  position: absolute;
-  bottom: 0;
+  max-height: 0;
+  overflow: hidden;
+  &.active {
+    max-height: 150px;
+  }
+  &.collapsed {
+    width: 70%;
+    bottom: -100px;
+    &:hover {
+      bottom: 0;
+    }
+    .dossie-list li {
+      vertical-align: baseline;
+    }
+  }
+  &.in-case {
+    width: 60%;
+  }
   h2 {
     font-size: 26px;
     text-transform: uppercase;
+    margin: -25px 20px 5px;
     line-height: 1;
-    padding-left: 20px;
   }
   .dossie-list {
     list-style: none;
     margin: 0;
     padding: 0;
     width: 100%;
-    display: block;
+    display: table;
     border-top: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.4);
     background: url(../img/halftone_clear.png);
     li {
-      display: block;
+      display: table-cell;
       padding: 10px 20px;
-      border-top: 1px solid rgba(0,0,0,0.4);
+      table-layout: fixed;
+      vertical-align: middle;
+      width: 1%;
+      border-right: 1px solid rgba(0,0,0,0.4);
+      // color: #f0f0f0;
       position: relative;
-      margin: 0;
       &:last-child {
         border-right: 0;
       }

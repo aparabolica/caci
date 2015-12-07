@@ -27,6 +27,18 @@
           $scope.showNav = false;
         });
 
+        // Dossiers
+        $scope.toggleDossiers = function() {
+          if($scope.showDossiers) {
+            $scope.showDossiers = false;
+          } else {
+            $scope.showDossiers = true;
+          }
+        }
+        $rootScope.$on('$stateChangeStart', function() {
+          $scope.showDossiers = false;
+        });
+
         $scope.home = function() {
           if($state.current.name == 'home')
             $scope.initialized = false;

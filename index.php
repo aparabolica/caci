@@ -15,7 +15,10 @@
         <nav class="button-nav"><a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button">Navegar pelos casos</a></nav>
       </div>
       <nav id="mastnav" ng-class="{active: showNav}">
-        <a class="icon icon-menu" ng-click="toggleNav()" href="javascript:void(0);"></a>
+        <div class="nav-links">
+          <a ng-click="toggleDossiers()" href="javascript:void(0);">Dossiês</a>
+          <a ng-click="toggleNav()" href="javascript:void(0);"><span class="icon icon-menu"></span></a>
+        </div>
         <ul>
           <li ng-repeat="page in pages">
             <a ui-sref="home.page({id: page.ID})">{{page.title}}</a>
@@ -30,8 +33,7 @@
               <li><a class="icon icon-twitter" href="http://twitter.com/" target="_blank" rel="external"></a></li>
             </ul>
           </li>
-          <li id="dossies">
-            <h2>Dossiês</h2>
+          <li id="dossies" ng-class="{active: showDossiers}">
             <ul class="dossie-list">
               <li ng-repeat="dossier in dossiers">
                 <div style="background-image:url({{dossier.featured_image.attachment_meta.sizes.large.url}});" class="image"></div>
