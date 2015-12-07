@@ -39,6 +39,18 @@
           $scope.showDossiers = false;
         });
 
+        // Adv nav
+        $scope.toggleAdvFilters = function() {
+          if($scope.showAdvFilters) {
+            $scope.showAdvFilters = false;
+          } else {
+            $scope.showAdvFilters = true;
+          }
+        }
+        $rootScope.$on('$stateChangeStart', function() {
+          $scope.showAdvFilters = false;
+        });
+
         $scope.home = function() {
           if($state.current.name == 'home')
             $scope.initialized = false;
