@@ -11,6 +11,7 @@ class Vindig_Shortcodes {
     add_shortcode('vindig_quote', array($this, 'quote'));
     add_shortcode('align', array($this, 'align'));
     add_shortcode('warning', array($this, 'warning'));
+    add_shortcode('reference', array($this, 'reference'));
 
   }
 
@@ -62,6 +63,16 @@ class Vindig_Shortcodes {
     ), $atts);
 
     return '<div class="warning" style="border-color: ' . $a['color'] . ';"><span class="icon icon-warning" style="color: ' . $a['color'] . ';"></span>' . $content . '</div>';
+
+  }
+
+  function reference($atts, $content = null) {
+
+    if(!$content) {
+      return '';
+    }
+
+    return '<div class="reference-text">' . $content . '</div>';
 
   }
 
