@@ -292,12 +292,16 @@
                   if(swapable.length) {
                     _.each(swapable, function(l) {
                       layerControl.removeLayer(l.layer);
+                      if(map.hasLayer(l.layer))
+                        map.removeLayer(l.layer);
                     });
                     swapable = [];
                   }
                   if(switchable.length) {
                     _.each(switchable, function(l) {
                       layerControl.removeLayer(l.layer);
+                      if(map.hasLayer(l.layer))
+                        map.removeLayer(l.layer);
                     });
                     switchable = [];
                   }
