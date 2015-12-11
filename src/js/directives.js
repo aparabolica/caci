@@ -255,18 +255,26 @@
               autoZIndex: false
             }).addTo(map);
 
+            var legendControl = L.mapbox.legendControl().addTo(map);
+
             layerControl.addOverlay(markerLayer, 'Casos');
 
             map.on('layeradd', function(ev) {
               if(ev.layer._vindig_id) {
                 if(layerMap[ev.layer._vindig_id].control)
                   map.addControl(layerMap[ev.layer._vindig_id].control);
+                if(layerMap[ev.layer._vindig_id].legend) {
+                  legendControl.addLegend(layerMap[ev.layer._vindig_id].legend);
+                }
               }
             });
             map.on('layerremove', function(ev) {
               if(ev.layer._vindig_id) {
                 if(layerMap[ev.layer._vindig_id].control)
                   map.removeControl(layerMap[ev.layer._vindig_id].control);
+                if(layerMap[ev.layer._vindig_id].legend) {
+                  legendControl.removeLegend(layerMap[ev.layer._vindig_id].legend);
+                }
               }
             });
 

@@ -106,6 +106,10 @@
               layer.layer = L.tileLayer(layerObj.tile_url);
             }
 
+            if(layerObj.legend) {
+              layer.legend = layerObj.legend;
+            }
+
             if(layer.layer) {
               if(layerObj.zIndex) {
                 layer.layer.setZIndex(layerObj.zIndex);
