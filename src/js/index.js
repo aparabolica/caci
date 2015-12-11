@@ -2,6 +2,7 @@
 
   var app = angular.module('vindigena', [
     'ui.router',
+    'djds4rce.angular-socialshare',
     'ui-rangeSlider',
     'fitVids'
   ]);
@@ -130,6 +131,12 @@
       	return path + '/?' + params.join('&');
       });
 
+    }
+  ])
+  .run([
+    '$FB',
+    function($FB) {
+       $FB.init('1496777703986386');
     }
   ]);
 

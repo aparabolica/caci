@@ -6,6 +6,9 @@ article#dossier.single
       span.icon.icon-home
       | Voltar para o mapa principal
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
+    .share
+      a.facebookShare(facebook-feed-share data-url="{{url}}")
+      a(twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}")
     div(ng-bind-html="dossier.content" fit-vids)
   section.dossier-author
     h2 Autor

@@ -49,6 +49,10 @@ function vindig_scripts() {
   wp_register_script('angular', get_stylesheet_directory_uri() . '/static/angular/angular.min.js');
   wp_register_script('angular-ui-router', get_stylesheet_directory_uri() . '/static/ui-router/release/angular-ui-router.js', array('angular'));
 
+  wp_register_script('twttr', 'http://platform.twitter.com/widgets.js');
+  wp_register_script('angular-socialshare', get_stylesheet_directory_uri() . '/static/angular-socialshare/angular-socialshare.min.js', array('angular', 'twttr'));
+  wp_register_style('angular-socialshare', get_stylesheet_directory_uri() . '/static/angular-socialshare/angular-socialshare.min.css');
+
   wp_register_script('angular-rangeslider', get_stylesheet_directory_uri() . '/static/angular-rangeslider/angular.rangeSlider.js', array('angular'));
   wp_register_style('angular-rangeslider', get_stylesheet_directory_uri() . '/static/angular-rangeslider/angular.rangeSlider.css');
 
@@ -69,9 +73,9 @@ function vindig_scripts() {
 
   wp_register_style('icons', get_stylesheet_directory_uri() . '/css/icons.css');
 
-  wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'angular-rangeslider', 'angular-fitvids', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'leaflet.heat'));
+  wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'angular-socialshare', 'angular-rangeslider', 'angular-fitvids', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'leaflet.heat'));
 
-  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
+  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-socialshare', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
 
   $jeo_options = jeo_get_options();
   $front_page_map = 0;

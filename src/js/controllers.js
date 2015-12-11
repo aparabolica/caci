@@ -207,7 +207,15 @@
       '$sce',
       'Dossier',
       'DossierMap',
-      function($rootScope, $timeout, $scope, $sce, Dossier, Map) {
+      '$state',
+      function($rootScope, $timeout, $scope, $sce, Dossier, Map, $state) {
+
+        $scope.url = $state.href('home.dossier', {id: Dossier.data.ID}, {
+          absolute: true
+        });
+
+        console.log($scope.url);
+
         $scope.dossier = Dossier.data;
         $scope.dossier.content = $sce.trustAsHtml($scope.dossier.content);
         $scope.$emit('dossierMap', Map);
