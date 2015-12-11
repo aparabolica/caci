@@ -21,7 +21,9 @@
 
             filter = filter || {};
             filter = _.extend({
-              posts_per_page: 50
+              posts_per_page: 50,
+              orderby: 'menu_order',
+              order: 'ASC'
             }, filter);
 
             params.filter = filter;
