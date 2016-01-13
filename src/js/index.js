@@ -5,6 +5,11 @@
     'djds4rce.angular-socialshare',
     'ui-rangeSlider',
     'fitVids'
+  ], [
+    '$compileProvider',
+    function($compileProvider) {
+      $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|whatsapp|file):/);
+    }
   ]);
 
   app.config([
