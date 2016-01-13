@@ -3,6 +3,9 @@ section#content(autoscroll='false')
     a.toggle-link(href="javascript:void(0);" ng-click="toggleCasos()" ng-show="initialized") 
       span(ng-hide="showList") Lista de casos
       span(ng-show="showList") -
+    a.dl-csv.button(href="javascript:void(0);" ng-click="downloadCasos(filtered)")
+      span.icon.icon-download 
+      | CSV
     h2.results-count {{filtered.length}} casos encontrados
     ul.caso-list(ng-show='casos.length && initialized')
       li.clearfix(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50')

@@ -150,6 +150,10 @@
 
         });
 
+        $scope.downloadCasos = function(casos) {
+          JSONToCSV(casos, 'casos', true);
+        };
+
         $scope.clearFilters = function() {
           $scope.filter.text = '';
           $scope.filter.date.min = parseInt(_.min(anos));

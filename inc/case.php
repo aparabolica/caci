@@ -10,6 +10,8 @@ class Vindig_Case {
     add_action('init', array($this, 'register_post_type'));
     // add_action('init', array($this, 'geocode'));
     add_filter('json_prepare_post', array($this, 'json_prepare_post'), 10, 3);
+    add_action('pre_get_posts', array($this, 'pre_get_posts'), 5);
+    add_filter('json_serve_request', array($this, 'json_serve_request'), 20, 5);
   }
 
   function register_post_type() {
@@ -69,6 +71,46 @@ class Vindig_Case {
     return $_post;
   }
 
+  function pre_get_posts($query) {
+    if(isset($_REQUEST['csv'])) {
+      $query->set('posts_per_page', -1);
+    }
+  }
+
+  function json_serve_request($bool, $result, $path, $method, $json_server) {
+    if(isset($_REQUEST['csv'])) {
+      $this->outputCsv('casos.csv', $result->data);
+      exit();
+    }
+  }
+
+  public function outputCsv($fileName, $assocDataArray) {
+    ob_clean();
+    header('Pragma: public');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+    header('Cache-Control: private', false);
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment;filename=' . $fileName);
+    if(isset($assocDataArray[0])) {
+        $fp = fopen('php://output', 'w');
+        fputcsv($fp, array_keys($assocDataArray[0]));
+        foreach($assocDataArray AS $values) {
+            foreach($values as $key => $val) {
+              if(is_array($val) && !$this->isAssoc($val)) {
+                $values[$key] = implode(',', $val);
+              }
+            }
+            fputcsv($fp, $values);
+        }
+        fclose($fp);
+    }
+    ob_flush();
+  }
+
+  function isAssoc($arr) {
+    return array_keys($arr) !== range(0, count($arr) - 1);
+  }
 
   function geocode() {
 

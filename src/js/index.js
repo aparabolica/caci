@@ -1,3 +1,5 @@
+require('./util');
+
 (function(angular, vindig, undefined) {
 
   var app = angular.module('vindigena', [
@@ -113,27 +115,27 @@
       * Trailing slash rule
       */
       $urlRouterProvider.rule(function($injector, $location) {
-      	var path = $location.path(),
-      	search = $location.search(),
-      	params;
+        var path = $location.path(),
+        search = $location.search(),
+        params;
 
-      	// check to see if the path already ends in '/'
-      	if (path[path.length - 1] === '/') {
-      		return;
-      	}
+        // check to see if the path already ends in '/'
+        if (path[path.length - 1] === '/') {
+          return;
+        }
 
-      	// If there was no search string / query params, return with a `/`
-      	if (Object.keys(search).length === 0) {
-      		return path + '/';
-      	}
+        // If there was no search string / query params, return with a `/`
+        if (Object.keys(search).length === 0) {
+          return path + '/';
+        }
 
-      	// Otherwise build the search string and return a `/?` prefix
-      	params = [];
-      	angular.forEach(search, function(v, k){
-      		params.push(k + '=' + v);
-      	});
+        // Otherwise build the search string and return a `/?` prefix
+        params = [];
+        angular.forEach(search, function(v, k){
+          params.push(k + '=' + v);
+        });
 
-      	return path + '/?' + params.join('&');
+        return path + '/?' + params.join('&');
       });
 
     }
@@ -141,7 +143,7 @@
   .run([
     '$FB',
     function($FB) {
-       $FB.init('1496777703986386');
+      $FB.init('1496777703986386');
     }
   ]);
 
