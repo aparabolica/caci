@@ -214,7 +214,6 @@
           absolute: true
         });
 
-        console.log($scope.url);
 
         $scope.dossier = Dossier.data;
         $scope.dossier.content = $sce.trustAsHtml($scope.dossier.content);
@@ -223,6 +222,10 @@
           $rootScope.$broadcast('invalidateMap');
         }, 300);
         $rootScope.$broadcast('dossierCases', $scope.dossier.casos);
+
+        $scope.whatsapp = 'whatsapp://send?text=' + $scope.dossier.title + ' ' + $scope.url;
+        $scope.base = vindig.base;
+
       }
     ]);
 

@@ -5,7 +5,7 @@
   </header>
   <section tag-external class="dossier-content single-content"><a ui-sref="home" class="home-link"><span class="icon icon-home"></span>Voltar para o mapa principal</a>
     <p ng-show="dossier.excerpt" class="excerpt">{{dossier.excerpt}}</p>
-    <div class="share"><a facebook-feed-share data-url="{{url}}" class="facebookShare"></a><a twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}"></a></div>
+    <div class="share"><a ng-href="{{whatsapp}}" data-action="share/whatsapp/share" class="button"><img ng-src="{{base + '/img/whatsapp.png'}}"></a><a facebook-feed-share data-url="{{url}}" class="facebookShare"></a><a twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}"></a></div>
     <div ng-bind-html="dossier.content" fit-vids></div>
   </section>
   <section class="dossier-author">
