@@ -223,7 +223,7 @@
         }, 300);
         $rootScope.$broadcast('dossierCases', $scope.dossier.casos);
 
-        $scope.whatsapp = 'whatsapp://send?text=' + $scope.dossier.title + ' ' + $scope.url;
+        $scope.whatsapp = 'whatsapp://send?text=' + encodeURIComponent($scope.dossier.title + ' ' + $scope.url);
         $scope.base = vindig.base;
 
       }
