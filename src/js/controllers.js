@@ -240,13 +240,25 @@
       '$scope',
       '$sce',
       'Case',
-      function($rootScope, $state, $stateParams, $scope, $sce, Case) {
+      'Vindig',
+      function($rootScope, $state, $stateParams, $scope, $sce, Case, Vindig) {
         $scope.caso = Case.data;
         $scope.caso.content = $sce.trustAsHtml($scope.caso.content);
         if($stateParams.focus != false) {
           $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
         }
         $rootScope.$broadcast('invalidateMap');
+
+        $scope.report = function(message) {
+          Vindig.report($scope.caso.ID, message)
+          .success(function(data) {
+            console.log(data);
+            $scope.reported = true;
+          })
+          .error(function(err) {
+            console.log(err);
+          });
+        };
 
         $scope.close = function() {
           if($state.current.name.indexOf('dossier') !== -1) {

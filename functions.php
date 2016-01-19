@@ -134,4 +134,5 @@ add_filter('show_admin_bar', '__return_false');
 
 require_once(STYLESHEETPATH . '/inc/dossier.php');
 require_once(STYLESHEETPATH . '/inc/case.php');
+require_once(STYLESHEETPATH . '/inc/denuncia.php');
 require_once(STYLESHEETPATH . '/inc/shortcodes.php');

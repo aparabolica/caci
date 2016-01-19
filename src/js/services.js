@@ -73,6 +73,15 @@
               params: params
             });
           },
+          report: function(id, message) {
+            return $http({
+              method: 'POST',
+              url: vindig.api + '/posts/' + id + '/denuncia',
+              data: {
+                'message': message
+              }
+            });
+          },
           dossiers: function(params, filter) {
             params = params || {};
             params = _.extend({
