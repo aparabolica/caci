@@ -1,8 +1,8 @@
 section#content(autoscroll='false')
+  a.casos-toggle(href="javascript:void(0);" ng-click="toggleCasos()" ng-show="initialized" ng-class='{"collapsed": isDossier || !initialized, "in-case": isCase, "active": showList}') 
+    span(ng-hide="showList") Lista de casos
+    span(ng-show="showList") -
   section#casos(ng-class='{"collapsed": isDossier || !initialized, "in-case": isCase, "active": showList}')
-    a.toggle-link(href="javascript:void(0);" ng-click="toggleCasos()" ng-show="initialized") 
-      span(ng-hide="showList") Lista de casos
-      span(ng-show="showList") -
     a.dl-csv.button(href="javascript:void(0);" ng-click="downloadCasos(filtered)")
       span.icon.icon-download 
       | CSV

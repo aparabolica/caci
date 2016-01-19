@@ -429,6 +429,31 @@ input[type="submit"] {
   }
 }
 
+.casos-toggle {
+  position: fixed;
+  right: 0;
+  top: 40%;
+  background: #fff;
+  // box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 4px 0 0 4px;
+  padding: 10px;
+  text-align: right;
+  color: #999;
+  transition: all .4s ease-in-out;
+  z-index: 5;
+  outline: none;
+  &:hover {
+    color: #333;
+  }
+  &.collapsed,
+  &.in-case {
+    display: none;
+  }
+  &.active {
+    right: 30%;
+  }
+}
+
 #casos {
   position: fixed;
   right: -30%;
@@ -444,43 +469,17 @@ input[type="submit"] {
     right: 0;
     overflow-x: hidden;
     overflow-y: scroll;
-    .toggle-link {
-      right: 30%;
-    }
   }
   &.collapsed {
     right: -30% !important;
-    .toggle-link {
-      display: none;
-    }
   }
   &.in-case {
     right: -25%;
-    .toggle-link {
-      display: none;
-    }
     &:hover {
       right: 0;
     }
     &.force {
       right: -25% !important;
-    }
-  }
-  .toggle-link {
-    position: fixed;
-    right: 0;
-    top: 40%;
-    background: #fff;
-    // box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    border-radius: 4px 0 0 4px;
-    padding: 10px;
-    text-align: right;
-    color: #999;
-    transition: all .4s ease-in-out;
-    z-index: 5;
-    outline: none;
-    &:hover {
-      color: #333;
     }
   }
   .dl-csv {
