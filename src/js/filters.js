@@ -127,8 +127,17 @@
 
     app.filter('postToMarker', [
       'casoNameFilter',
-      function(casoNameFilter) {
-        return _.memoize(function(input) {
+      '$state',
+      function(casoNameFilter, $state) {
+        return _.memoize(function(input, defaultParentState, stateWhitelist) {
+
+          var state = '';
+
+          if($state.current.name == stateWhitelist) {
+            state += stateWhitelist + '.';
+          } else if(defaultParentState) {
+            state += defaultParentState + '.';
+          }
 
           if(input && input.length) {
 
@@ -137,13 +146,15 @@
             _.each(input, function(post) {
 
               if(post.coordinates) {
+                params = {};
+                params[post.type + 'Id'] = post.ID
                 markers[post.ID] = {
                   lat: post.coordinates[1],
                   lng: post.coordinates[0],
                   message: '<h2>' + casoNameFilter(post) + '</h2>',
                   state: {
-                    name: 'home.' + post.type,
-                    params: {id: post.ID}
+                    name: state + post.type,
+                    params: params
                   }
                 };
               }

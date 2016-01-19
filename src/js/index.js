@@ -67,7 +67,7 @@ require('./util');
         }
       })
       .state('home.case', {
-        url: 'caso/:id/',
+        url: 'caso/:caseId/',
         controller: 'CaseCtrl',
         templateUrl: vindig.base + '/views/case.html',
         params: {
@@ -78,13 +78,13 @@ require('./util');
             '$stateParams',
             'Vindig',
             function($stateParams, Vindig) {
-              return Vindig.getPost($stateParams.id);
+              return Vindig.getPost($stateParams.caseId);
             }
           ]
         }
       })
       .state('home.dossier', {
-        url: 'dossie/:id/',
+        url: 'dossie/:dossierId/',
         controller: 'DossierCtrl',
         templateUrl: vindig.base + '/views/dossier.html',
         resolve: {
@@ -92,7 +92,7 @@ require('./util');
             '$stateParams',
             'Vindig',
             function($stateParams, Vindig) {
-              return Vindig.getPost($stateParams.id);
+              return Vindig.getPost($stateParams.dossierId);
             }
           ],
           DossierMap: [
@@ -106,6 +106,23 @@ require('./util');
                 deferred.resolve(data.data);
               });
               return deferred.promise;
+            }
+          ]
+        }
+      })
+      .state('home.dossier.case', {
+        url: ':caseId/',
+        controller: 'CaseCtrl',
+        templateUrl: vindig.base + '/views/case.html',
+        params: {
+          focus: true
+        },
+        resolve: {
+          Case: [
+            '$stateParams',
+            'Vindig',
+            function($stateParams, Vindig) {
+              return Vindig.getPost($stateParams.caseId);
             }
           ]
         }

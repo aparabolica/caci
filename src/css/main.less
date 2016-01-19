@@ -619,8 +619,8 @@ input[type="submit"] {
     }
   }
   &.collapsed {
-    // currently the same as regular
-    width: 70%;
+    width: 70% !important;
+    right: auto;
   }
   &.in-case {
     width: 60%;
@@ -1010,6 +1010,17 @@ input[type="submit"] {
       line-height: 1.2;
       margin: 0 0 10px;
     }
+  }
+  #case.single {
+    position: fixed;
+    top: 50%;
+    right: auto;
+    padding: 5px 20px 20px;
+    left: 55%;
+    width: 25%;
+    bottom: 0;
+    overflow: auto;
+    font-size: 80%;
   }
 }
 

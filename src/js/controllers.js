@@ -65,7 +65,7 @@
           }, 200);
         });
 
-        if($state.current.name == 'home.dossier')
+        if($state.current.name == 'home.dossier' || $state.current.name == 'home.dossier.case')
           $scope.isDossier = true;
         else
           $scope.isDossier = false;
@@ -91,9 +91,10 @@
 
         $rootScope.$on('$stateChangeStart', function(ev, toState) {
 
+          if(toState.name !== 'home.dossier' && toState.name !== 'home.dossier.case')
           $scope.dossierCases = false;
 
-          if(toState.name == 'home.dossier')
+          if(toState.name == 'home.dossier' || toState.name == 'home.dossier.case')
             $scope.isDossier = true;
           else
             $scope.isDossier = false;
@@ -218,7 +219,6 @@
           absolute: true
         });
 
-
         $scope.dossier = Dossier.data;
         $scope.dossier.content = $sce.trustAsHtml($scope.dossier.content);
         $scope.$emit('dossierMap', Map);
@@ -235,17 +235,27 @@
 
     app.controller('CaseCtrl', [
       '$rootScope',
+      '$state',
       '$stateParams',
       '$scope',
       '$sce',
       'Case',
-      function($rootScope, $stateParams, $scope, $sce, Case) {
+      function($rootScope, $state, $stateParams, $scope, $sce, Case) {
         $scope.caso = Case.data;
         $scope.caso.content = $sce.trustAsHtml($scope.caso.content);
         if($stateParams.focus != false) {
           $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
         }
         $rootScope.$broadcast('invalidateMap');
+
+        $scope.close = function() {
+          if($state.current.name.indexOf('dossier') !== -1) {
+            $state.go('home.dossier', $state.current.params);
+          } else {
+            $state.go('home');
+          }
+        };
+
       }
     ]);
 
