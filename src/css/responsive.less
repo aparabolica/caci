@@ -4,6 +4,9 @@
   }
 }
 @media (max-width: 768px) {
+  .leaflet-control-zoom {
+    display: none !important;
+  }
   #masthead {
     &.collapsed {
       .header-main {
@@ -78,6 +81,16 @@
     width: auto;
     margin: 0;
     .page-header {
+      margin: 0 30px 30px;
+    }
+  }
+  #dossier.single {
+    margin-left: 0;
+    width: auto;
+    min-width: 0;
+    max-width: auto;
+    z-index: 99984;
+    .dossier-header {
       margin: 0 30px 30px;
     }
   }
