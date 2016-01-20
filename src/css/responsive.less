@@ -7,8 +7,17 @@
   #masthead {
     &.collapsed {
       .header-main {
+        margin-top: 0;
+        margin-right: 170px;
         h1 {
+          display: table;
+          height: 30px;
           font-size: 1em;
+          a {
+            display: table-cell;
+            vertical-align: middle;
+            line-height: 1;
+          }
         }
       }
     }
@@ -48,5 +57,16 @@
   }
   .casos-toggle {
     display: none;
+  }
+  #page.single {
+    padding-left: 0;
+    padding-right: 0;
+    min-width: 0;
+    max-width: auto;
+    width: auto;
+    margin: 0;
+    .page-header {
+      margin: 0 30px 30px;
+    }
   }
 }
