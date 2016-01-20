@@ -4,6 +4,9 @@
   }
 }
 @media (max-width: 768px) {
+  .map-container {
+    width: 100% !important;
+  }
   .leaflet-control-zoom {
     display: none !important;
   }
@@ -96,5 +99,18 @@
   }
   .single-content {
     word-wrap: break-word;
+  }
+  #casos {
+    display: none;
+  }
+  #case.single {
+    position: fixed;
+    width: auto;
+    margin: 20px;
+    bottom: 0;
+    overflow: auto;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    z-index: 99984;
   }
 }
