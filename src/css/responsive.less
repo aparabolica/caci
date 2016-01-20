@@ -1,0 +1,48 @@
+@media (max-width: 1000px) {
+  #casos-filters {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  #masthead {
+    &.collapsed {
+      .header-main {
+        h1 {
+          font-size: 1em;
+        }
+      }
+    }
+    .header-main {
+      width: auto;
+      float: none;
+      h1 {
+        font-size: 6vw;
+      }
+      .button {
+        display: block;
+        width: auto;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+    }
+    #mastnav {
+      > ul {
+        width: 100%;
+        right: -100%;
+      }
+      &.active {
+        > ul {
+          right: 0;
+        }
+      }
+    }
+    #intro {
+      padding: 0;
+      width: auto;
+      float: none;
+      p {
+        font-size: 3vw;
+      }
+    }
+  }
+}
