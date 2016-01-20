@@ -249,8 +249,14 @@
 
             var layerMap = {};
 
+            var collapsed = false;
+
+            if(jQuery(window).width() <= 768) {
+              collapsed = true;
+            }
+
             var layerControl = L.control.layers({}, {}, {
-              collapsed: false,
+              collapsed: collapsed,
               position: 'bottomright',
               autoZIndex: false
             }).addTo(map);
