@@ -1,4 +1,4 @@
-article#dossier.single
+article#dossier.single(ng-hide="hiddenContent")
   header.dossier-header
     h1 {{dossier.title}}
   section.dossier-content.single-content(tag-external)
@@ -7,7 +7,7 @@ article#dossier.single
       | Voltar para o mapa principal
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
     .share
-      a.button(ng-href="{{whatsapp}}" data-action="share/whatsapp/share")
+      a.button.show-if-mobile(ng-href="{{whatsapp}}" data-action="share/whatsapp/share")
         img(ng-src="{{base + '/img/whatsapp.png'}}")
       a.facebookShare(facebook-feed-share data-url="{{url}}")
       a(twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}")
@@ -16,4 +16,12 @@ article#dossier.single
     h2 Autor
     h3 {{dossier.author.name}}
     p {{dossier.author.description}}
-  .case(ui-view)
+
+#dossier-case(ui-view)
+
+a.map-toggle.show-if-mobile(href="javascript:void(0);" ng-click="toggleContent()")
+  span(ng-show="hiddenContent")
+    | Ver dossiê
+  span(ng-hide="hiddenContent")
+    span.icon.icon-map 
+    | Ver mapa

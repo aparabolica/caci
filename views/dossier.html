@@ -1,11 +1,11 @@
 
-<article id="dossier" class="single">
+<article id="dossier" ng-hide="hiddenContent" class="single">
   <header class="dossier-header">
     <h1>{{dossier.title}}</h1>
   </header>
   <section tag-external class="dossier-content single-content"><a ui-sref="home" class="home-link"><span class="icon icon-home"></span>Voltar para o mapa principal</a>
     <p ng-show="dossier.excerpt" class="excerpt">{{dossier.excerpt}}</p>
-    <div class="share"><a ng-href="{{whatsapp}}" data-action="share/whatsapp/share" class="button"><img ng-src="{{base + '/img/whatsapp.png'}}"></a><a facebook-feed-share data-url="{{url}}" class="facebookShare"></a><a twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}"></a></div>
+    <div class="share"><a ng-href="{{whatsapp}}" data-action="share/whatsapp/share" class="button show-if-mobile"><img ng-src="{{base + '/img/whatsapp.png'}}"></a><a facebook-feed-share data-url="{{url}}" class="facebookShare"></a><a twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}"></a></div>
     <div ng-bind-html="dossier.content" fit-vids></div>
   </section>
   <section class="dossier-author">
@@ -13,5 +13,5 @@
     <h3>{{dossier.author.name}}</h3>
     <p>{{dossier.author.description}}</p>
   </section>
-  <div ui-view class="case"></div>
 </article>
+<div id="dossier-case" ui-view></div><a href="javascript:void(0);" ng-click="toggleContent()" class="map-toggle show-if-mobile"><span ng-show="hiddenContent">Ver dossiê</span><span ng-hide="hiddenContent"><span class="icon icon-map"> </span>Ver mapa</span></a>

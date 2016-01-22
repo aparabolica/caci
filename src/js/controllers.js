@@ -230,6 +230,15 @@
         $scope.whatsapp = 'whatsapp://send?text=' + encodeURIComponent($scope.dossier.title + ' ' + $scope.url);
         $scope.base = vindig.base;
 
+        $scope.hiddenContent = false;
+        $scope.toggleContent = function() {
+          if($scope.hiddenContent) {
+            $scope.hiddenContent = false;
+          } else {
+            $scope.hiddenContent = true;
+          }
+        }
+
       }
     ]);
 
