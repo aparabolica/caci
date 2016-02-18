@@ -3,8 +3,8 @@
   <section id="casos" ng-class="{&quot;collapsed&quot;: isDossier || !initialized, &quot;in-case&quot;: isCase, &quot;active&quot;: showList}"><a href="javascript:void(0);" ng-click="downloadCasos(filtered)" class="dl-csv button"><span class="icon icon-download"> </span>CSV</a>
     <h2 class="results-count">{{filtered.length}} casos encontrados</h2>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-      <li ng-repeat="caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50" class="clearfix">
-        <article>
+      <li ng-repeat="caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50">
+        <article class="clearfix">
           <div class="location"><span class="icon icon-pin"></span>
             <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation"></a></p>
           </div>

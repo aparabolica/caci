@@ -28,6 +28,12 @@ p {
   margin: 0 0 40px;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .wp-caption,
 img {
   max-width: 100%;
@@ -66,6 +72,37 @@ input[type="submit"] {
   font-family: "Hind Siliguri";
   &:hover {
     color: #333;
+  }
+}
+
+.dialog {
+  position:fixed;
+  z-index: 999999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  .dialog-content {
+    background: #fff;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    margin: 10% auto 0;
+    .close {
+      float: right;
+      font-size: 30px;
+    }
+    h2,
+    p {
+      margin: 0 0 20px;
+    }
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    textarea {
+      width: 100%;
+    }
   }
 }
 
@@ -164,11 +201,14 @@ input[type="submit"] {
     }
     .icon {
       display: inline-block;
-      font-size: 30px;
       line-height: 50px;
       position: relative;
       z-index: 2;
       text-decoration: none;
+      font-size: 20px;
+      &.icon-menu {
+        font-size: 30px;
+      }
     }
     > ul {
       z-index: 1;
@@ -500,10 +540,10 @@ input[type="submit"] {
         // margin: 10px;
         padding: 20px;
         border-bottom: 1px solid rgba(0,0,0,0.3);
+        background: rgba(255,255,255,0.5);
         // background: #fff;
         .caso-header {
-          margin: -20px -20px 20px;
-          background: rgba(255,255,255,0.5);
+          margin: -20px -20px 0;
           padding: 20px;
           h3 {
             font-size: 24px;

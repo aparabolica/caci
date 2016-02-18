@@ -8,8 +8,8 @@ section#content(autoscroll='false')
       | CSV
     h2.results-count {{filtered.length}} casos encontrados
     ul.caso-list(ng-show='casos.length && initialized')
-      li.clearfix(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50')
-        article
+      li(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50')
+        article.clearfix
           .location
             span.icon.icon-pin
             p.location-info

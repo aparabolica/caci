@@ -18,7 +18,8 @@
       <nav id="mastnav" ng-class="{active: showNav}">
         <div class="nav-links">
           <a ng-click="toggleDossiers()" href="javascript:void(0);">Dossiês</a>
-          <a ng-click="toggleNav()" href="javascript:void(0);"><span class="icon icon-menu"></span></a>
+          <a ng-click="toggleDialog('embed')" href="javascript:void(0);" title="Incorporar no seu site"><span class="icon icon-share-alternitive"></span></a>
+          <a ng-click="toggleNav()" href="javascript:void(0);" title="Navegação"><span class="icon icon-menu"></span></a>
         </div>
         <ul>
           <li ng-repeat="page in pages">
@@ -51,6 +52,14 @@
       </aside>
     </header>
     <div ui-view></div>
+    <div id="embed-dialog" class="dialog" ng-show="showDialog('embed');">
+      <div class="dialog-content">
+        <a class="close" href="javascript:void(0);" ng-click="toggleDialog('embed');"><span class="icon icon-cross"></span></a>
+        <h2>Incorpore a plataforma no seu site</h2>
+        <p>Copie e cole o código abaixo para incorporar a visualização atual no seu site.</p>
+        <textarea>&lt;iframe src=&quot;{{embedUrl}}&quot; width=&quot;100%&quot; height=&quot;600&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</textarea>
+      </div>
+    </div>
     <?php wp_footer(); ?>
   </body>
 </html>

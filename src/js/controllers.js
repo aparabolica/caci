@@ -1,4 +1,4 @@
-(function(undefined) {
+(function(_, undefined) {
 
   module.exports = function(app) {
 
@@ -9,6 +9,31 @@
       '$timeout',
       'Vindig',
       function($rootScope, $scope, $state, $timeout, Vindig) {
+
+        $scope.dialogs = {};
+        $scope.showDialog = function(name) {
+          if($scope.dialogs[name])
+            return true;
+          else
+            return false;
+        };
+        $scope.toggleDialog = function(name) {
+          if(!$scope.dialogs[name])
+            $scope.dialogs[name] = true;
+          else
+            $scope.dialogs[name] = false;
+        };
+
+        document.onkeydown = function(evt) {
+          evt = evt || window.event;
+          if (evt.keyCode == 27) {
+            $scope.$apply(function() {
+              for(var key in $scope.dialogs) {
+                $scope.dialogs[key] = false;
+              }
+            });
+          }
+        };
 
         // Pages
         Vindig.pages().then(function(data) {
@@ -25,6 +50,10 @@
         }
         $rootScope.$on('$stateChangeStart', function() {
           $scope.showNav = false;
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function() {
+          $scope.embedUrl = $state.href($state.current.name || 'home', $state.params, {absolute: true});
         });
 
         // Dossiers
@@ -261,7 +290,6 @@
         $scope.report = function(message) {
           Vindig.report($scope.caso.ID, message)
           .success(function(data) {
-            console.log(data);
             $scope.reported = true;
           })
           .error(function(err) {
@@ -292,4 +320,4 @@
 
   };
 
-})();
+})(window._);
