@@ -2,6 +2,13 @@
 
   module.exports = function(app) {
 
+    app.filter('offset', function() {
+      return function(input, start) {
+        start = parseInt(start, 10);
+        return input.slice(start);
+      };
+    });
+
     app.filter('exact', function() {
       return function(input, match){
         var matching = [], matches, falsely = true;

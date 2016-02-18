@@ -3,7 +3,7 @@
   <section id="casos" ng-class="{&quot;collapsed&quot;: isDossier || !initialized, &quot;in-case&quot;: isCase, &quot;active&quot;: showList}"><a href="javascript:void(0);" ng-click="downloadCasos(filtered)" class="dl-csv button"><span class="icon icon-download"> </span>CSV</a>
     <h2 class="results-count">{{filtered.length}} casos encontrados</h2>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-      <li ng-repeat="caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50">
+      <li ng-repeat="caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | offset:currentPage*itemsPerPage | limitTo:itemsPerPage">
         <article class="clearfix">
           <div class="location"><span class="icon icon-pin"></span>
             <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation"></a></p>
@@ -22,6 +22,7 @@
         </article>
       </li>
     </ul>
+    <div class="paging"><span class="pages-info">{{currentPage+1}}/{{pageCount()+1}}</span><a ng-click="prevPage();" href="javascript:void(0);" ng-hide="prevPageDisabled()" scroll-up="'#casos'" class="prev">Página anterior</a><a ng-click="nextPage()" href="javascript:void(0);" ng-hide="nextPageDisabled()" scroll-up="'#casos'" class="next">Próxima página</a></div>
   </section>
 </section>
 <div ng-class="{full: isDossier, &quot;in-case&quot;: isCase, &quot;collapsed&quot;: showList &amp;&amp; initialized}" class="map-container"><map id="map" map-data="mapData" markers="filtered | postToMarker:&quot;home&quot;:&quot;home.dossier&quot;" heat-marker="false"></map></div>

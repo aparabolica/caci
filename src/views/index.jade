@@ -8,7 +8,7 @@ section#content(autoscroll='false')
       | CSV
     h2.results-count {{filtered.length}} casos encontrados
     ul.caso-list(ng-show='casos.length && initialized')
-      li(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | limitTo:50')
+      li(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | offset:currentPage*itemsPerPage | limitTo:itemsPerPage')
         article.clearfix
           .location
             span.icon.icon-pin
@@ -25,6 +25,10 @@ section#content(autoscroll='false')
                 span.icon.icon-calendar
                 p.date-info(ng-bind-html='caso | casoDate')
           //- p {{caso.descricao}}
+    .paging
+      span.pages-info {{currentPage+1}}/{{pageCount()+1}}
+      a.prev(ng-click="prevPage();" href="javascript:void(0);" ng-hide="prevPageDisabled()" scroll-up="'#casos'") Página anterior
+      a.next(ng-click="nextPage()" href="javascript:void(0);" ng-hide="nextPageDisabled()" scroll-up="'#casos'") Próxima página
 
 .map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized}')
   map#map(map-data='mapData' markers='filtered | postToMarker:"home":"home.dossier"' heat-marker="false")

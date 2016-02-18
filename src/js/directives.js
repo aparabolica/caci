@@ -4,6 +4,23 @@
 
   module.exports = function(app) {
 
+    app.directive('scrollUp', [
+      function() {
+        return {
+          restrict: 'A',
+          scope: {
+            'scrollUp': '='
+          },
+          link: function(scope, element, attrs) {
+            var el = jQuery(scope.scrollUp);
+            jQuery(element).on('click', function() {
+              el.scrollTop(0);
+            });
+          }
+        }
+      }
+    ]);
+
     app.directive('tagExternal', [
       '$timeout',
       function($timeout) {

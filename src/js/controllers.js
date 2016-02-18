@@ -140,6 +140,8 @@
           }
         });
 
+        $scope.casos = [];
+        
         // Async get cases
         Vindig.cases().then(function(res) {
           $scope.casos = res.data;
@@ -150,6 +152,32 @@
             });
           }
         });
+        $scope.itemsPerPage = 20;
+        $scope.currentPage = 0;
+
+        $scope.prevPage = function() {
+          if ($scope.currentPage > 0) {
+            $scope.currentPage--;
+          }
+        };
+
+        $scope.prevPageDisabled = function() {
+          return $scope.currentPage === 0 ? "disabled" : "";
+        };
+
+        $scope.pageCount = function() {
+          return Math.ceil($scope.casos.length/$scope.itemsPerPage)-1;
+        };
+
+        $scope.nextPage = function() {
+          if ($scope.currentPage < $scope.pageCount()) {
+            $scope.currentPage++;
+          }
+        };
+
+        $scope.nextPageDisabled = function() {
+          return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
+        };
 
         Vindig.dossiers().then(function(res) {
           $scope.dossiers = res.data;
