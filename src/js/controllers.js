@@ -141,7 +141,7 @@
         });
 
         $scope.casos = [];
-        
+
         // Async get cases
         Vindig.cases().then(function(res) {
           $scope.casos = res.data;
@@ -208,8 +208,39 @@
 
         });
 
+        var csvKeys = [
+          'aldeia',
+          'ano',
+          'apelido',
+          'cod_funai',
+          'cod_ibge',
+          'coordinates',
+          'descricao',
+          'dia',
+          'mes',
+          'ano',
+          'fonte_cimi',
+          'idade',
+          'municipio',
+          'uf',
+          'nome',
+          'povo',
+          'relatorio',
+          'terra_indigena'
+        ];
         $scope.downloadCasos = function(casos) {
-          JSONToCSV(casos, 'casos', true);
+          var toCsv = [];
+          console.log(casos[0]);
+          _.each(casos, function(caso) {
+            var c = {};
+            _.each(csvKeys, function(k) {
+              c[k] = caso[k];
+              if(typeof c[k] == 'string')
+                c[k] = c[k].replace(/"/g, '""');
+            });
+            toCsv.push(c);
+          });
+          JSONToCSV(toCsv, 'casos', true);
         };
 
         $scope.clearFilters = function() {
