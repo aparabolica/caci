@@ -140,6 +140,7 @@
           }
         });
 
+        $scope.filtered = [];
         $scope.casos = [];
 
         // Async get cases
@@ -166,7 +167,7 @@
         };
 
         $scope.pageCount = function() {
-          return Math.ceil($scope.casos.length/$scope.itemsPerPage)-1;
+          return Math.ceil($scope.filtered.length/$scope.itemsPerPage)-1;
         };
 
         $scope.nextPage = function() {
@@ -183,30 +184,50 @@
           $scope.dossiers = res.data;
         });
 
-        var anos;
-
         $scope.filter = {
           text: '',
+          strict: {},
           date: {
             min: 0,
             max: 0
           }
         };
-        $scope.dateFilters = [];
+        $scope.dateFilters = [0,0];
         $scope.dropdownFilters = {};
-        $scope.$watch('casos', function(casos) {
+
+        var setFilters = function(casos) {
 
           var anos = _.sortBy(Vindig.getUniq(casos, 'ano'), function(item) { return parseInt(item); });
 
-          $scope.dateFilters = [parseInt(_.min(anos)), parseInt(_.max(anos))];
-          $scope.filter.date.min = parseInt(_.min(anos));
-          $scope.filter.date.max = parseInt(_.max(anos));
+          if(!$scope.dateFilters[0] || parseInt(_.min(anos)) < $scope.dateFilters[0]) {
+            $scope.dateFilters[0] = parseInt(_.min(anos));
+            $scope.filter.date.min = parseInt(_.min(anos));
+          }
 
-          $scope.dropdownFilters.uf = _.sortBy(Vindig.getUniq(casos, 'uf'), function(item) { return item; });
-          $scope.dropdownFilters.relatorio = _.sortBy(Vindig.getUniq(casos, 'relatorio'), function(item) { return item; });
-          $scope.dropdownFilters.povo = _.sortBy(Vindig.getUniq(casos, 'povo'), function(item) { return item; });
+          if(!$scope.dateFilters[1] || parseInt(_.max(anos)) > $scope.dateFilters[1]) {
+            $scope.dateFilters[1] = parseInt(_.max(anos));
+            $scope.filter.date.max = parseInt(_.max(anos));
+          }
 
-        });
+          if(!$scope.filter.strict.uf)
+            $scope.dropdownFilters.uf = _.sortBy(Vindig.getUniq(casos, 'uf'), function(item) { return item; });
+
+          if(!$scope.filter.strict.relatorio)
+            $scope.dropdownFilters.relatorio = _.sortBy(Vindig.getUniq(casos, 'relatorio'), function(item) { return item; });
+
+          if(!$scope.filter.strict.povo)
+            $scope.dropdownFilters.povo = _.sortBy(Vindig.getUniq(casos, 'povo'), function(item) { return item; });
+
+        }
+
+        $scope.$watch('casos', setFilters);
+
+        var filterString = 'casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases';
+
+        $scope.$watch(filterString, function(casos) {
+          $scope.filtered = casos;
+          setFilters(casos);
+        }, true);
 
         var csvKeys = [
           'aldeia',
@@ -230,7 +251,6 @@
         ];
         $scope.downloadCasos = function(casos) {
           var toCsv = [];
-          console.log(casos[0]);
           _.each(casos, function(caso) {
             var c = {};
             _.each(csvKeys, function(k) {
@@ -277,8 +297,9 @@
 
     app.controller('HomeCtrl', [
       '$scope',
+      '$timeout',
       'Map',
-      function($scope, Map) {
+      function($scope, $timeout, Map) {
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
           if(toState.name == 'home' || toState.name == 'home.case' || toState.name == 'home.page') {
@@ -289,6 +310,14 @@
         $scope.$on('dossierMap', function(ev, map) {
           $scope.mapData = map;
         });
+
+        // $scope.filtered = [];
+        //
+        // $scope.$watch('filtered', _.memoize(function(f) {
+        //   console.log(f.length);
+        // }, function() {
+        //   return arguments[0].length;
+        // }));
 
       }
     ]);

@@ -8,7 +8,7 @@ section#content(autoscroll='false')
       | CSV
     h2.results-count {{filtered.length}} casos encontrados
     ul.caso-list(ng-show='casos.length && initialized')
-      li(ng-repeat='caso in filtered = (casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases) | offset:currentPage*itemsPerPage | limitTo:itemsPerPage')
+      li(ng-repeat='caso in (filtered | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)')
         article.clearfix
           .location
             span.icon.icon-pin
