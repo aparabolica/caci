@@ -20,7 +20,7 @@ if(!class_exists('Acf')) {
   }
   add_filter('acf/helpers/get_dir', 'vindig_acf_settings_dir');
 
-  define('ACF_LITE', false);
+  define('ACF_LITE', true);
 
   require_once(STYLESHEETPATH . '/inc/acf/acf.php');
 }
