@@ -1,6 +1,8 @@
 article#case.single
   header.case-header
     a(href="javascript:void(0);" ng-click="close()" class="icon icon-cross")
+    a(href="javascript:void(0);" ng-click="prev()" class="icon icon-chevron-left")
+    a(href="javascript:void(0);" ng-click="next()" class="icon icon-chevron-right")
     h1 {{caso | casoName}}
     .location
       span.icon.icon-pin

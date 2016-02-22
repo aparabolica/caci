@@ -183,6 +183,28 @@
           return $scope.currentPage === $scope.pageCount() ? "disabled" : "";
         };
 
+        $rootScope.$on('nextCase', function(ev, caso) {
+          var i;
+          _.each($scope.filtered, function(c, index) {
+            if(c.ID == caso.ID)
+              i = index;
+          });
+          if(i >= 0 && $scope.filtered[i+1]) {
+            $state.go('home.case', {caseId: $scope.filtered[i+1].ID});
+          }
+        });
+
+        $rootScope.$on('prevCase', function(ev, caso) {
+          var i;
+          _.each($scope.filtered, function(c, index) {
+            if(c.ID == caso.ID)
+              i = index;
+          });
+          if(i >= 0 && $scope.filtered[i-1]) {
+            $state.go('home.case', {caseId: $scope.filtered[i-1].ID});
+          }
+        });
+
         Vindig.dossiers().then(function(res) {
           $scope.dossiers = res.data;
         });
@@ -412,6 +434,14 @@
           } else {
             $state.go('home');
           }
+        };
+
+        $scope.next = function() {
+          $rootScope.$broadcast('nextCase', $scope.caso);
+        };
+
+        $scope.prev = function() {
+          $rootScope.$broadcast('prevCase', $scope.caso);
         };
 
       }
