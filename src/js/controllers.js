@@ -285,7 +285,7 @@
             _.each(csvKeys, function(k) {
               c[k] = caso[k];
               if(typeof c[k] == 'string')
-                c[k] = c[k];
+                c[k] = c[k].replace(/"/g, '""');
             });
             toCsv.push(c);
           });
