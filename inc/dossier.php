@@ -74,6 +74,21 @@ class Vindig_Dossier {
             ),
             'max' => '',
           ),
+          array (
+            'key' => 'field_casos_query',
+            'label' => 'Casos relacionados por consulta',
+            'name' => 'casos_query',
+            'type' => 'textarea',
+            'instructions' => 'Selecione casos através de consulta de metadados.
+      <br/>Por ex: uf=Mato Grosso do Sul; povo=Guarani Kaiowá; ano=2013;
+
+      <br/><br/>Se houver seleção de casos pelo método individual essa consulta não será utilizada.',
+            'default_value' => '',
+            'placeholder' => 'uf=Mato Grosso do Sul; povo=Guarani Kaiowá; ano=2013;',
+            'maxlength' => '',
+            'rows' => '',
+            'formatting' => 'none',
+          ),
         ),
         'location' => array(
           array (
@@ -100,6 +115,7 @@ class Vindig_Dossier {
   function json_prepare_post($_post, $post, $context) {
     if($post['post_type'] == 'dossier') {
       $_post['casos'] = get_field('casos', $post['ID']);
+      $_post['casos_query'] = htmlspecialchars_decode(get_field('casos_query', $post['ID']));
     }
     $_post['excerpt'] = $post['post_excerpt'];
     return $_post;

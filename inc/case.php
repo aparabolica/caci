@@ -10,6 +10,8 @@ class Vindig_Case {
     add_action('init', array($this, 'register_post_type'));
     // add_action('init', array($this, 'geocode'));
     add_filter('json_prepare_post', array($this, 'json_prepare_post'), 10, 3);
+    add_filter('acf/fields/relationship/result', array($this, 'relationship_result'), 10, 4);
+    add_filter('posts_clauses', array($this, 'posts_clauses'), 10, 2);
     add_action('pre_get_posts', array($this, 'pre_get_posts'), 5);
     add_filter('json_serve_request', array($this, 'json_serve_request'), 20, 5);
   }
@@ -69,6 +71,29 @@ class Vindig_Case {
 
     }
     return $_post;
+  }
+
+  function relationship_result($title, $post, $field, $the_post) {
+    if($post->post_type = 'case') {
+      $title = $title . ' (' . get_post_meta($post->ID, 'municipio', true) . ' - ' . get_post_meta($post->ID, 'uf', true) . ')';
+    }
+    return $title;
+  }
+
+  function posts_clauses($clauses, $query) {
+    global $wpdb, $wp;
+    if($query->is_search && ($query->get('post_type') == 'case' || $query->get('post_type') == array('case'))) {
+      $clauses['join'] .= " LEFT JOIN $wpdb->postmeta ON ($wpdb->posts.ID = $wpdb->postmeta.post_id) ";
+      $like = '%' . $wpdb->esc_like( $query->get('s') ) . '%';
+      $meta_like = str_replace(' ', '%', $like);
+      $clauses['where'] = preg_replace(
+        "/$wpdb->posts.post_title/",
+        "$wpdb->postmeta.meta_value",
+        $clauses['where']
+      );
+      $clauses['distinct'] = 'DISTINCT';
+    }
+    return $clauses;
   }
 
   function pre_get_posts($query) {

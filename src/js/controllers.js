@@ -224,6 +224,10 @@
 
         var filterString = 'casos | filter:filter.text | exact:filter.strict | dateFilter:filter.date | caseIds:dossierCases';
 
+        $rootScope.$on('caseQuery', function(ev, query) {
+          $scope.filter.strict = query;
+        }, true);
+
         $scope.$watch(filterString, function(casos) {
           $scope.filtered = casos;
           setFilters(casos);
@@ -256,7 +260,7 @@
             _.each(csvKeys, function(k) {
               c[k] = caso[k];
               if(typeof c[k] == 'string')
-                c[k] = c[k].replace(/"/g, '""');
+                c[k] = c[k];
             });
             toCsv.push(c);
           });
@@ -342,7 +346,21 @@
         $timeout(function() {
           $rootScope.$broadcast('invalidateMap');
         }, 300);
-        $rootScope.$broadcast('dossierCases', $scope.dossier.casos);
+
+        if($scope.dossier.casos && $scope.dossier.casos.length) {
+          $rootScope.$broadcast('dossierCases', $scope.dossier.casos);
+        } else if($scope.dossier.casos_query) {
+          var preQuery = $scope.dossier.casos_query.split(';');
+          var casosQuery = {};
+          _.each(preQuery, function(prop) {
+            if(prop) {
+              kv = prop.split('=');
+              if(kv.length)
+                casosQuery[kv[0].trim()] = kv[1].replace(/"/g, '');
+            }
+          });
+          $rootScope.$broadcast('caseQuery', casosQuery);
+        }
 
         $scope.whatsapp = 'whatsapp://send?text=' + encodeURIComponent($scope.dossier.title + ' ' + $scope.url);
         $scope.base = vindig.base;
