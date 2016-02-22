@@ -118,7 +118,7 @@
 
         });
 
-        $rootScope.$on('$stateChangeStart', function(ev, toState) {
+        $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState) {
 
           if(toState.name !== 'home.dossier' && toState.name !== 'home.dossier.case')
           $scope.dossierCases = false;
@@ -132,6 +132,9 @@
             $scope.isCase = true;
           else
             $scope.isCase = false;
+
+          if(fromState.name == 'home.dossier')
+            $scope.filter.strict = {};
         });
 
         $scope.$watch('isDossier', function(isDossier, prev) {
