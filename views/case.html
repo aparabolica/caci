@@ -19,10 +19,4 @@
   </header>
   <section ng-bind-html="caso.content" class="case-content"></section>
   <p ng-show="caso.relatorio" class="report"> <strong>Fonte:  </strong>{{caso.relatorio}}</p>
-  <p ng-show="reported" class="reported">Obrigado por enviar sua contribuição.</p>
-  <form id="denuncia" ng-submit="report(message)" ng-hide="reported">
-    <p>Possui informações sobre este caso que pode contribuir para nossa base de dados?</p>
-    <textarea ng-model="message" placeholder="Escreva aqui sua contribuição"></textarea>
-    <input type="submit" value="Enviar contribuição">
-  </form>
 </article>
