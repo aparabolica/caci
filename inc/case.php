@@ -100,6 +100,11 @@ class Vindig_Case {
     if(isset($_REQUEST['csv'])) {
       $query->set('posts_per_page', -1);
     }
+    if($query->get('post_type') == 'case' || $query->get('post_type') == array('case')) {
+      $query->set('meta_key', 'nome');
+      $query->set('orderby', 'meta_value');
+      $query->set('order', 'ASC');
+    }
   }
 
   function json_serve_request($bool, $result, $path, $method, $json_server) {
