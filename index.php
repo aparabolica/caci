@@ -29,12 +29,6 @@
             <h3>Um projeto de</h3>
             <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
           </li>
-          <li id="share">
-            <ul class="share-list row">
-              <li><a class="icon icon-facebook" href="http://facebook.com/" target="_blank" rel="external"></a></li>
-              <li><a class="icon icon-twitter" href="http://twitter.com/" target="_blank" rel="external"></a></li>
-            </ul>
-          </li>
           <li id="dossies" ng-class="{active: showDossiers}">
             <ul class="dossie-list">
               <li ng-repeat="dossier in dossiers">
