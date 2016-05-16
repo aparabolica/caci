@@ -158,9 +158,19 @@ require('./util');
     }
   ])
   .run([
+    '$rootScope',
     '$FB',
-    function($FB) {
+    function($rootScope, $FB) {
       $FB.init('1496777703986386');
+
+      $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
+        // Scroll top
+        if(fromState.name) {
+          jQuery('html,body').animate({
+            scrollTop: 0
+          }, 400);
+        }
+      });
     }
   ]);
 
