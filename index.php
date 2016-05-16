@@ -18,7 +18,7 @@
       <nav id="mastnav" ng-class="{active: showNav}">
         <div class="nav-links">
           <a ng-click="toggleDossiers()" href="javascript:void(0);">Dossiês</a>
-          <a ng-click="toggleDialog('embed')" href="javascript:void(0);" title="Incorporar no seu site"><span class="icon icon-share-alternitive"></span></a>
+          <a ng-click="toggleDialog('embed')" href="javascript:void(0);" title="Incorporar no seu site"><span class="icon icon-share"></span></a>
           <a ng-click="toggleNav()" href="javascript:void(0);" title="Menu"><span class="icon icon-menu"></span></a>
         </div>
         <ul>
