@@ -19,7 +19,9 @@ article#case.single
         span.icon.icon-calendar
         p.date-info(ng-bind-html='caso | casoDate')
   section.case-content(ng-bind-html="caso.content")
-  p.report(ng-show='caso.relatorio') {{caso.relatorio}}
+  p.report(ng-show='caso.relatorio') 
+    strong Fonte:  
+    | {{caso.relatorio}}
   p.reported(ng-show="reported") Obrigado por enviar sua contribuição.
   form#denuncia(ng-submit="report(message)" ng-hide="reported")
     p Possui informações sobre este caso que pode contribuir para nossa base de dados?
