@@ -86,6 +86,7 @@
         };
         $scope.init = function() {
           $scope.initialized = true;
+          $scope.showList = true;
         };
 
         $scope.$watch('initialized', function() {
