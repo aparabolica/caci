@@ -130,60 +130,6 @@ input[type="submit"] {
     padding-top: 6%;
     transition: all .4s ease-in-out;
   }
-  #casos-filters {
-    width: 300px;
-    float: left;
-    margin-top: -10px;
-    .toggle-adv {
-      float: right;
-      margin: 17px 0 0 0;
-    }
-    &:before {
-      content: '\e6d9';
-      font-family: 'icomoon';
-      speak: none;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-
-      /* Better Font Rendering =========== */
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      float: left;
-      display: block;
-      margin: 17px 10px 10px 10px;
-    }
-    input[type=text] {
-      background: transparent;
-      line-height: 50px;
-      border: 0;
-      display: block;
-      padding: 0;
-    }
-    .advanced-filters {
-      background: url("../img/halftone_clear.png");
-      overflow: hidden;
-      transition: all .4s ease-in-out;
-      max-height: 0;
-      padding: 0;
-      &.active {
-        max-height: 250px;
-        padding: 20px;
-      }
-      input[type=text],
-      select {
-        width: 100%;
-        padding: 7px 10px;
-        box-sizing: border-box;
-        border: 1px solid #eee;
-        background: #fff;
-        display: block;
-        margin: 0 0 10px;
-      }
-    }
-  }
   #mastnav {
     position: absolute;
     top: 0px;
@@ -494,6 +440,59 @@ input[type="submit"] {
           }
         }
       }
+    }
+  }
+}
+
+
+#casos-filters {
+  margin: 0 20px;
+  .toggle-adv {
+    float: right;
+    margin: 17px 0 0 0;
+  }
+  &:before {
+    content: '\e6d9';
+    font-family: 'icomoon';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    float: left;
+    display: block;
+    margin: 17px 10px 10px 0;
+  }
+  input[type=text] {
+    background: transparent;
+    line-height: 50px;
+    border: 0;
+    display: block;
+    padding: 0;
+  }
+  .advanced-filters {
+    background: url("../img/halftone_clear.png");
+    overflow: hidden;
+    transition: all .4s ease-in-out;
+    max-height: 0;
+    padding: 0;
+    &.active {
+      max-height: 250px;
+    }
+    input[type=text],
+    select {
+      width: 100%;
+      padding: 7px 10px;
+      box-sizing: border-box;
+      border: 1px solid #eee;
+      background: #fff;
+      display: block;
+      margin: 0 0 10px;
     }
   }
 }

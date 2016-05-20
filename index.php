@@ -17,7 +17,7 @@
         </aside>
         <nav class="button-nav"><a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button">Acesse</a></nav>
       </div>
-      <?php include_once(STYLESHEETPATH . '/views/filters.html'); ?>
+      <?php //include_once(STYLESHEETPATH . '/views/filters.html'); ?>
       <nav id="mastnav" ng-class="{active: showNav}">
         <div class="nav-links">
           <a ng-click="toggleDossiers()" href="javascript:void(0);" ng-show="initialized">Dossiês</a>
