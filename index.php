@@ -57,6 +57,13 @@
         <h2>Incorpore a plataforma no seu site</h2>
         <p>Copie e cole o código abaixo para incorporar a visualização atual no seu site.</p>
         <textarea>&lt;iframe src=&quot;{{embedUrl}}&quot; width=&quot;100%&quot; height=&quot;600&quot; frameborder=&quot;0&quot;&gt;&lt;/iframe&gt;</textarea>
+        <div class="social">
+          <h3>Compartilhe sua navegação nas redes sociais</h3>
+          <p>
+            <a ng-href="https://www.facebook.com/sharer/sharer.php?u={{getEmbedUrl()}}" class="icon icon-facebook" rel="external" target="_blank"></a>
+            <a ng-href="https://twitter.com/home?status={{getEmbedUrl()}}" class="icon icon-twitter" rel="external" target="_blank"></a>
+          </p>
+        </div>
       </div>
     </div>
     <?php wp_footer(); ?>

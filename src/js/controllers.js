@@ -56,6 +56,10 @@
           $scope.embedUrl = $state.href($state.current.name || 'home', $state.params, {absolute: true});
         });
 
+        $scope.getEmbedUrl = function() {
+          return encodeURIComponent($scope.embedUrl);
+        };
+
         // Dossiers
         $scope.toggleDossiers = function() {
           if($scope.showDossiers) {
