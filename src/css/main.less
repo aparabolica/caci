@@ -113,12 +113,13 @@ input[type="submit"] {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url(../img/halftone_light.png);
+  background: rgba(0,0,0,0.8);
   padding: 10% 5% 40px;
   transition: all .4s ease-in-out;
   .header-main {
-    float: left;
     width: 50%;
+    margin: 0 auto;
+    text-align: center;
     padding-top: 6%;
     transition: all .4s ease-in-out;
   }
@@ -190,6 +191,8 @@ input[type="submit"] {
     }
     > a,
     .nav-links a {
+      transition: color .2s linear;
+      color: #fff;
       display: inline-block;
       text-transform: uppercase;
       margin-left: 20px;
@@ -261,23 +264,41 @@ input[type="submit"] {
             padding: 0;
             border: 0;
           }
-          img {
-            max-width: 150px;
-            height: auto;
+          .logos {
+            margin-bottom: 20px;
+            img {
+              max-width: 150px;
+              width: auto;
+              max-height: 60px;
+              height: auto;
+              float: left;
+              margin: 0 20px 20px 0;
+            }
+          }
+          p {
+            font-size: .8em;
+            color: #666;
           }
         }
       }
     }
     &.active {
-      ul {
+      > a,
+      .nav-links a {
+        color: #000;
+      }
+      > ul {
         right: 0;
+        > li {
+          > a {
+            color: #000;
+          }
+        }
       }
     }
   }
   #intro {
-    float: right;
-    width: 20%;
-    padding-top: 15%;
+    color: #fff;
     .by {
       margin: 0 0 20%;
       p {
@@ -299,10 +320,10 @@ input[type="submit"] {
     }
   }
   h1 {
-    color: #111;
+    color: #fff;
     margin: 0 0 20px;
     text-transform: uppercase;
-    font-size: 4vw;
+    font-size: 6vw;
     line-height: 1;
     transition: all .4s ease-in-out;
     text-shadow: 2px 2px 0px rgba(255, 15, 0, 0.6);
@@ -313,7 +334,7 @@ input[type="submit"] {
     }
   }
   a {
-    color: #333;
+    color: #fff;
   }
   &.collapsed {
     z-index: 99990;
@@ -321,7 +342,7 @@ input[type="submit"] {
     padding: 10px;
     height: 30px;
     bottom: auto;
-    background: url(../img/halftone_clear.png);
+    background: #000;
     .header-main {
       padding-top: 0;
       width: auto;
@@ -346,47 +367,48 @@ input[type="submit"] {
     letter-spacing: 1px;
     border: 1px solid #333;
     border-radius: 3px;
-    padding: 10px 15px;
+    padding: 10px 30px;
     text-decoration: none;
-    background: rgba(255,255,255,0.5);
     font-size: 20px;
     -webkit-animation: neon 1s ease-in-out infinite alternate;
     -moz-animation: neon 1s ease-in-out infinite alternate;
     animation: neon 1s ease-in-out infinite alternate;
     font-weight: 600;
+    color: #fff;
+    background: rgba(235,15,0,1);
     &:hover {
-      background: #fff;
-      -webkit-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
-      -moz-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
-      box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+      background: rgba(200,15,0,1);
+      -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 1);
+      -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 1);
+      box-shadow: 0 0 0 rgba(0, 0, 0, 1);
     }
   }
 }
 
 @-webkit-keyframes neon {
   from {
-    -webit-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+    -webit-box-shadow: 0 0 0 rgba(0, 0, 0, 1);
   }
   to {
-    -webkit-box-shadow: 0 0 10px rgba(255, 15, 0, 0.6);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   }
 }
 
 @-moz-keyframes neon {
   from {
-    -moz-box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+    -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 1);
   }
   to {
-    -moz-box-shadow: 0 0 10px rgba(255, 15, 0, 0.6);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   }
 }
 
 @keyframes neon {
   from {
-    box-shadow: 0 0 0 rgba(255, 15, 0, 0.6);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 1);
   }
   to {
-    box-shadow: 0 0 10px rgba(255, 15, 0, 0.6);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
   }
 }
 

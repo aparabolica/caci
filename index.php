@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cartografia da violência contra os povos indígenas</title>
+    <title><?php bloginfo('name'); ?></title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -12,7 +12,10 @@
     <header id="masthead" ng-class="{collapsed: initialized}">
       <div class="header-main">
         <h1><a ui-sref="home" ng-click="home()"><?php bloginfo('name'); ?></a></h1>
-        <nav class="button-nav"><a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button">Navegar pelos casos</a></nav>
+        <aside id="intro" ng-hide="initialized">
+          <p><?php bloginfo('description'); ?></p>
+        </aside>
+        <nav class="button-nav"><a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button">Acesse</a></nav>
       </div>
       <?php include_once(STYLESHEETPATH . '/views/filters.html'); ?>
       <nav id="mastnav" ng-class="{active: showNav}">
@@ -26,8 +29,13 @@
             <a ui-sref="home.page({id: page.ID})">{{page.title}}</a>
           </li>
           <li id="by">
-            <h3>Um projeto de</h3>
-            <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
+            <h3>Desenvolvido por</h3>
+            <div class="logos clearfix">
+              <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
+              <a href="http://armazemmemoria.com.br" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/armz_memoria.jpg" /></a>
+              <a href="http://infoamazonia.org" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/infoamazonia.png" /></a>
+            </div>
+            <p>Esta plataforma foi realizada com o apoio da Fundação Rosa Luxemburgo com fundos do Ministério Federal para a Cooperação Econômica e de Desenvolvimento da Alemanha (BMZ)</p>
           </li>
           <li id="dossies" ng-class="{active: showDossiers}">
             <ul class="dossie-list">
@@ -41,9 +49,6 @@
           </li>
         </ul>
       </nav>
-      <aside id="intro" ng-hide="initialized">
-        <p><?php bloginfo('description'); ?></p>
-      </aside>
     </header>
     <div ui-view></div>
     <div id="embed-dialog" class="dialog" ng-show="showDialog('embed');">
