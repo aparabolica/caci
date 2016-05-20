@@ -6,6 +6,7 @@ article#dossier.single(ng-hide="hiddenContent")
       span.icon.icon-home
       | Voltar para o mapa principal
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
+    p.author por {{dossier.author.name}}
     .share
       a.button.show-if-mobile(ng-href="{{whatsapp}}" data-action="share/whatsapp/share")
         img(ng-src="{{base + '/img/whatsapp.png'}}")
