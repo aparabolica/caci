@@ -27,7 +27,7 @@ section#content(autoscroll='false')
               a(ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html='caso | caseLocation')
           header.caso-header
             h3
-              a(ui-sref='home.case({caseId: caso.ID})' force-onclick='600' force-parent='casos') {{caso | casoName}}
+              a(ui-sref='home.case({caseId: caso.ID})' force-onclick="'move'" force-parent='casos') {{caso | casoName}}
             .header-meta
               .age.meta(ng-show='caso.idade')
                 span.icon.icon-chevron-small-right

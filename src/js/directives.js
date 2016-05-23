@@ -63,11 +63,19 @@
             } else {
               el = jQuery(element);
             }
+            var handler = function(e) {
+              el.removeClass('force');
+              if(e.type && e.type == 'mousemove') {
+                jQuery(document).unbind('mousemove', handler);
+              }
+            };
             jQuery(element).on('click', function() {
               el.addClass('force');
-              setTimeout(function() {
-                el.removeClass('force');
-              }, ms);
+              if(ms == 'move') {
+                jQuery(document).on('mousemove', handler);
+              } else {
+                setTimeout(handler, ms);
+              }
             });
           }
         }

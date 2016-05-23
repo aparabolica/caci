@@ -24,7 +24,7 @@
             <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation"></a></p>
           </div>
           <header class="caso-header">
-            <h3><a ui-sref="home.case({caseId: caso.ID})" force-onclick="600" force-parent="casos">{{caso | casoName}}</a></h3>
+            <h3><a ui-sref="home.case({caseId: caso.ID})" force-onclick="'move'" force-parent="casos">{{caso | casoName}}</a></h3>
             <div class="header-meta">
               <div ng-show="caso.idade" class="age meta"><span class="icon icon-chevron-small-right"></span>
                 <p>{{caso.idade}} anos</p>
