@@ -172,7 +172,7 @@
                   else
                     map.options.maxZoom = 18;
 
-                  if(!loc.length) {
+                  if(!loc.length && mapData.ID !== prev.ID) {
                     setTimeout(function() {
                       map.setView(mapData.center, mapData.zoom, {
                         reset: true

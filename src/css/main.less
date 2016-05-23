@@ -181,6 +181,12 @@ input[type="submit"] {
       > li {
         margin: 0;
         padding: 0;
+        position: relative;
+        z-index: 2;
+        background: #fff;
+        &#dossies {
+          z-index: 1;
+        }
         > a {
           display: block;
           font-size: 24px;
@@ -366,7 +372,7 @@ input[type="submit"] {
 }
 
 #dossies {
-  position: fixed;
+  position: fixed !important;
   top: 50px;
   left: 0;
   z-index: 10000;
@@ -404,7 +410,7 @@ input[type="submit"] {
     display: table;
     border-top: 1px solid rgba(0,0,0,0.4);
     border-bottom: 1px solid rgba(0,0,0,0.4);
-    background: url(../img/halftone_clear.png);
+    background: #111;
     li {
       display: table-cell;
       padding: 10px 20px;
@@ -412,7 +418,7 @@ input[type="submit"] {
       vertical-align: middle;
       width: 1%;
       border-right: 1px solid rgba(0,0,0,0.4);
-      // color: #f0f0f0;
+      color: #f0f0f0;
       position: relative;
       &:last-child {
         border-right: 0;
@@ -426,7 +432,7 @@ input[type="submit"] {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        opacity: 0.2;
+        opacity: 0.3;
       }
       article {
         position: relative;

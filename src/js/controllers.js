@@ -133,8 +133,6 @@
           else
             $scope.isDossier = false;
 
-          console.log(toState.name);
-
           if(toState.name == 'home.case')
             $scope.isCase = true;
           else

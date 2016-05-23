@@ -37,7 +37,7 @@
             </div>
             <p>Esta plataforma foi realizada com o apoio da Fundação Rosa Luxemburgo com fundos do Ministério Federal para a Cooperação Econômica e de Desenvolvimento da Alemanha (BMZ)</p>
           </li>
-          <li id="dossies" ng-class="{active: showDossiers}">
+          <li id="dossies" ng-class="{active: showDossiers && !showNav}">
             <ul class="dossie-list">
               <li ng-repeat="dossier in dossiers">
                 <div style="background-image:url({{dossier.featured_image.attachment_meta.sizes.large.url}});" class="image"></div>
