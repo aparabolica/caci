@@ -16,7 +16,9 @@
         <div range-slider min="dateFilters[0] || 0" max="dateFilters[1] || 0" model-max="filter.date.max" model-min="filter.date.min" show-values="true"></div>
       </div>
     </form><a href="javascript:void(0);" ng-click="downloadCasos(filtered)" class="dl-csv button"><span class="icon icon-download"> </span>CSV</a>
-    <h2 class="results-count">{{filtered.length}} casos encontrados</h2>
+    <h2 class="results-count">
+      <ng-pluralize count="filtered.length" when="{'0': 'Nenhum caso encontrado', 'one': '1 caso encontrado', 'other': '{} casos encontrados'}"></ng-pluralize>
+    </h2>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
       <li ng-repeat="caso in (filtered | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)">
         <article class="clearfix">

@@ -17,7 +17,8 @@ section#content(autoscroll='false')
     a.dl-csv.button(href="javascript:void(0);" ng-click="downloadCasos(filtered)")
       span.icon.icon-download 
       | CSV
-    h2.results-count {{filtered.length}} casos encontrados
+    h2.results-count
+      ng-pluralize(count="filtered.length" when="{'0': 'Nenhum caso encontrado', 'one': '1 caso encontrado', 'other': '{} casos encontrados'}")
     ul.caso-list(ng-show='casos.length && initialized')
       li(ng-repeat='caso in (filtered | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)')
         article.clearfix
