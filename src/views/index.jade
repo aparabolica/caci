@@ -42,7 +42,7 @@ section#content(autoscroll='false')
       a.prev(ng-click="prevPage();" href="javascript:void(0);" ng-hide="prevPageDisabled()" scroll-up="'#casos'") Página anterior
       a.next(ng-click="nextPage()" href="javascript:void(0);" ng-hide="nextPageDisabled()" scroll-up="'#casos'") Próxima página
 
-.map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized}')
+.map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized && !isDossier}')
   map#map(map-data='mapData' markers='filtered | postToMarker:"home":"home.dossier"' heat-marker="false")
   
 div(ui-view)
