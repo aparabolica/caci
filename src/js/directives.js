@@ -96,15 +96,46 @@
           },
           link: function(scope, element, attrs) {
 
+            function getLocStr() {
+              var center = map.getCenter();
+              var zoom = map.getZoom();
+              var loc = [];
+              loc.push(center.lat);
+              loc.push(center.lng);
+              loc.push(zoom);
+              return loc.join(',');
+            }
+
+            function getStateLoc() {
+              if($state.params.loc)
+                return $state.params.loc.split(',');
+              else
+                return [];
+            }
+
             angular.element(element)
               .append('<div id="' + attrs.id + '"></div>')
               .attr('id', '');
 
+            var loc = getStateLoc();
+
+            var center = [0,0];
+            var zoom = 2;
+
+            if(loc.length) {
+              center = [loc[0], loc[1]];
+              zoom = loc[2];
+            }
+
             var map = L.map(attrs.id, {
-              center: [0,0],
-              zoom: 2,
+              center: center,
+              zoom: zoom,
               maxZoom: 18
             });
+
+            map.on('move', _.debounce(function() {
+              $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+            }, 400));
 
             // watch map invalidation
             $rootScope.$on('invalidateMap', function() {
@@ -124,7 +155,7 @@
              * Map data
              */
             scope.mapData = false;
-            var mapInit = false
+            var mapInit = false;
             scope.$watch('mapData', function(mapData, prev) {
               if(mapData.ID !== prev.ID || !mapInit) {
                 mapInit = true;
@@ -141,18 +172,20 @@
                   else
                     map.options.maxZoom = 18;
 
-                  setTimeout(function() {
-                    map.setView(mapData.center, mapData.zoom, {
-                      reset: true
-                    });
-                    map.setZoom(mapData.zoom);
+                  if(!loc.length) {
                     setTimeout(function() {
                       map.setView(mapData.center, mapData.zoom, {
                         reset: true
                       });
                       map.setZoom(mapData.zoom);
-                    }, 100);
-                  }, 200);
+                      setTimeout(function() {
+                        map.setView(mapData.center, mapData.zoom, {
+                          reset: true
+                        });
+                        map.setZoom(mapData.zoom);
+                      }, 100);
+                    }, 200);
+                  }
 
                   setTimeout(function() {
                     if(mapData.pan_limits) {

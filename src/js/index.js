@@ -29,7 +29,7 @@ require('./util');
 
       $stateProvider
       .state('home', {
-        url: '/',
+        url: '/?loc',
         controller: 'HomeCtrl',
         templateUrl: vindig.base + '/views/index.html',
         resolve: {
