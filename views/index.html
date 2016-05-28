@@ -20,7 +20,7 @@
       <ng-pluralize count="filtered.length" when="{'0': 'Nenhum caso encontrado', 'one': '1 caso encontrado', 'other': '{} casos encontrados'}"></ng-pluralize>
     </h2>
     <ul ng-show="casos.length &amp;&amp; initialized" class="caso-list">
-      <li ng-repeat="caso in (filtered | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)">
+      <li ng-repeat="caso in (filtered | orderBy:&quot;nome&quot; | emptyToEnd:&quot;nome&quot; | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)">
         <article class="clearfix">
           <div class="location"><span class="icon icon-pin"></span>
             <p class="location-info"><a ng-click="focusMap(caso)" href="javascript:void(0);" ng-bind-html="caso | caseLocation"></a></p>

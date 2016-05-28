@@ -20,7 +20,7 @@ section#content(autoscroll='false')
     h2.results-count
       ng-pluralize(count="filtered.length" when="{'0': 'Nenhum caso encontrado', 'one': '1 caso encontrado', 'other': '{} casos encontrados'}")
     ul.caso-list(ng-show='casos.length && initialized')
-      li(ng-repeat='caso in (filtered | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)')
+      li(ng-repeat='caso in (filtered | orderBy:"nome" | emptyToEnd:"nome" | offset:currentPage*itemsPerPage | limitTo:itemsPerPage)')
         article.clearfix
           .location
             span.icon.icon-pin

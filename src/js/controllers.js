@@ -154,6 +154,7 @@
         $scope.casos = [];
 
         // Async get cases
+        $scope.loading = true;
         Vindig.cases().then(function(res) {
           $scope.casos = res.data;
           var totalPages = res.headers('X-WP-TotalPages');
