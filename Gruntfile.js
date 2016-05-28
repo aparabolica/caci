@@ -27,7 +27,8 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         files: {
-          'css/app.css': 'src/css/main.less'
+          'css/app.css': 'src/css/main.less',
+          'css/print.css': 'src/css/print.less'
         }
       }
     },

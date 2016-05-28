@@ -12,6 +12,7 @@ article#dossier.single(ng-hide="hiddenContent")
         img(ng-src="{{base + '/img/whatsapp.png'}}")
       a.facebookShare(facebook-feed-share data-url="{{url}}")
       a(twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}")
+      a(href="javascript:window.print();" class="icon-print")
     div(ng-bind-html="dossier.content" fit-vids)
   section.dossier-author
     h2 Autor
