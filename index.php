@@ -60,6 +60,9 @@
         <div class="social">
           <h3>Compartilhe sua navegação nas redes sociais</h3>
           <p>
+            <a class="icon show-if-mobile" ng-href="whatsapp://send?text={{getEmbedUrl()}}" data-action="share/whatsapp/share">
+              <img ng-src="{{base}}/img/whatsapp.png" />
+            </a>
             <a ng-href="https://www.facebook.com/sharer/sharer.php?u={{getEmbedUrl()}}" class="icon icon-facebook" rel="external" target="_blank"></a>
             <a ng-href="https://twitter.com/home?status={{getEmbedUrl()}}" class="icon icon-twitter" rel="external" target="_blank"></a>
           </p>

@@ -10,6 +10,8 @@
       'Vindig',
       function($rootScope, $scope, $state, $timeout, Vindig) {
 
+        $scope.base = vindig.base;
+
         $scope.dialogs = {};
         $scope.showDialog = function(name) {
           if($scope.dialogs[name])
