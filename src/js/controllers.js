@@ -3,12 +3,13 @@
   module.exports = function(app) {
 
     app.controller('MainCtrl', [
+      '$q',
       '$rootScope',
       '$scope',
       '$state',
       '$timeout',
       'Vindig',
-      function($rootScope, $scope, $state, $timeout, Vindig) {
+      function($q, $rootScope, $scope, $state, $timeout, Vindig) {
 
         $scope.base = vindig.base;
 
@@ -156,14 +157,20 @@
         // Async get cases
         $scope.loading = true;
         Vindig.cases().then(function(res) {
+          var promises = [];
           $scope.casos = res.data;
           var totalPages = res.headers('X-WP-TotalPages');
           for(var i = 2; i <= totalPages; i++) {
-            Vindig.cases({page: i}).then(function(res) {
+            promises.push(Vindig.cases({page: i}));
+            promises[i-2].then(function(res) {
               $scope.casos = $scope.casos.concat(res.data);
             });
           }
+          $q.all(promises).then(function() {
+            $scope.loading = false;
+          });
         });
+
         $scope.itemsPerPage = 20;
         $scope.currentPage = 0;
 

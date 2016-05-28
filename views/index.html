@@ -42,5 +42,7 @@
     <div class="paging"><span class="pages-info">{{currentPage+1}}/{{pageCount()+1}}</span><a ng-click="prevPage();" href="javascript:void(0);" ng-hide="prevPageDisabled()" scroll-up="'#casos'" class="prev">Página anterior</a><a ng-click="nextPage()" href="javascript:void(0);" ng-hide="nextPageDisabled()" scroll-up="'#casos'" class="next">Próxima página</a></div>
   </section>
 </section>
-<div ng-class="{full: isDossier, &quot;in-case&quot;: isCase, &quot;collapsed&quot;: showList &amp;&amp; initialized &amp;&amp; !isDossier}" class="map-container"><map id="map" map-data="mapData" markers="filtered | postToMarker:&quot;home&quot;:&quot;home.dossier&quot;" heat-marker="false"></map></div>
+<div ng-class="{full: isDossier, &quot;in-case&quot;: isCase, &quot;collapsed&quot;: showList &amp;&amp; initialized &amp;&amp; !isDossier}" class="map-container"><map id="map" map-data="mapData" markers="filtered | postToMarker:&quot;home&quot;:&quot;home.dossier&quot;" heat-marker="false"></map>
+  <div ng-show="loading &amp;&amp; initialized" class="loading">Carregando casos...</div>
+</div>
 <div ui-view></div>

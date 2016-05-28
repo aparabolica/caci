@@ -720,11 +720,24 @@ input[type="submit"] {
   left: 0;
   bottom: 0;
   width: 100%;
-  // transition: all .2s linear;
+  .loading {
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,.7);
+    text-align: center;
+    font-weight: 800;
+    color: #fff;
+    padding-top: 30%;
+    text-transform: uppercase;
+    font-family: "Hind Siliguri";
+  }
   #map {
     width: 100%;
     height: 100%;
-    // transition: all .2s linear;
   }
   &.full {
     width: 66.6666%;

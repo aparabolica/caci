@@ -44,5 +44,6 @@ section#content(autoscroll='false')
 
 .map-container(ng-class='{full: isDossier, "in-case": isCase, "collapsed": showList && initialized && !isDossier}')
   map#map(map-data='mapData' markers='filtered | postToMarker:"home":"home.dossier"' heat-marker="false")
+  .loading(ng-show="loading && initialized") Carregando casos...
   
 div(ui-view)
