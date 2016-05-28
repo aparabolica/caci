@@ -75,6 +75,8 @@ function vindig_scripts() {
 
   wp_enqueue_script('app', get_stylesheet_directory_uri() . '/js/app.js', array('jquery', 'underscore', 'angular', 'angular-ui-router', 'angular-socialshare', 'angular-rangeslider', 'angular-fitvids', 'leaflet', 'mapbox.standalone', 'leaflet.markerclusterer', 'leaflet.heat'));
 
+  wp_enqueue_style('webfonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400|Hind+Siliguri:300,400,500,600,700|Megrim:400');
+
   wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-socialshare', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.markerclusterer', 'icons'));
   wp_enqueue_style('print', get_stylesheet_directory_uri() . '/css/print.css', array('app'), '0.0.1', 'print');
 

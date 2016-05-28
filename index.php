@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="fragment" content="!">
     <?php wp_head(); ?>
-    <link href='https://fonts.googleapis.com/css?family=Bowlby+One+SC|Alegreya+Sans+SC:400,900|Kanit:400,700|Teko:400,600,700|Squada+One|Khand:400,700|Hind+Vadodara:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body ng-controller="MainCtrl">
     <header id="masthead" ng-class="{collapsed: initialized}">
