@@ -137,7 +137,7 @@
 
             map.on('move', _.debounce(function() {
               $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
-            }, 400));
+            }, 1000));
 
             // watch map invalidation
             $rootScope.$on('invalidateMap', function() {
