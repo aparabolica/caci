@@ -35,11 +35,13 @@
             }
             $timeout(function() {
               jQuery(element).find('a').each(function() {
-                if(isExternal(jQuery(this).attr('href')))
-                  jQuery(this).addClass('external').attr({
-                    'rel': 'external',
-                    'target': '_blank'
-                  });
+                if(!jQuery(this).parents('.share').length) {
+                  if(isExternal(jQuery(this).attr('href')))
+                    jQuery(this).addClass('external').attr({
+                      'rel': 'external',
+                      'target': '_blank'
+                    });
+                }
               });
             }, 200);
           }

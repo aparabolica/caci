@@ -229,24 +229,26 @@
 
           var anos = _.sortBy(Vindig.getUniq(casos, 'ano'), function(item) { return parseInt(item); });
 
-          if(!$scope.dateFilters[0] || parseInt(_.min(anos)) < $scope.dateFilters[0]) {
-            $scope.dateFilters[0] = parseInt(_.min(anos));
-            $scope.filter.date.min = parseInt(_.min(anos));
+          if(anos.length) {
+            if(!$scope.dateFilters[0] || parseInt(_.min(anos)) < $scope.dateFilters[0]) {
+              $scope.dateFilters[0] = parseInt(_.min(anos));
+              $scope.filter.date.min = parseInt(_.min(anos));
+            }
+
+            if(!$scope.dateFilters[1] || parseInt(_.max(anos)) > $scope.dateFilters[1]) {
+              $scope.dateFilters[1] = parseInt(_.max(anos));
+              $scope.filter.date.max = parseInt(_.max(anos));
+            }
+
+            if(!$scope.filter.strict.uf)
+              $scope.dropdownFilters.uf = _.sortBy(Vindig.getUniq(casos, 'uf'), function(item) { return item; });
+
+            if(!$scope.filter.strict.relatorio)
+              $scope.dropdownFilters.relatorio = _.sortBy(Vindig.getUniq(casos, 'relatorio'), function(item) { return item; });
+
+            if(!$scope.filter.strict.povo)
+              $scope.dropdownFilters.povo = _.sortBy(Vindig.getUniq(casos, 'povo'), function(item) { return item; });
           }
-
-          if(!$scope.dateFilters[1] || parseInt(_.max(anos)) > $scope.dateFilters[1]) {
-            $scope.dateFilters[1] = parseInt(_.max(anos));
-            $scope.filter.date.max = parseInt(_.max(anos));
-          }
-
-          if(!$scope.filter.strict.uf)
-            $scope.dropdownFilters.uf = _.sortBy(Vindig.getUniq(casos, 'uf'), function(item) { return item; });
-
-          if(!$scope.filter.strict.relatorio)
-            $scope.dropdownFilters.relatorio = _.sortBy(Vindig.getUniq(casos, 'relatorio'), function(item) { return item; });
-
-          if(!$scope.filter.strict.povo)
-            $scope.dropdownFilters.povo = _.sortBy(Vindig.getUniq(casos, 'povo'), function(item) { return item; });
 
         }
 
@@ -299,8 +301,10 @@
 
         $scope.clearFilters = function() {
           $scope.filter.text = '';
-          $scope.filter.date.min = parseInt(_.min(anos));
-          $scope.filter.date.max = parseInt(_.max(anos));
+          if(typeof anos != 'undefined' && anos && anos.length) {
+            $scope.filter.date.min = parseInt(_.min(anos));
+            $scope.filter.date.max = parseInt(_.max(anos));
+          }
           $scope.filter.strict = {};
         }
 
