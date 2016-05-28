@@ -21,6 +21,26 @@
       }
     ]);
 
+    app.directive('attachToContent', [
+      function() {
+        return {
+          restrict: 'A',
+          scope: {
+            sel: '=attachToContent'
+          },
+          link: function(scope, element, attrs) {
+            var el = jQuery(scope.sel || '.single');
+            jQuery(window).resize(function() {
+              jQuery(element).css({
+                left: (el.offset().left + el.width()) + 'px'
+              });
+            });
+            jQuery(window).resize();
+          }
+        }
+      }
+    ]);
+
     app.directive('tagExternal', [
       '$timeout',
       function($timeout) {

@@ -2,7 +2,7 @@ article#dossier.single(ng-hide="hiddenContent")
   header.dossier-header
     h1 {{dossier.title}}
   section.dossier-content.single-content(tag-external)
-    a.home-link(ui-sref="home")
+    a.home-link(ui-sref="home" attach-to-content)
       span.icon.icon-home
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
     p.author por {{dossier.author.name}}

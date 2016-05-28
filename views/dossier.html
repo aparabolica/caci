@@ -3,7 +3,7 @@
   <header class="dossier-header">
     <h1>{{dossier.title}}</h1>
   </header>
-  <section tag-external class="dossier-content single-content"><a ui-sref="home" class="home-link"><span class="icon icon-home"></span></a>
+  <section tag-external class="dossier-content single-content"><a ui-sref="home" attach-to-content class="home-link"><span class="icon icon-home"></span></a>
     <p ng-show="dossier.excerpt" class="excerpt">{{dossier.excerpt}}</p>
     <p class="author">por {{dossier.author.name}}</p>
     <div class="share"><a ng-href="{{whatsapp}}" data-action="share/whatsapp/share" class="button show-if-mobile"><img ng-src="{{base + '/img/whatsapp.png'}}"></a><a facebook-feed-share data-url="{{url}}" class="facebookShare"></a><a twitter data-count="horizontal" data-size="medium" data-text="{{dossier.title}}" data-url="{{url}}"></a><a href="javascript:window.print();" class="icon-print"></a></div>
