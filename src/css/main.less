@@ -864,23 +864,41 @@ input[type="submit"] {
   z-index: 5;
   background: #fff;
   box-sizing: border-box;
-  a.icon-cross {
-    color: #333;
+  a.icon-cross,
+  a.icon-chevron-left,
+  a.icon-chevron-right {
+    background: #333;
+    color: #fff;
     text-decoration: none;
-    float: right;
-    margin: 0 0 20px 20px;
-    font-size: 26px;
+    font-size: 22px;
+    padding: 10px;
+    &:hover {
+      background: #444;
+    }
   }
-  h1 {
-    line-height: 1.2;
+  a.icon-cross {
+    margin: 0 0 20px 20px;
+    float: right;
+  }
+  .case-header {
+    background: #222;
+    color: #111;
+    margin: -40px -20% 10px -40px;
+    padding: 40px 40px 20px 40px;
+    h1 {
+      line-height: 1.2;
+      color: #fff;
+      margin-top: 2rem;
+    }
   }
   .location {
     position: relative;
     padding: 10px;
-    background: #f6f6f6;
-    border: 1px solid #f0f0f0;
+    background: #333;
+    border: 1px solid #111;
     border-radius: 4px;
     margin: 0 0 20px;
+    color: #fff;
     p {
       margin: 0;
     }
@@ -893,7 +911,7 @@ input[type="submit"] {
     .location-info {
       > a > span {
         display: block;
-        color: #333;
+        color: #999;
         span {
           display: inline-block;
           font-weight: 600;
@@ -928,8 +946,28 @@ input[type="submit"] {
     }
   }
   .case-content {
+    padding: 4%;
+    background: #fff;
+    margin-top: -35px;
+    border: 1px solid rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    position: relative;
+    border-radius: 4px;
     p {
-      margin: 0 0 30px;
+      margin: 0 0 10px;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      right: 40px;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      transform: rotate(-45deg);
+      margin-top: -6px;
+      background: #fff;
+      border-top: 1px solid rgba(0,0,0,0.2);
+      border-right: 1px solid rgba(0,0,0,0.2);
     }
   }
   .report {
@@ -1186,6 +1224,14 @@ input[type="submit"] {
   bottom: 0;
   overflow: auto;
   font-size: 80%;
+  .case-header {
+    margin: -5px -20px 10px -20px;
+    padding: 20px;
+  }
+  .icon-chevron-left,
+  .icon-chevron-right {
+    display: none;
+  }
 }
 
 #page.single {
