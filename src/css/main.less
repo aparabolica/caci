@@ -407,16 +407,17 @@ input[type="submit"] {
     margin: 0;
     padding: 0;
     width: 100%;
-    display: table;
+    display: block;
     border-top: 1px solid rgba(0,0,0,0.4);
     border-bottom: 1px solid rgba(0,0,0,0.4);
     background: #111;
     li {
-      display: table-cell;
+      display: block;
+      width: 25%;
+      height: 130px;
+      float: left;
+      box-sizing: border-box;
       padding: 10px 20px;
-      table-layout: fixed;
-      vertical-align: middle;
-      width: 1%;
       border-right: 1px solid rgba(0,0,0,0.4);
       color: #f0f0f0;
       position: relative;
