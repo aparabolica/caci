@@ -4,7 +4,6 @@ article#dossier.single(ng-hide="hiddenContent")
   section.dossier-content.single-content(tag-external)
     a.home-link(ui-sref="home")
       span.icon.icon-home
-      | Voltar para o mapa principal
     p.excerpt(ng-show="dossier.excerpt") {{dossier.excerpt}}
     p.author por {{dossier.author.name}}
     .share
