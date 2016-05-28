@@ -941,6 +941,7 @@ input[type="submit"] {
   background: #fff;
   padding: 30px;
   position: relative;
+  line-height: 1.6;
   .home-link {
     font-size: 12px;
     text-transform: uppercase;
@@ -1070,6 +1071,16 @@ input[type="submit"] {
           border-bottom: 0;
         }
       }
+    }
+  }
+  hr {
+    border: 0;
+    border-bottom: 1px dashed #fff;
+    background: #ddd;
+    &:after {
+      content: "";
+      display: table;
+      clear: both;
     }
   }
 }
