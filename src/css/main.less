@@ -286,11 +286,19 @@ input[type="submit"] {
     color: #fff;
     margin: 0 0 20px;
     text-transform: uppercase;
-    font-size: 6vw;
+    font-size: 10vw;
     line-height: 1;
     transition: all .4s ease-in-out;
     text-shadow: 2px 2px 0px rgba(255, 15, 0, 0.6);
     letter-spacing: -.2vw;
+    font-family: "Squada One";
+    font-weight: 400;
+    span {
+      color: rgba(255, 15, 0, 1);
+      font-size: 12vw;
+      transition: all .4s ease-in-out;
+      text-shadow: 2px 2px 0 rgba(255, 15, 0, 0.3);
+    }
     a {
       color: inherit;
       text-decoration: none;
@@ -314,7 +322,10 @@ input[type="submit"] {
     }
     h1 {
       margin: 0;
-      font-size: 1.2em;
+      font-size: 1.5em;
+      span {
+        font-size: 1.2em;
+      }
       line-height: 30px;
       text-shadow: 0 0 0;
       letter-spacing: -1px;
@@ -457,10 +468,14 @@ input[type="submit"] {
 
 
 #casos-filters {
-  margin: 0 20px;
+  margin: 0;
+  padding: 0 20px;
+  background: #333;
+  color: #fff;
   .toggle-adv {
     float: right;
     margin: 17px 0 0 0;
+    color: #666;
   }
   &:before {
     content: '\e6d9';
@@ -487,12 +502,15 @@ input[type="submit"] {
     padding: 0;
   }
   .advanced-filters {
-    background: url("../img/halftone_clear.png");
+    background: #fff;
+    color: #333;
+    margin: 0 -20px;
+    padding: 0 20px;
     overflow: hidden;
     transition: all .4s ease-in-out;
     max-height: 0;
-    padding: 0;
     &.active {
+      padding: 20px 20px;
       max-height: 250px;
     }
     input[type=text],
@@ -539,11 +557,11 @@ input[type="submit"] {
   width: 30%;
   top: 0;
   bottom: 0;
-  background: url(../img/halftone_clear.png);
+  background: #222;
   margin-top: 50px;
   transition: all .4s ease-in-out;
   z-index: 10;
-  border-left: 1px solid #ccc;
+  border-left: 1px solid #111;
   &.active {
     right: 0;
     overflow-x: hidden;
@@ -562,14 +580,20 @@ input[type="submit"] {
       right: -25% !important;
     }
   }
-  .dl-csv {
+  .dl-csv.button {
     float: right;
-    margin: 15px 20px 20px 0;
+    margin: 23px 20px 20px 0;
+    padding: 0;
+    border-color: transparent;
+    color: #999;
   }
   h2 {
     margin-left: 20px;
+    color: #fff;
+    text-shadow: 0 0 0;
   }
   .paging {
+    color: #fff;
     .pages-info {
       height: 0;
       display: block;
@@ -581,6 +605,7 @@ input[type="submit"] {
       text-transform: uppercase;
       font-size: 12px;
       padding: 20px;
+      color: #fff;
       &.prev {
         float: left;
       }
@@ -600,7 +625,7 @@ input[type="submit"] {
         // margin: 10px;
         padding: 20px;
         border-bottom: 1px solid rgba(0,0,0,0.3);
-        background: rgba(255,255,255,0.5);
+        background: rgba(255,255,255,0.9);
         // background: #fff;
         .caso-header {
           margin: -20px -20px 0;

@@ -4,7 +4,7 @@ section#content(autoscroll='false')
     span(ng-show="showList") -
   section#casos(ng-class='{"collapsed": isDossier || !initialized, "in-case": isCase, "active": showList}')
     form#casos-filters(ng-show='initialized')
-      a.icon.toggle-adv(href="javascript:void(0);" ng-class="{'icon-chevron-down': !showAdvFilters, 'icon-chevron-up': showAdvFilters}" ng-click="toggleAdvFilters()")
+      a.icon.toggle-adv(href="javascript:void(0);" ng-class="{'icon-chevron-down': !showAdvFilters, 'icon-chevron-up': showAdvFilters}" ng-click="toggleAdvFilters()" title="Filtros avançados")
       input(type='text' ng-model='filter.text' placeholder='Busque pelos casos...')
       .advanced-filters(ng-class="{active:showAdvFilters}")
         select(ng-model='filter.strict.uf' ng-options='uf for uf in dropdownFilters.uf track by uf')

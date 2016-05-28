@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="fragment" content="!">
     <?php wp_head(); ?>
+    <link href='https://fonts.googleapis.com/css?family=Bowlby+One+SC|Alegreya+Sans+SC:400,900|Kanit:400,700|Teko:400,600,700|Squada+One|Khand:400,700|Hind+Vadodara:400,700' rel='stylesheet' type='text/css'>
   </head>
   <body ng-controller="MainCtrl">
     <header id="masthead" ng-class="{collapsed: initialized}">
       <div class="header-main">
-        <h1><a ui-sref="home" ng-click="home()"><?php bloginfo('name'); ?></a></h1>
+        <h1><a ui-sref="home" ng-click="home()">C<span>A</span>CI</a></h1>
         <aside id="intro" ng-hide="initialized">
           <p><?php bloginfo('description'); ?></p>
         </aside>
