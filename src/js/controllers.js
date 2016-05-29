@@ -144,7 +144,10 @@
         }
         $scope.accessedTour = $cookies.get('accessed_tour');
 
-        console.log($cookies.get('accessed_tour'));
+        $scope.disableTour = function() {
+          $cookies.put('accessed_tour', 1);
+          $scope.accessedTour = 1;
+        };
 
         $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
 

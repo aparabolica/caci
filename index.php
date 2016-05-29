@@ -17,7 +17,7 @@
         </aside>
         <nav class="button-nav">
           <a ui-sref="home.tour" ng-click="init();" ng-hide="initialized" class="button" ng-class="{primary: accessedTour == 0}">Faça o tour</a>
-          <a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button" ng-class="{primary: accessedTour == 1}">Acesse</a>
+          <a href="javascript:void(0);" ng-click="init();disableTour();" ng-hide="initialized" class="button" ng-class="{primary: accessedTour == 1}">Acesse</a>
           </nav>
       </div>
       <?php //include_once(STYLESHEETPATH . '/views/filters.html'); ?>
