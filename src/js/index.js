@@ -4,6 +4,7 @@ require('./util');
 
   var app = angular.module('vindigena', [
     'ui.router',
+    'ngCookies',
     'djds4rce.angular-socialshare',
     'ui-rangeSlider',
     'fitVids'
@@ -51,6 +52,11 @@ require('./util');
             }
           ]
         }
+      })
+      .state('home.tour', {
+        url: 'tour/',
+        controller: 'TourCtrl',
+        templateUrl: vindig.base + '/views/tour.html',
       })
       .state('home.page', {
         url: 'p/:id/',

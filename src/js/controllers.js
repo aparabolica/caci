@@ -2,14 +2,37 @@
 
   module.exports = function(app) {
 
+    app.controller('TourCtrl', [
+      '$scope',
+      function($scope) {
+        $scope.total = 7;
+        $scope.step = 1;
+
+        $scope.nextStep = function() {
+          if($scope.step < $scope.total) {
+            $scope.step++;
+          }
+        };
+        $scope.prevStep = function() {
+          if($scope.step > 1) {
+            $scope.step--;
+          }
+        };
+        $scope.isStep = function(step) {
+          return $scope.step == step;
+        };
+      }
+    ]);
+
     app.controller('MainCtrl', [
       '$q',
       '$rootScope',
       '$scope',
       '$state',
       '$timeout',
+      '$cookies',
       'Vindig',
-      function($q, $rootScope, $scope, $state, $timeout, Vindig) {
+      function($q, $rootScope, $scope, $state, $timeout, $cookies, Vindig) {
 
         $scope.base = vindig.base;
 
@@ -116,10 +139,21 @@
           $scope.dossierCases = cases;
         });
 
+        if(!$cookies.get('tour')) {
+          $cookies.put('tour', true);
+        }
+        $scope.tour = $cookies.get('tour');
+
         $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
 
           if(toState.name !== 'home')
             $scope.initialized = true;
+
+          if(toState.name == 'home.tour') {
+            $scope.showList = true;
+            $cookies.put('tour', false);
+            $scope.tour = false;
+          }
 
           if(fromState.name == 'home.case')
             $rootScope.$broadcast('invalidateMap');
@@ -336,21 +370,24 @@
           } else {
             $scope.showList = true;
           }
+        }
+        $scope.$watch('showList', function() {
           $timeout(function() {
             $rootScope.$broadcast('invalidateMap');
-          }, 200);
-        }
+          }, 300);
+        });
       }
     ]);
 
     app.controller('HomeCtrl', [
       '$scope',
+      '$rootScope',
       '$timeout',
       'Map',
-      function($scope, $timeout, Map) {
+      function($scope, $rootScope, $timeout, Map) {
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
-          if(toState.name == 'home' || toState.name == 'home.case' || toState.name == 'home.page') {
+          if(toState.name == 'home' || toState.name == 'home.tour' || toState.name == 'home.case' || toState.name == 'home.page') {
             $scope.mapData = Map;
           }
         });
@@ -358,14 +395,6 @@
         $scope.$on('dossierMap', function(ev, map) {
           $scope.mapData = map;
         });
-
-        // $scope.filtered = [];
-        //
-        // $scope.$watch('filtered', _.memoize(function(f) {
-        //   console.log(f.length);
-        // }, function() {
-        //   return arguments[0].length;
-        // }));
 
       }
     ]);

@@ -4,6 +4,105 @@
 
   module.exports = function(app) {
 
+    app.directive('tourFocus', [
+      function() {
+        return {
+          restrict: 'A',
+          scope: {
+            'sel': '=tourFocus',
+            'direction': '=',
+            'active': '='
+          },
+          link: function(scope, element, attrs) {
+
+            var width, height, offset;
+
+            var focus = jQuery(scope.sel);
+
+            var el = jQuery(element);
+            var desc = el.find('.step-description');
+            var arrow = el.find('.arrow');
+
+            el.addClass(scope.direction);
+
+            var set = function() {
+              width = focus.innerWidth();
+              height = focus.innerHeight();
+              offset = focus.offset();
+              el.css({
+                width: width,
+                height: height,
+                top: offset.top,
+                left: offset.left
+              });
+              if(scope.direction == 'right') {
+                desc.css({
+                  top: offset.top - 10,
+                  left: offset.left,
+                  'margin-left': -320
+                });
+                arrow.css({
+                  top: offset.top,
+                  left: offset.left,
+                  'margin-top': 10,
+                  'margin-left': -40
+                });
+              } else if(scope.direction == 'left') {
+                desc.css({
+                  top: offset.top - 10,
+                  left: width,
+                  'margin-left': 30
+                });
+                arrow.css({
+                  top: offset.top,
+                  left: width,
+                  'margin-top': 10,
+                  'margin-left': 20
+                });
+              } else if(scope.direction == 'top') {
+                desc.css({
+                  bottom: (jQuery(window).height() - offset.top) + 30,
+                  left: parseLeft((offset.left + (width/2)) - (290/2))
+                });
+                arrow.css({
+                  bottom: jQuery(window).height() - offset.top,
+                  left: offset.left + (width/2),
+                  'margin-bottom': 20,
+                  'margin-left': -10
+                });
+              } else if(scope.direction == 'bottom') {
+                desc.css({
+                  top: offset.top + height,
+                  left: parseLeft((offset.left + (width/2)) - (290/2)),
+                  'margin-top': 30
+                });
+                arrow.css({
+                  top: offset.top + height,
+                  left: offset.left + (width/2),
+                  'margin-top': 20,
+                  'margin-left': -10
+                });
+              }
+            }
+            function parseLeft(number) {
+              max = jQuery(window).width() - desc.innerWidth();
+              if(number < 0)
+                return 0;
+              else if(number > max)
+                return max;
+              else
+                return number;
+            }
+            scope.$watch('active', _.debounce(function() {
+              set();
+            }, 400));
+            jQuery(window).resize(set);
+            jQuery(window).resize();
+          }
+        }
+      }
+    ]);
+
     app.directive('scrollUp', [
       function() {
         return {

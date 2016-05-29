@@ -15,7 +15,10 @@
         <aside id="intro" ng-hide="initialized">
           <p><?php bloginfo('description'); ?></p>
         </aside>
-        <nav class="button-nav"><a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button">Acesse</a></nav>
+        <nav class="button-nav">
+          <a ui-sref="home.tour" ng-click="init();" ng-hide="initialized" class="button" ng-class="{primary: tour}">Faça o tour</a>
+          <a href="javascript:void(0);" ng-click="init();" ng-hide="initialized" class="button" ng-class="{primary: !tour}">Acesse</a>
+          </nav>
       </div>
       <?php //include_once(STYLESHEETPATH . '/views/filters.html'); ?>
       <nav id="mastnav" ng-class="{active: showNav}">
