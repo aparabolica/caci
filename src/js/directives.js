@@ -93,11 +93,11 @@
               else
                 return number;
             }
+            set();
             scope.$watch('active', _.debounce(function() {
               set();
             }, 400));
             jQuery(window).resize(set);
-            jQuery(window).resize();
           }
         }
       }

@@ -1,0 +1,42 @@
+#tour
+  .tour-step.full(ng-show="isStep(1)")
+    .step-description
+      h2 Bem-vindo ao tour
+      p Clique em "Próximo passo" para conhecer as funcionalidades do CACI - Cartografia de Ataques Contra Indígenas.
+  .tour-step.focused(ng-show="isStep(2)" tour-focus="'.caso-list'" active="isStep(2)" direction="'right'")
+    .step-description
+      .arrow
+      h2 Lista de casos
+      p Você pode navegar pelos casos através da lista. Clicando em um caso poderá obter mais detalhes.
+  .tour-step.focused(ng-show="isStep(3)" tour-focus="'#casos-filters'" active="isStep(3)" direction="'right'")
+    .step-description
+      .arrow
+      h2 Filtre casos
+      p Faça uma busca por texto ou clique na seta para realizar uma busca avançada. Os resultados serão exibidos na lista e no mapa ao lado.
+  .tour-step.focused(ng-show="isStep(4)" tour-focus="'.results-count'" active="isStep(4)" direction="'right'")
+    .step-description
+      .arrow
+      h2 Resultados e download
+      p Obtenha número de casos disponíveis e faça download integral ou do resultado filtrado.
+  .tour-step.focused(ng-show="isStep(5)" tour-focus="'#map'" active="isStep(5)" direction="'left'")
+    .step-description
+      .arrow
+      h2 Navegue pelo mapa.
+      p Utilize a rolagem do mouse para aproximar. Clique em nos casos para obter mais detalhes ou nos casos agrupados para aproximar e desagrupar.
+  .tour-step.focused(ng-show="isStep(6)" tour-focus="'.leaflet-control-layers'" active="isStep(6)" direction="'top'")
+    .step-description
+      .arrow
+      h2 Filtre camadas
+      p Selecione as camadas que deseja combinar para a visualização do mapa.
+  .tour-step.focused(ng-show="isStep(7)" tour-focus="'#mastnav'" active="isStep(7)" direction="'bottom'")
+    .step-description
+      .arrow
+      h2 Navegue pelo conteúdo
+      p Conheça os dossiês baseados nos dados coletados pela plataforma e compartilhe sua navegação.
+    
+  nav#tour-nav
+    .nav-content
+      a.button(ui-sref="home") Pular tour
+      a.button(href="javascript:void(0);" ng-click="prevStep()") Passo anterior
+      a.button.primary(href="javascript:void(0);" ng-click="nextStep()" ng-hide="isStep(total)") Próximo passo
+      a.button.primary(ui-sref="home" ng-show="isStep(total)") Acessar
