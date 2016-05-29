@@ -33,6 +33,7 @@ require('./util');
         url: '/?loc',
         controller: 'HomeCtrl',
         templateUrl: vindig.base + '/views/index.html',
+        reloadOnSearch: false,
         resolve: {
           Map: [
             '$q',
@@ -57,11 +58,13 @@ require('./util');
         url: 'tour/',
         controller: 'TourCtrl',
         templateUrl: vindig.base + '/views/tour.html',
+        reloadOnSearch: false
       })
       .state('home.page', {
         url: 'p/:id/',
         controller: 'PageCtrl',
         templateUrl: vindig.base + '/views/page.html',
+        reloadOnSearch: false,
         resolve: {
           Page: [
             '$stateParams',
@@ -76,6 +79,7 @@ require('./util');
         url: 'caso/:caseId/',
         controller: 'CaseCtrl',
         templateUrl: vindig.base + '/views/case.html',
+        reloadOnSearch: false,
         params: {
           focus: true
         },
@@ -93,6 +97,7 @@ require('./util');
         url: 'dossie/:dossierId/',
         controller: 'DossierCtrl',
         templateUrl: vindig.base + '/views/dossier.html',
+        reloadOnSearch: false,
         resolve: {
           Dossier: [
             '$stateParams',
@@ -123,6 +128,7 @@ require('./util');
         params: {
           focus: true
         },
+        reloadOnSearch: false,
         resolve: {
           Case: [
             '$stateParams',
