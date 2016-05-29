@@ -254,9 +254,13 @@
               maxZoom: 18
             });
 
+            var prevLocStr;
             map.on('move', _.debounce(function() {
               scope.$apply(function() {
-                $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+                var locStr = getLocStr();
+                if(locStr != prevLocStr)
+                  $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+                prevLocStr = getLocStr();
               });
             }, 1000));
 
