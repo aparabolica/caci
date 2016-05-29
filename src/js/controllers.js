@@ -139,10 +139,12 @@
           $scope.dossierCases = cases;
         });
 
-        if(!$cookies.get('tour')) {
-          $cookies.put('tour', true);
+        if(!$cookies.get('accessed_tour')) {
+          $cookies.put('accessed_tour', 0);
         }
-        $scope.tour = $cookies.get('tour');
+        $scope.accessedTour = $cookies.get('accessed_tour');
+
+        console.log($cookies.get('accessed_tour'));
 
         $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
 
@@ -151,8 +153,8 @@
 
           if(toState.name == 'home.tour') {
             $scope.showList = true;
-            $cookies.put('tour', false);
-            $scope.tour = false;
+            $cookies.put('accessed_tour', 1);
+            $scope.accessedTour = 1;
           }
 
           if(fromState.name == 'home.case')
