@@ -255,7 +255,9 @@
             });
 
             map.on('move', _.debounce(function() {
-              $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+              scope.$apply(function() {
+                $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+              });
             }, 1000));
 
             // watch map invalidation
