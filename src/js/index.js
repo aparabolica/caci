@@ -177,7 +177,13 @@ require('./util');
 
       $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
         // Scroll top
-        if(fromState.name) {
+        if(
+          fromState.name &&
+          (
+            fromState.name.indexOf('dossier') == -1 &&
+            toState.name.indexOf('dossier') == -1
+          )
+        ) {
           jQuery('html,body').animate({
             scrollTop: 0
           }, 400);

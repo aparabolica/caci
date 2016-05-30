@@ -255,12 +255,21 @@
             });
 
             var prevLocStr;
+            var doMove = true;
+            $rootScope.$on('$stateChangeStart', function() {
+              doMove = false;
+            });
+            $rootScope.$on('$stateChangeSuccess', function() {
+              doMove = true;
+            });
             map.on('move', _.debounce(function() {
               scope.$apply(function() {
-                var locStr = getLocStr();
-                if(locStr != prevLocStr)
-                  $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
-                prevLocStr = getLocStr();
+                if(doMove) {
+                  var locStr = getLocStr();
+                  if(locStr != prevLocStr)
+                    $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+                  prevLocStr = getLocStr();
+                }
               });
             }, 1000));
 
