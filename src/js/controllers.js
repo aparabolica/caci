@@ -504,9 +504,21 @@
       '$scope',
       '$sce',
       'Page',
-      function($scope, $sce, Page) {
+      'Vindig',
+      function($scope, $sce, Page, Vindig) {
         $scope.page = Page.data;
         $scope.page.content = $sce.trustAsHtml($scope.page.content);
+
+        $scope.contacted = false;
+        $scope.contact = function(message) {
+          Vindig.contact(message)
+          .success(function(data) {
+            $scope.contacted = true;
+          })
+          .error(function(err) {
+            console.log(err);
+          });
+        };
       }
     ]);
 

@@ -5,5 +5,13 @@
   </header>
   <section tag-external class="page-content single-content"><a ui-sref="home" attach-to-content="'.single-content'" class="home-link"><span class="icon icon-home"></span></a>
     <div ng-bind-html="page.content"></div>
+    <p ng-show="contacted" class="contacted">Obrigado por enviar sua mensagem. Em breve entraremos em contato.</p>
+    <form id="contact" ng-submit="contact(message)" ng-show="!contacted &amp;&amp; page.slug == 'expediente'">
+      <h3>Envie uma mensagem</h3>
+      <input ng-model="message.email" placeholder="Seu email" type="email">
+      <input ng-model="message.name" placeholder="Seu nome" type="text">
+      <textarea ng-model="message.body" placeholder="Escreva aqui sua mensagem"></textarea>
+      <input type="submit" value="Enviar mensagem">
+    </form>
   </section>
 </article>

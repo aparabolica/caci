@@ -5,4 +5,10 @@ article#page.single
     a.home-link(ui-sref="home" attach-to-content="'.single-content'")
       span.icon.icon-home
     div(ng-bind-html="page.content")
-    
+    p.contacted(ng-show="contacted") Obrigado por enviar sua mensagem. Em breve entraremos em contato.
+    form#contact(ng-submit="contact(message)" ng-show="!contacted && page.slug == 'expediente'")
+      h3 Envie uma mensagem
+      input(ng-model="message.email" placeholder="Seu email" type="email")
+      input(ng-model="message.name" placeholder="Seu nome" type="text")
+      textarea(ng-model="message.body" placeholder="Escreva aqui sua mensagem")
+      input(type="submit" value="Enviar mensagem")

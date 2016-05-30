@@ -82,6 +82,13 @@
               }
             });
           },
+          contact: function(message) {
+            return $http({
+              method: 'POST',
+              url: vindig.api + '/contact',
+              data: message
+            });
+          },
           dossiers: function(params, filter) {
             params = params || {};
             params = _.extend({
