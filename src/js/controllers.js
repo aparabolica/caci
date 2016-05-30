@@ -510,14 +510,19 @@
         $scope.page.content = $sce.trustAsHtml($scope.page.content);
 
         $scope.contacted = false;
+        $scope.contacting = false;
         $scope.contact = function(message) {
-          Vindig.contact(message)
-          .success(function(data) {
-            $scope.contacted = true;
-          })
-          .error(function(err) {
-            console.log(err);
-          });
+          if(!$scope.contacting) {
+            $scope.contacting = true;
+            Vindig.contact(message)
+            .success(function(data) {
+              $scope.contacted = true;
+              $scope.contacting = false;
+            })
+            .error(function(err) {
+              console.log(err);
+            });
+          }
         };
       }
     ]);

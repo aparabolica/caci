@@ -11,7 +11,7 @@
       <input ng-model="message.email" placeholder="Seu email" type="email">
       <input ng-model="message.name" placeholder="Seu nome" type="text">
       <textarea ng-model="message.body" placeholder="Escreva aqui sua mensagem"></textarea>
-      <input type="submit" value="Enviar mensagem">
+      <input type="submit" value="Enviar mensagem" ng-attr="{disabled: contacting}">
     </form>
   </section>
 </article>

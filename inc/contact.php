@@ -33,11 +33,16 @@ class Vindig_Contact {
 
     // Send email
     $email = get_option('admin_email');
-    $body = '<p>Nova mensagem de <strong>' . $value['name'] . '</strong></p><p><strong>Mensagem</strong>:</p><p><blockquote>' . $data['body'] . '</blockquote></p>';
-    $headers = array('From:' . $value['name'] . '<' . $value['email'] . '>;Content-Type:text/html;charset=UTF-8');
-    wp_mail($email, '[CACI] Nova mensagem de ' . $value['name'], $body, $headers);
+    $body = '<p>Nova mensagem de <strong>' . $value['name'] . '</strong></p><p>Email: <strong>' . $value['email'] . '</strong></p><p><strong>Mensagem</strong>:</p><p><blockquote>' . $data['body'] . '</blockquote></p>';
+    $headers = array('Content-Type:text/html;charset=UTF-8');
 
-    $response = json_ensure_response($result);
+    $mailed = wp_mail($email, '[CACI] Nova mensagem de ' . $value['name'], $body, $headers);
+
+    if(!$mailed) {
+      return new WP_Error( 'vindig_mail_error', print_r($GLOBALS['phpmailer']->ErrorInfo, true), array( 'status' => 500 ) );
+    }
+
+    $response = json_ensure_response(true);
     $response->set_status(201);
     return $response;
 
