@@ -377,6 +377,7 @@
           }
         }
         $scope.$watch('showList', function() {
+          console.log($scope.showList);
           $timeout(function() {
             $rootScope.$broadcast('invalidateMap');
           }, 300);
