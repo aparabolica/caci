@@ -167,8 +167,14 @@
 
         $rootScope.$on('$stateChangeStart', function(ev, toState, toParams, fromState) {
 
-          if(toState.name !== 'home.dossier' && toState.name !== 'home.dossier.case')
-          $scope.dossierCases = false;
+          if(
+            (
+              toState.name != 'home.dossier' &&
+              toState.name != 'home.dossier.case'
+            )
+          ) {
+            $scope.dossierCases = false;
+          }
 
           if(toState.name == 'home.dossier' || toState.name == 'home.dossier.case')
             $scope.isDossier = true;
@@ -180,8 +186,18 @@
           else
             $scope.isCase = false;
 
-          if(fromState.name == 'home.dossier')
+          if(
+            (
+              fromState.name == 'home.dossier' &&
+              toState.name != 'home.dossier.case'
+            ) ||
+            (
+              fromState.name == 'home.dossier.case' &&
+              toState.name != 'home.dossier'
+            )
+          ) {
             $scope.filter.strict = {};
+          }
         });
 
         $scope.$watch('isDossier', function(isDossier, prev) {
@@ -358,7 +374,7 @@
         }
 
         $scope.$on('$stateChangeSuccess', function(ev, toState) {
-          if(toState.name == 'home.dossier') {
+          if(toState.name == 'home.dossier' && fromState.name != 'home.dossier.case') {
             $scope.clearFilters();
           }
         });
