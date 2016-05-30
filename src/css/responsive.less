@@ -28,7 +28,7 @@
         h1 {
           display: table;
           height: 30px;
-          font-size: .8em;
+          font-size: 1.6em;
           a {
             display: table-cell;
             vertical-align: middle;
@@ -42,7 +42,10 @@
       float: none;
       margin-top: 60px;
       h1 {
-        font-size: 8vw;
+        font-size: 5em;
+        span {
+          font-size: 1.4em;
+        }
       }
       .button {
         display: block;
@@ -127,6 +130,18 @@
   }
   .hide-if-mobile {
     display: none !important;
+  }
+  .button.primary-if-mobile {
+    -webkit-animation: neon 1s ease-in-out infinite alternate !important;
+    -moz-animation: neon 1s ease-in-out infinite alternate !important;
+    animation: neon 1s ease-in-out infinite alternate !important;
+    background: rgba(235,15,0,1) !important;
+    &:hover {
+      background: rgba(200,15,0,1) !important;
+      -webkit-box-shadow: 0 0 0 rgba(0, 0, 0, 1) !important;
+      -moz-box-shadow: 0 0 0 rgba(0, 0, 0, 1) !important;
+      box-shadow: 0 0 0 rgba(0, 0, 0, 1) !important;
+    }
   }
   .map-toggle {
     position: fixed;
