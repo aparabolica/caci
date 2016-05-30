@@ -412,7 +412,10 @@
                   var params =  _.extend({
                     focus: false
                   }, ev.target.post.state.params);
-                  $state.go(ev.target.post.state.name, params);
+                  var to = 'home.case';
+                  if($state.current.name.indexOf('dossier') !== -1)
+                    to = 'home.dossier.case';
+                  $state.go(to, params);
                 });
               }
               for(var key in markers) {
