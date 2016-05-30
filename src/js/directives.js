@@ -412,7 +412,6 @@
                   var params =  _.extend({
                     focus: false
                   }, ev.target.post.state.params);
-                  console.log(params);
                   $state.go(ev.target.post.state.name, params);
                 });
               }
