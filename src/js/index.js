@@ -30,7 +30,7 @@ require('./util');
 
       $stateProvider
       .state('home', {
-        url: '/?loc',
+        url: '/?loc&init',
         controller: 'HomeCtrl',
         templateUrl: vindig.base + '/views/index.html',
         reloadOnSearch: false,

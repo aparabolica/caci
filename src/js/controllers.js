@@ -74,8 +74,11 @@
             $scope.showNav = true;
           }
         }
-        $rootScope.$on('$stateChangeStart', function() {
+        $rootScope.$on('$stateChangeStart', function(ev, toState, toParams) {
           $scope.showNav = false;
+          if(toParams.init && !$scope.initialized) {
+            $scope.init();
+          }
         });
 
         $rootScope.$on('$stateChangeSuccess', function() {
@@ -119,7 +122,12 @@
           $scope.showList = true;
         };
 
-        $scope.$watch('initialized', function() {
+        $scope.$watch('initialized', function(init) {
+          if(init) {
+            $state.go($state.current.name, {init: true}, {notify: false});
+          } else if($state.params.init) {
+            $state.go($state.current.name, {init: false}, {notify: false});
+          }
           $timeout(function() {
             $rootScope.$broadcast('invalidateMap');
           }, 200);
