@@ -43,7 +43,7 @@
           </nav>
       </div>
       <?php //include_once(STYLESHEETPATH . '/views/filters.html'); ?>
-      <nav id="mastnav" ng-class="{active: showNav}">
+      <nav id="mastnav" ng-class="{active: showNav, 'overflow-visible': showDossiers && !showNav}">
         <div class="nav-links">
           <a ng-click="toggleDossiers()" href="javascript:void(0);" ng-show="initialized">Dossiês</a>
           <a ng-click="toggleDialog('embed')" href="javascript:void(0);" title="Incorporar no seu site"><span class="icon icon-share"></span></a>
