@@ -123,10 +123,12 @@
         };
 
         $scope.$watch('initialized', function(init) {
-          if(init) {
-            $state.go($state.current.name, {init: true}, {notify: false});
-          } else if($state.params.init) {
-            $state.go($state.current.name, {init: false}, {notify: false});
+          if($state.current && $state.current.name) {
+            if(init) {
+              $state.go($state.current.name, {init: true}, {notify: false});
+            } else if($state.params.init) {
+              $state.go($state.current.name, {init: false}, {notify: false});
+            }
           }
           $timeout(function() {
             $rootScope.$broadcast('invalidateMap');
