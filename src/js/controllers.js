@@ -168,7 +168,7 @@
             $scope.accessedTour = 1;
           }
 
-          if(fromState.name == 'home.case')
+          if(fromState && fromState.name == 'home.case')
             $rootScope.$broadcast('invalidateMap');
 
         });
@@ -195,6 +195,7 @@
             $scope.isCase = false;
 
           if(
+            fromState &&
             (
               fromState.name == 'home.dossier' &&
               toState.name != 'home.dossier.case'
@@ -381,8 +382,8 @@
           $scope.filter.strict = {};
         }
 
-        $scope.$on('$stateChangeSuccess', function(ev, toState) {
-          if(toState.name == 'home.dossier' && fromState.name != 'home.dossier.case') {
+        $scope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
+          if(fromState && toState.name == 'home.dossier' && fromState.name != 'home.dossier.case') {
             $scope.clearFilters();
           }
         });
