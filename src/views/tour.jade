@@ -2,37 +2,27 @@
   .tour-step.full(ng-show="isStep(1)")
     .step-description
       h2 Bem-vindo ao tour
-      p Clique em "Próximo passo" para conhecer as funcionalidades do CACI - Cartografia de Ataques Contra Indígenas.
+      p Clique em “Próximo passo” para conhecer a plataforma, que mapeia os assassinatos de indígenas no Brasil entre 1985 e 2015.
   .tour-step.focused(ng-show="isStep(2)" tour-focus="'.caso-list'" active="isStep(2)" direction="'right'")
     .step-description
       .arrow
       h2 Lista de casos
-      p Você pode navegar pelos casos através da lista. Clicando em um caso poderá obter mais detalhes.
+      p Navegue pelos casos e conheça seus detalhes clicando em cada um.
   .tour-step.focused(ng-show="isStep(3)" tour-focus="'#casos-filters'" active="isStep(3)" direction="'right'")
     .step-description
       .arrow
-      h2 Filtre casos
-      p Faça uma busca por texto ou clique na seta para realizar uma busca avançada. Os resultados serão exibidos na lista e no mapa ao lado.
-  .tour-step.focused(ng-show="isStep(4)" tour-focus="'.results-count'" active="isStep(4)" direction="'right'")
+      h2 Filtros de casos
+      p Pesquise por texto ou clique na seta para realizar uma busca avançada. Os resultados aparecem na lista e no mapa ao lado.
+  .tour-step.focused(ng-show="isStep(4)" tour-focus="'#map'" active="isStep(4)" direction="'left'")
     .step-description
       .arrow
-      h2 Resultados e download
-      p Obtenha número de casos disponíveis e faça download integral ou do resultado filtrado.
-  .tour-step.focused(ng-show="isStep(5)" tour-focus="'#map'" active="isStep(5)" direction="'left'")
+      h2 Mapa de navegação
+      p Os casos são reunidos por região. Altere o zoom e clique nos agrupamentos para ter acesso a cada caso específico.
+  .tour-step.focused(ng-show="isStep(5)" tour-focus="'#mastnav'" active="isStep(5)" direction="'bottom'")
     .step-description
       .arrow
-      h2 Navegue pelo mapa.
-      p Utilize a rolagem do mouse para aproximar. Clique em nos casos para obter mais detalhes ou nos casos agrupados para aproximar e desagrupar.
-  .tour-step.focused(ng-show="isStep(6)" tour-focus="'.leaflet-control-layers'" active="isStep(6)" direction="'top'")
-    .step-description
-      .arrow
-      h2 Filtre camadas
-      p Selecione as camadas que deseja combinar para a visualização do mapa.
-  .tour-step.focused(ng-show="isStep(7)" tour-focus="'#mastnav'" active="isStep(7)" direction="'bottom'")
-    .step-description
-      .arrow
-      h2 Navegue pelo conteúdo
-      p Conheça os dossiês baseados nos dados coletados pela plataforma e compartilhe sua navegação.
+      h2 Pesquisas e conteúdo
+      p Conheça os dossiês temáticos, compartilhe a plataforma e acesse outras informações.
     
   nav#tour-nav
     .nav-content

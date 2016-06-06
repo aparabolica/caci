@@ -5,7 +5,7 @@
     app.controller('TourCtrl', [
       '$scope',
       function($scope) {
-        $scope.total = 7;
+        $scope.total = 5;
         $scope.step = 1;
 
         $scope.nextStep = function() {
