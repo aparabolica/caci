@@ -249,6 +249,7 @@
             }
 
             var map = L.map(attrs.id, {
+              fullscreenControl: true,
               center: center,
               zoom: zoom,
               maxZoom: 18
