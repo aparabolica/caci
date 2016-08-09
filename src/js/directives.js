@@ -255,6 +255,8 @@
               maxZoom: 18
             });
 
+            map.attributionControl.setPrefix('');
+
             var prevLocStr;
             var doMove = true;
             $rootScope.$on('$stateChangeStart', function() {
