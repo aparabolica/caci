@@ -460,7 +460,7 @@
 
             var legendControl = L.mapbox.legendControl().addTo(map);
 
-            layerControl.addOverlay(markerLayer, 'Casos');
+            layerControl.addOverlay(markerLayer, 'Assassinatos');
 
             map.on('layeradd', function(ev) {
               if(ev.layer._vindig_id) {
