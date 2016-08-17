@@ -17,9 +17,6 @@
       bottom: 42px;
     }
   }
-  .leaflet-control-zoom {
-    display: none !important;
-  }
   #masthead {
     &.collapsed {
       .header-main {
@@ -169,6 +166,12 @@
     background: #fff;
     padding: 10px 0;
     z-index: 99985;
+  }
+}
+
+@media (max-width: 300px) {
+  .leaflet-control-zoom {
+    display: none !important;
   }
 }
 
