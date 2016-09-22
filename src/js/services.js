@@ -61,7 +61,7 @@
 
             filter = filter || {};
             filter = _.extend({
-              posts_per_page: 80,
+              posts_per_page: 40,
               without_map_query: 1
             }, filter);
 
