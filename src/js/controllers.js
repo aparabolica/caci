@@ -493,10 +493,13 @@
       function($rootScope, $state, $stateParams, $scope, $sce, Case, Vindig) {
         $scope.caso = Case.data;
         $scope.caso.content = $sce.trustAsHtml($scope.caso.content);
+        $scope.caso.descricao = $sce.trustAsHtml($scope.caso.descricao);
         if($stateParams.focus != false) {
           $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
         }
         $rootScope.$broadcast('invalidateMap');
+
+        console.log($scope.caso);
 
         $scope.report = function(message) {
           Vindig.report($scope.caso.ID, message)

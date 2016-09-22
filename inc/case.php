@@ -9,6 +9,7 @@ class Vindig_Case {
   function __construct() {
     add_action('init', array($this, 'register_post_type'));
     // add_action('init', array($this, 'geocode'));
+    // add_action('init', array($this, 'update_title'));
     add_filter('json_prepare_post', array($this, 'json_prepare_post'), 10, 3);
     add_filter('acf/fields/relationship/result', array($this, 'relationship_result'), 10, 4);
     add_filter('posts_clauses', array($this, 'posts_clauses'), 10, 2);
@@ -83,6 +84,7 @@ class Vindig_Case {
   function posts_clauses($clauses, $query) {
     global $wpdb, $wp;
     if($query->is_search && ($query->get('post_type') == 'case' || $query->get('post_type') == array('case'))) {
+      error_log('searching');
       $clauses['join'] .= " LEFT JOIN $wpdb->postmeta ON ($wpdb->posts.ID = $wpdb->postmeta.post_id) ";
       $like = '%' . $wpdb->esc_like( $query->get('s') ) . '%';
       $meta_like = str_replace(' ', '%', $like);
@@ -100,10 +102,12 @@ class Vindig_Case {
     if(isset($_REQUEST['csv'])) {
       $query->set('posts_per_page', -1);
     }
-    if($query->get('post_type') == 'case' || $query->get('post_type') == array('case')) {
-      $query->set('meta_key', 'nome');
-      $query->set('orderby', 'meta_value');
-      $query->set('order', 'ASC');
+    if(!$query->is_search) {
+      if($query->get('post_type') == 'case' || $query->get('post_type') == array('case')) {
+        $query->set('meta_key', 'nome');
+        $query->set('orderby', 'meta_value');
+        $query->set('order', 'ASC');
+      }
     }
   }
 
@@ -189,6 +193,46 @@ class Vindig_Case {
       }
 
       error_log('done');
+
+    }
+
+  }
+
+  function update_title() {
+
+
+    if(isset($_GET['update_title'])) {
+      error_log('init update title');
+
+      global $post;
+
+      $query = new WP_Query(array(
+        'post_type' => 'case',
+        'posts_per_page' => -1
+      ));
+
+      if($query->have_posts()) {
+        $count = 0;
+        while($query->have_posts()) {
+          $query->the_post();
+          $ano = get_post_meta($post->ID, 'ano', true);
+          // update only 2015 titles
+          if($ano == '2015') {
+            $povo = get_post_meta($post->ID, 'povo', true);
+            $nome = get_post_meta($post->ID, 'nome', true);
+            $cod_funai = get_post_meta($post->ID, 'cod_funai', true);
+            $count++;
+
+            $title = $ano . ' - ' . $nome . ' ' . $povo . ' ' . $cod_funai;
+
+            wp_update_post(array(
+              'ID' => $post->ID,
+              'post_title' => $title
+            ));
+          }
+        }
+        error_log('updated ' . $count);
+      }
 
     }
 

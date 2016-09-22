@@ -18,7 +18,7 @@ article#case.single
       .date.meta
         span.icon.icon-calendar
         p.date-info(ng-bind-html='caso | casoDate')
-  section.case-content(ng-bind-html="caso.content")
+  section.case-content(ng-bind-html="caso.descricao")
   p.report(ng-show='caso.relatorio') 
     strong Fonte:  
     | {{caso.relatorio}}
