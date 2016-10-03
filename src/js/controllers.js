@@ -460,8 +460,13 @@
           _.each(preQuery, function(prop) {
             if(prop) {
               kv = prop.split('=');
-              if(kv.length)
-                casosQuery[kv[0].trim()] = kv[1].replace(/"/g, '');
+              if(kv.length) {
+                if(kv[1].indexOf('/') == 0) {
+                  casosQuery[kv[0].trim()] = new RegExp(kv[1].substring(1, kv[1].length-1));
+                } else {
+                  casosQuery[kv[0].trim()] = kv[1].replace(/"/g, '');
+                }
+              }
             }
           });
           $rootScope.$broadcast('caseQuery', casosQuery);
@@ -498,8 +503,6 @@
           $rootScope.$broadcast('focusMap', $scope.caso.coordinates);
         }
         $rootScope.$broadcast('invalidateMap');
-
-        console.log($scope.caso);
 
         $scope.report = function(message) {
           Vindig.report($scope.caso.ID, message)

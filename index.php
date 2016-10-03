@@ -57,7 +57,7 @@
             <h3>Desenvolvido por</h3>
             <div class="logos clearfix">
               <a href="http://rosaluxspba.org/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/rosalux.jpg" /></a>
-              <a href="http://armazemmemoria.com.br" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/armz_memoria.png" /></a>
+              <a href="http://armazemmemoria.com.br/centros-indigena/" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/armz_memoria.png" /></a>
               <a href="http://infoamazonia.org" target="_blank" rel="external"><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/infoamazonia.png" /></a>
             </div>
             <p>Esta plataforma foi realizada com o apoio da Fundação Rosa Luxemburgo com fundos do Ministério Federal para a Cooperação Econômica e de Desenvolvimento da Alemanha (BMZ)</p>

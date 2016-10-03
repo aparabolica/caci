@@ -38,7 +38,12 @@
           matches = true;
           angular.forEach(match, function(value, key){ // e.g. 'all', 'title'
             if(!!value){ // do not compare if value is empty
-              matches = matches && (item[key] === value);
+              if(value.indexOf('^') == 0) {
+                var regex = new RegExp(value);
+                matches = matches && (regex.test(item[key]));
+              } else {
+                matches = matches && (item[key] === value);
+              }
             }
           });
           if(matches){
