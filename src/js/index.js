@@ -171,6 +171,7 @@ require('./util');
   ])
   .run([
     '$rootScope',
+    '$location',
     '$FB',
     function($rootScope, $FB) {
       $FB.init('1496777703986386');
