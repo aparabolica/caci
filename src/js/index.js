@@ -171,9 +171,10 @@ require('./util');
   ])
   .run([
     '$rootScope',
+    '$window',
     '$location',
     '$FB',
-    function($rootScope, $FB) {
+    function($rootScope, $window, $location, $FB) {
       $FB.init('1496777703986386');
 
       $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {

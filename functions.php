@@ -99,7 +99,7 @@ function vindig_scripts() {
 
   wp_enqueue_style('webfonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,700|Hind+Siliguri:300,400,500,600,700|Megrim:400');
 
-  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-socialshare', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.fullscreen', 'leaflet.markerclusterer', 'icons'), '1.1.4');
+  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-socialshare', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.fullscreen', 'leaflet.markerclusterer', 'icons'), '1.1.5');
   wp_enqueue_style('print', get_stylesheet_directory_uri() . '/css/print.css', array('app'), '1.1', 'print');
 
   $jeo_options = jeo_get_options();
