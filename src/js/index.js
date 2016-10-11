@@ -176,6 +176,9 @@ require('./util');
       $FB.init('1496777703986386');
 
       $rootScope.$on('$stateChangeSuccess', function(ev, toState, toParams, fromState, fromParams) {
+        if($window._gaq) {
+          $window._gaq.push(['_trackPageview', $location.path()]);
+        }
         // Scroll top
         if(
           fromState.name &&

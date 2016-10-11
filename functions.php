@@ -26,6 +26,25 @@ if(!class_exists('Acf')) {
 }
 
 /*
+ * Set ga
+ */
+function vindig_ga() {
+	?>
+	<script>
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', "UA-85532850-1"]);
+		_gaq.push(['_setDomainName', 'caci.rosaluxspba.org']);
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+	<?php
+}
+add_action('wp_head', 'vindig_ga');
+
+/*
  * Theme WP features
  */
 add_theme_support('post-thumbnails');
@@ -80,7 +99,7 @@ function vindig_scripts() {
 
   wp_enqueue_style('webfonts', 'https://fonts.googleapis.com/css?family=PT+Serif:400,700|Hind+Siliguri:300,400,500,600,700|Megrim:400');
 
-  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-socialshare', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.fullscreen', 'leaflet.markerclusterer', 'icons'), '1.1.2');
+  wp_enqueue_style('app', get_stylesheet_directory_uri() . '/css/app.css', array('normalize', 'angular-socialshare', 'angular-rangeslider', 'mapbox.standalone', 'leaflet.fullscreen', 'leaflet.markerclusterer', 'icons'), '1.1.3');
   wp_enqueue_style('print', get_stylesheet_directory_uri() . '/css/print.css', array('app'), '1.1', 'print');
 
   $jeo_options = jeo_get_options();

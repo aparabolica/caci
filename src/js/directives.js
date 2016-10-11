@@ -270,7 +270,7 @@
                 if(doMove) {
                   var locStr = getLocStr();
                   if(locStr != prevLocStr)
-                    $state.go($state.current.name, {loc: getLocStr()}, {notify: false});
+                    $state.go($state.current.name, {loc: getLocStr()}, {notify: false, location: 'replace'});
                   prevLocStr = getLocStr();
                 }
               });
